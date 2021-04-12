@@ -26,9 +26,7 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/">
-          <h2>Hello from react</h2>
-        </Route>
+        <Route exact path="/"></Route>
 
         <Route exact path="/repo" component={RepoList} />
         <Route exact path="/dean" component={DeanList} />
