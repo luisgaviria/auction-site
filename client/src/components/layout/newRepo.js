@@ -66,18 +66,6 @@ const RepoList = (props) => {
     );
   });
 
-  // const deanListItems = state.dean.map((deanItem, i) => {
-  //   return (
-  //     <div key={i}>
-  //       <p>{deanItem.date}</p>
-  //       <p>{deanItem.hour}</p>
-  //       <p>{deanItem.address}</p>
-  //       <p>{deanItem.deposit}</p>
-  //       <p>{deanItem.balance_due}</p>
-  //     </div>
-  //   );
-  // });
-
   return (
     <div className="list-item">
       {repoListItems}
