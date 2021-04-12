@@ -1,0 +1,112 @@
+@import "./foundation/settings";
+@import "~foundation-sites/scss/foundation";
+@include foundation-everything;
+// place global css here
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+.list-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 370px;
+  justify-content: space-around;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 2%;
+  box-shadow: 1px 1px 0px 0px #cecbcb;
+}
+
+.serial {
+  font-weight: 400;
+  font-size: 18pt;
+  max-width: 280px;
+  grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+  flex-direction: column;
+  margin-left: 94px;
+  margin-right: auto;
+  margin-top: 1rem;
+  display: flex;
+}
+
+.date {
+  color: #616566;
+
+  font-size: 1.5rem;
+  max-width: 280px;
+  grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+  flex-direction: column;
+  margin-left: 94px;
+  margin-right: auto;
+  display: flex;
+}
+
+.address {
+  color: #616566;
+
+  font-size: 1.2rem;
+  max-width: 280px;
+  grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+  flex-direction: column;
+  margin-left: 94px;
+  margin-right: auto;
+  display: flex;
+}
+
+.status {
+  color: #9e3030;
+  margin-bottom: 4pt;
+
+  font-size: 1.5rem;
+  max-width: 280px;
+  grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+  flex-direction: column;
+  margin-left: 94px;
+  margin-right: auto;
+  display: flex;
+}
+
+.style {
+  color: #616566;
+
+  font-size: 1.2rem;
+  max-width: 280px;
+  grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+  flex-direction: column;
+  margin-left: 94px;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.list-item {
+  margin-top: 1rem;
+  margin-left: auto;
+
+  margin-right: auto;
+  justify-content: center;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+  gap: 10px;
+}
+
+// .icon-image {
+//   float: left;
+// }
+
+.icon-image img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 1.5rem;
+  height: 6vh;
+}
