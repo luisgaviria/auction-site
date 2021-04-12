@@ -9,6 +9,7 @@ import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 
 import RepoList from "../components/layout/newRepo";
+import DeanList from "../components/layout/deanRepo";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -30,7 +31,7 @@ const App = (props) => {
         </Route>
 
         <Route exact path="/repo" component={RepoList} />
-
+        <Route exact path="/dean" component={DeanList} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>
