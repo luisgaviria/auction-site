@@ -21,12 +21,18 @@ const TopBar = ({ user }) => {
   ];
 
   return (
-    <div className="top-bar">
+    <div className="main-header">
       <div className="top-bar-left">
         <ul className="menu">
           <li className="menu-text">App</li>
           <li>
             <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/repo">Auctions 1</Link>
+          </li>
+          <li>
+            <Link to="/dean">Auctions 2</Link>
           </li>
         </ul>
       </div>
