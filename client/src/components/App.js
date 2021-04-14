@@ -7,9 +7,11 @@ import "../assets/scss/main.scss";
 import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
+import Header from "./layout/Header";
 
 import RepoList from "../components/layout/newRepo";
 import DeanList from "../components/layout/deanRepo";
+import ApgList from "../components/layout/ApgRepo";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -25,11 +27,13 @@ const App = (props) => {
   return (
     <Router>
       <TopBar user={currentUser} />
+      <Header />
       <Switch>
-        <Route exact path="/"></Route>
+        <Route exact path="/" />
 
         <Route exact path="/repo" component={RepoList} />
         <Route exact path="/dean" component={DeanList} />
+        <Route exact path="/apg" component={ApgList} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>

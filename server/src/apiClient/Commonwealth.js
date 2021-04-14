@@ -8,42 +8,39 @@ const crawl = async ({ url }) => {
 
   const data = [];
 
-  let links = $(
-    "body > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > center:nth-child(3) > table > tbody > tr"
-  )
+  let links = $("body > table.menu > tbody > tr:nth-child(2) > td.pagebody > table")
     .toArray()
     .map((item) => {
-      const tds = $(item).find("td");
-      const image = $(tds[0]).find("img").attr("src");
-      const number = $(tds[0])
+      const dd = $(item).find("dd");
+      const auction_status = $(dd[0])
         .text()
         .trim()
         .replace(/\n/g, "")
         .replace(/\t/g, "")
         .replace(/  +/g, " ")
         .trim();
-      const status = $(tds[1])
+      const property_status = $(dd[1])
         .text()
         .trim()
         .replace(/\n/g, "")
         .replace(/\t/g, "")
         .replace(/  +/g, " ")
         .trim();
-      const date = $(tds[2])
+      const address = $(dd[2])
         .text()
         .trim()
         .replace(/\n/g, "")
         .replace(/\t/g, "")
         .replace(/  +/g, " ")
         .trim();
-      const address = $(tds[3])
+      const description = $(dd[3])
         .text()
         .trim()
         .replace(/\n/g, "")
         .replace(/\t/g, "")
         .replace(/  +/g, " ")
         .trim();
-      const victorian_family = $(tds[4])
+      const required_deposit = $(dd[4])
         .text()
         .replace(/\n/g, "")
         .replace(/\t/g, "")
@@ -51,31 +48,23 @@ const crawl = async ({ url }) => {
         .trim();
 
       data.push({
-        serial_number: number,
-        image: image,
-        status: status,
-        date: date,
+        auction_status: auction_status,
+        property_status: property_status,
         address: address,
-        victorian_family: victorian_family,
+        description: description,
+        required_deposit: required_deposit,
       });
     });
-  data.shift();
   data.pop();
-  /*links.map(tr=>{
-    //console.log(td.children());
-    console.log($(tr).text()) 
-  })*/
-  //links = links.substr(55,links.length);
+  data.shift();
+  data.shift();
 
-  //links = links.split('#');
-  //.children('td[width="82%"]').text();
-
-  //console.log(links)
-  // console.log(data);
+  console.log(data);
   return data;
 };
 
 crawl({
-  url: "http://www.auctionmarketinggroup.com/auctions.html",
+  url: "http://www.commonwealthauction.com/auctions.asp?location=1",
 });
+
 export default crawl;

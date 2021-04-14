@@ -29,10 +29,13 @@ const TopBar = ({ user }) => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/repo">Auctions 1</Link>
+            <Link to="/repo">Auctions </Link>
           </li>
           <li>
-            <Link to="/dean">Auctions 2</Link>
+            <Link to="/dean">Auctions </Link>
+          </li>
+          <li>
+            <Link to="/apg">Auctions </Link>
           </li>
         </ul>
       </div>
