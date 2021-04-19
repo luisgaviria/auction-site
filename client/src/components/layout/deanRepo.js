@@ -30,12 +30,16 @@ const DeanList = (props) => {
 
   const deanListItems = state.dean.map((deanItem, i) => {
     return (
-      <div key={i}>
-        <p>{deanItem.date}</p>
-        <p>{deanItem.hour}</p>
-        <p>{deanItem.address}</p>
-        <p>{deanItem.deposit}</p>
-        <p>{deanItem.balance_due}</p>
+      <div key={i} className="card">
+        <img
+          src="https://photos.skyline.com/uploads/block/floated_image_block_data/image/1728/floated_shutterstock_145605907.gif"
+          className="thumb"
+        />
+        <p className="status">Date: {deanItem.date}</p>
+        <p className="address">Time: {deanItem.hour}</p>
+        <p className="address">Address: {deanItem.address}</p>
+        <p className="address">Deposit: {deanItem.deposit}</p>
+        <p className="address">Balance due in: {deanItem.balance_due}</p>
       </div>
     );
   });

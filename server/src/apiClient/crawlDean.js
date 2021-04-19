@@ -58,7 +58,7 @@ const crawl = async ({ url }) => {
   data.shift();
   data.shift();
 
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
