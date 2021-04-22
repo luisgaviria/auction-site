@@ -29,11 +29,7 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Header />
       <Switch>
-        <Route exact path="/" />
-
-        <Route exact path="/repo" component={RepoList} />
-        <Route exact path="/dean" component={DeanList} />
-        <Route exact path="/apg" component={ApgList} />
+        <Route exact path="/" component={RepoList} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
       </Switch>

@@ -17,37 +17,20 @@ const crawl = async ({ url }) => {
       const image = $(tds[0]).find("img").attr("src");
       const number = $(tds[0])
         .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
+
         .trim();
-      const status = $(tds[1])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
+      const status = $(tds[1]).text().trim();
       const date = $(tds[2])
         .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
+
         .trim();
       const address = $(tds[3])
         .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
+
         .trim();
       const victorian_family = $(tds[4])
         .text()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
+
         .trim();
 
       data.push({
