@@ -53,13 +53,14 @@ const crawl = async ({ url }) => {
         address: address,
         description: description,
         required_deposit: required_deposit,
+        link: url,
       });
     });
   data.pop();
   data.shift();
   data.shift();
 
-  // console.log(data);
+  console.log(data);
   return data;
 };
 

@@ -11,6 +11,7 @@ const crawl = async ({ url }) => {
   let links = $("body > table.menu > tbody > tr:nth-child(2) > td.pagebody > table")
     .toArray()
     .map((item) => {
+      // console.log(item);
       const dd = $(item).find("dd");
       const auction_status = $(dd[0])
         .text()
@@ -59,7 +60,6 @@ const crawl = async ({ url }) => {
   data.shift();
   data.shift();
 
-  console.log(data);
   return data;
 };
 

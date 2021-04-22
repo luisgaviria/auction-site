@@ -52,6 +52,7 @@ const crawl = async ({ url }) => {
         address: address,
         deposit: deposit,
         balance_due: balance_due,
+        link: url,
       });
     });
   data.pop();
