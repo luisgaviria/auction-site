@@ -10,8 +10,6 @@ import TopBar from "./layout/TopBar";
 import Header from "./layout/Header";
 
 import RepoList from "../components/layout/newRepo";
-import DeanList from "../components/layout/deanRepo";
-import ApgList from "../components/layout/ApgRepo";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);

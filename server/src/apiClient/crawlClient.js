@@ -40,6 +40,7 @@ const crawl = async ({ url }) => {
         date: date,
         address: address,
         victorian_family: victorian_family,
+        link: url,
       });
     });
   data.shift();

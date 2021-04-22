@@ -11,7 +11,7 @@ import crawlDean from "../../../apiClient/crawlDean.js";
 import crawlTache from "../../../apiClient/crawlTache.js";
 import crawlHarvard from "../../../apiClient/Harvard.js";
 import crawlDaniel from "../../../apiClient/Danielp.js";
-import crawlBaystate from "../../../apiClient/Baystate.js";
+import crawlRi from "../../../apiClient/crawlRi.js";
 
 const crawlRouter = new express.Router();
 
@@ -35,7 +35,7 @@ crawlRouter.get("/", async (req, res) => {
     const data7 = await crawlDaniel({
       url: "https://www.re-auctions.com/Auction-Schedule/PropertyAgentName/-1/sortBy/cf11",
     });
-    const data8 = await crawlBaystate({
+    const data8 = await crawlRi({
       url: "http://www.auctionsri.com/scripts/auctions.asp?category=R",
     });
 

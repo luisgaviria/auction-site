@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import * as fetch from "node-fetch";
 import * as cheerio from "cheerio";
 
+import NewRepoTile from "./newRepoTile.js";
+
 const RepoList = (props) => {
   const [state, setState] = useState({
     repo: [],
@@ -24,8 +26,6 @@ const RepoList = (props) => {
     }
   };
 
-  let icon = "https://i.postimg.cc/dQHgDG8P/Screen-Shot-2021-03-07-at-10-39-2.png";
-
   useEffect(() => {
     getRepo();
   }, []);
@@ -45,28 +45,7 @@ const RepoList = (props) => {
         // repoItem.status !== "SOLD!!!" &&
         // repoItem.status !== "SOLD"
       ) {
-        return (
-          <div key={i} className="card">
-            <img
-              src="https://photos.skyline.com/uploads/block/floated_image_block_data/image/1728/floated_shutterstock_145605907.gif"
-              className="thumb"
-            />
-            <div className="infos">
-              {/* <div className="serial">{repoItem.serial_number}</div> */}
-              <div className="status">
-                Status: {repoItem.status ? repoItem.status : "no status displayed"}
-              </div>
-              <div className="date">
-                Date: {repoItem.date ? repoItem.date : "no date displayed"}
-              </div>
-              <div className="address">
-                {repoItem.address ? repoItem.address : "no address displayed"}
-              </div>
-              <div className="address">{repoItem.city || ""} </div>
-              <div className="address">{repoItem.state || ""}</div>
-            </div>
-          </div>
-        );
+        return <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
       }
     }
   });

@@ -33,6 +33,7 @@ const crawl = async ({ url }) => {
       zip: zip,
       status: status,
       deposit: deposit,
+      link: url,
     });
   });
   data.pop();

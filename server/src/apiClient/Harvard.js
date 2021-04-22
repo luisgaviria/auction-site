@@ -33,6 +33,7 @@ const crawl = async ({ url }) => {
         city: city,
         deposit: deposit,
         status: status.length ? "Sold" : "Available",
+        link: url,
       });
     });
   data.shift();

@@ -43,6 +43,7 @@ const crawl = async ({ url }) => {
         deposit: deposit,
         date: date,
         time: time,
+        link: url,
       });
     }
   });

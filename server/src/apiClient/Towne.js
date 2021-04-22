@@ -29,6 +29,7 @@ const crawl = async ({ url }) => {
         state: state,
         status: status,
         deposit: deposit,
+        link: url,
       });
     });
 
