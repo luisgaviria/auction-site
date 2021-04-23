@@ -28,6 +28,7 @@
   border-radius: 2%;
 
   filter: grayscale(1);
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
 
   // box-shadow: 1px 1px 0px 0px #cecbcb;
 }
@@ -185,18 +186,21 @@
 //   align-items: center;
 // }
 
-// .thumb {
-//   border-radius: 3px;
-//   margin-top: 0px;
-//   width: 100%;
-//   height: 30vh;
-//   position: relative;
-//   display: flex;
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: cover;
-//   background-image: url("https://photos.skyline.com/uploads/block/floated_image_block_data/image/1728/floated_shutterstock_145605907.gif");
-// }
+.thumb {
+  border-radius: 3px;
+
+  // width: 40%;
+  height: 10vh;
+  position: relative;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  // background-image: url("https://photos.skyline.com/uploads/block/floated_image_block_data/image/1728/floated_shutterstock_145605907.gif");
+}
 
 .not-container {
   text-align: center;

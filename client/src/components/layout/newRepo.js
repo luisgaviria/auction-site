@@ -63,13 +63,7 @@ const RepoList = (props) => {
 
   // }
   // }
-  return (
-    <div className="list-item">
-      {repoListItems.sort((a, b) => {
-        return new Date(b.date) - new Date(a.date);
-      })}
-    </div>
-  );
+  return <div className="list-item">{repoListItems}</div>;
 };
 
 export default RepoList;

@@ -6,60 +6,68 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
-  const data = [];
+  let data = [];
 
   let links = $("#content > div.columns.three.properties > div")
     .toArray()
     .map((item) => {
+      const dt = $(item).find("dt");
       const dd = $(item).find("dd");
-      const auction_status = $(dd[0])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-      const property_status = $(dd[1])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-      const address = $(dd[2])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-      const description = $(dd[3])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-      const required_deposit = $(dd[4])
-        .text()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-
+      let auction_status = null;
+      let property_status = null;
+      let auction_date = null;
+      let address = null;
+      let description = null;
+      let deposit = null;
+      for (let i = 0; i < dt.length; i++) {
+        if ($(dt[i]).text() == "Auction Status:") {
+          auction_status = $(dd[i]).text();
+        }
+        if ($(dt[i]).text() == "Property Status:") {
+          property_status = $(dd[i]).text();
+        }
+        if ($(dt[i]).text() == "Auction Date:") {
+          auction_date = $(dd[i]).text();
+        }
+        if ($(dt[i]).text() == "Address:") {
+          address = $(dd[i]).text();
+        }
+        if ($(dt[i]).text() == "Description:") {
+          description = $(dd[i]).text();
+        }
+        if ($(dt[i]).text() == "Required Deposit:") {
+          deposit = $(dd[i]).text();
+        }
+      }
       data.push({
-        auction_status: auction_status,
+        status: auction_status,
         property_status: property_status,
+        date: auction_date,
         address: address,
-        description: description,
-        required_deposit: required_deposit,
-        link: url,
+        deposit: deposit,
       });
     });
-  data.pop();
-  data.shift();
-  data.shift();
 
+  function convertStringDateToDate(date) {
+    date = date.split(" ");
+    Date.prototype.addHours = function (h) {
+      this.setTime(this.getTime() + h * 60 * 60 * 1000);
+      return this;
+    };
+
+    date = date[1] + " " + date[2] + " " + date[3];
+    //   console.log(date);
+    date = new Date(date).addHours(2);
+    return date;
+  }
+  data = data.filter((record) => {
+    if (record.date) {
+      return record;
+    }
+  });
+  data.map((record) => {
+    record.date = convertStringDateToDate(record.date);
+  });
   console.log(data);
   return data;
 };

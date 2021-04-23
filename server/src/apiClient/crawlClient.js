@@ -45,6 +45,24 @@ const crawl = async ({ url }) => {
     });
   data.shift();
   data.pop();
+
+  function convertStringDateToDate(date) {
+    date = date.split(" ");
+    Date.prototype.addHours = function (h) {
+      this.setTime(this.getTime() + h * 60 * 60 * 1000);
+      return this;
+    };
+
+    date = date[1] + " " + date[2] + " " + date[3];
+    //   console.log(date);
+    date = new Date(date).addHours(2);
+    return date;
+  }
+
+  data.map((record) => {
+    record.date = convertStringDateToDate(record.date);
+  });
+
   /*links.map(tr=>{
     //console.log(td.children());
     console.log($(tr).text()) 
@@ -55,7 +73,7 @@ const crawl = async ({ url }) => {
   //.children('td[width="82%"]').text();
 
   //console.log(links)
-  // console.log(data);
+
   return data;
 };
 

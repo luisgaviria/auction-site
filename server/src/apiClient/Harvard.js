@@ -6,6 +6,8 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
+  const logo = "http://harvardauctioneers.com/images/hdrimg.jpg";
+
   const data = [];
 
   $("#Table_01 > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr")
@@ -34,6 +36,7 @@ const crawl = async ({ url }) => {
         deposit: deposit,
         status: status.length ? "Sold" : "Available",
         link: url,
+        logo: logo,
       });
     });
   data.shift();
