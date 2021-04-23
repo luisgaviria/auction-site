@@ -26,7 +26,7 @@ crawlRouter.get("/", async (req, res) => {
 
     const data2 = await crawlTowne({ url: "https://www3.towneauction.com/Auctions_NoNav.aspx" });
     const data3 = await crawlDean({ url: "http://www.deanassociatesinc.com/auctions.htm" });
-    const data4 = await crawlApg({ url: "https://apg-online.com/auction-schedule/" });
+    // const data4 = await crawlApg({ url: "https://apg-online.com/auction-schedule/" });
     const data5 = await crawlTache({
       url:
         "https://docs.google.com/spreadsheets/u/1/d/14nrcaKBhCA61FcnBwU6EbiDbRQtOP-gQVxJVvxg5_o0/pubhtml/sheet?headers=false&gid=0",
@@ -39,9 +39,20 @@ crawlRouter.get("/", async (req, res) => {
       url: "http://www.auctionsri.com/scripts/auctions.asp?category=R",
     });
 
-    allAuctions = data.concat(data2, data3, data4, data5, data6, data7, data8);
-    console.log(data4);
-    return res.status(200).json({ allAuctions: allAuctions });
+    var date_sort_asc = function (date2, date1) {
+      // This is a comparison function that will result in dates being sorted in
+      // ASCENDING order. As you can see, JavaScript's native comparison operators
+      // can be used to compare dates. This was news to me.
+      if (new Date(date1.date) > new Date(date2.date)) return 1;
+      if (new Date(date1.date) < new Date(date2.date)) return -1;
+      return 0;
+    };
+
+    allAuctions = data.concat(data2, data3, data5, data6, data7, data8);
+    let sorted = allAuctions.sort(date_sort_asc);
+
+    sorted = allAuctions.sort(date_sort_asc).reverse();
+    return res.status(200).json({ allAuctions: sorted });
   } catch (error) {
     return res.status(500).json({ errors: error });
   }

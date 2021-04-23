@@ -7,13 +7,15 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
+  const logo = "https://www3.towneauction.com/images/header-logo.gif";
+
   const data = [];
   $("#GridView1 > tbody > tr")
     .toArray()
     .map((tr) => {
       // console.log($(tr).text());
       const tds = $(tr).find("td");
-      const date = $(tds[0]).text().trim("\n").substring(1).replace("/0", "/");
+      const date = $(tds[0]).text().trim("\n").substring(1);
       const time = $(tds[1]).text().trim("\n");
       const address = $(tds[3]).text().trim("\n");
       const city = $(tds[4]).text().trim("\n");
@@ -22,6 +24,7 @@ const crawl = async ({ url }) => {
       const deposit = $(tds[9]).text().trim("\n");
 
       data.push({
+        logo: logo,
         date: date,
         time: time,
         address: address,

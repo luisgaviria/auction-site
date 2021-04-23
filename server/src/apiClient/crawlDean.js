@@ -5,13 +5,15 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
+  const logo = "http://www.deanassociatesinc.com/logo%20sample.jpg";
+
   const data = [];
 
   let links = $("body > center:nth-child(2) > table > tbody > tr")
     .toArray()
     .map((item) => {
       const tds = $(item).find("td");
-      const date = $(tds[0])
+      let date = $(tds[0])
         .text()
         .trim()
         .replace(/\n/g, "")
@@ -55,6 +57,7 @@ const crawl = async ({ url }) => {
         link: url,
       });
     });
+
   data.pop();
   data.shift();
   data.shift();

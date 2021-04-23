@@ -6,6 +6,8 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
+  const logo = "http://tacheauctionsandsales.com/images/ta.png?crc=3835416695";
+
   const data = [];
 
   let trs = $("body > div > div > div > table > tbody > tr").toArray();
@@ -25,6 +27,7 @@ const crawl = async ({ url }) => {
     const deposit = $(tds[7]).text();
 
     data.push({
+      logo: logo,
       date: date,
       time: time,
       address: address,

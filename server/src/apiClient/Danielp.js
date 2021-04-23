@@ -6,6 +6,9 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
+  const logo =
+    "https://www.re-auctions.com/Portals/0/logo-McLaughlinCo_bl.png?ver=IYkqo0rTp0H7fPaLF4szJQ%3d%3d";
+
   const data = [];
 
   let divs = $("#dnn_ctr376_ModuleContent > div").toArray();
@@ -31,6 +34,7 @@ const crawl = async ({ url }) => {
         postpone: postpone,
         date: date,
         time: time,
+        logo: logo,
       });
     } else {
       const date = $(insideDivs[4]).find("b").text().split("-")[0].trim().replace("/2021", "/21");
@@ -44,6 +48,7 @@ const crawl = async ({ url }) => {
         date: date,
         time: time,
         link: url,
+        logo: logo,
       });
     }
   });
