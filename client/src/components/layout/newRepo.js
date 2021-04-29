@@ -35,7 +35,8 @@ const RepoList = (props) => {
       if (
         !repoItem.status.toUpperCase().includes("SOLD") &&
         !repoItem.date.toUpperCase().includes("SOLD") &&
-        !repoItem.status.toUpperCase().includes("CANCEL")
+        !repoItem.status.toUpperCase().includes("CANCEL") &&
+        !repoItem.date.toUpperCase().includes("DATE")
 
         // repoItem.status !== "sold" &&
         // repoItem.status !== "Sold" &&
