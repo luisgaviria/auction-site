@@ -6,7 +6,7 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
-  const logo = "http://www.auctionsri.com/images/header.gif";
+  const logo = "https://i.postimg.cc/q7V5j3JW/headerri.gif";
 
   const data = [];
   $("body > center > center > font > b > table:nth-child(5) > tbody > tr")

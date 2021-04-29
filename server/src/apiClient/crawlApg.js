@@ -6,6 +6,8 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
+  const logo = "https://i.postimg.cc/jCY7GtDq/footer-massachusetts-auctioneers-association-img.png";
+
   let data = [];
 
   let links = $("#content > div.columns.three.properties > div")
@@ -40,6 +42,7 @@ const crawl = async ({ url }) => {
         }
       }
       data.push({
+        logo: logo,
         status: auction_status,
         property_status: property_status,
         date: auction_date,
