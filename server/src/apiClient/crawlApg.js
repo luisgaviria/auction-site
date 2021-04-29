@@ -45,23 +45,24 @@ const crawl = async ({ url }) => {
         date: auction_date,
         address: address,
         deposit: deposit,
+        link: url,
       });
     });
 
   function convertStringDateToDate(date) {
     date = date.split(" ");
+    console.log(date);
     Date.prototype.addHours = function (h) {
       this.setTime(this.getTime() + h * 60 * 60 * 1000);
       return this;
     };
 
-    date = date[1] + " " + date[2] + " " + date[3];
-    //   console.log(date);
-    date = new Date(date).addHours(2);
+    date = date[0] + " " + date[1] + " " + date[2];
+    date = new Date(date).addHours(2).toLocaleDateString();
     return date;
   }
   data = data.filter((record) => {
-    if (record.date) {
+    if (record.date && record.status != "Off") {
       return record;
     }
   });
