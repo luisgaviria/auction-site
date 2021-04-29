@@ -8,12 +8,12 @@ const crawl = async ({ url }) => {
 
   const logo = "https://i.postimg.cc/q7V5j3JW/headerri.gif";
 
-  const data = [];
+  let data = [];
   $("body > center > center > font > b > table:nth-child(5) > tbody > tr")
     .toArray()
     .map((tr) => {
       const tds = $(tr).find("td");
-      const date = $(tds[0]).text().trim("\n").trim("\t").replace("/2021", "/21");
+      const date = $(tds[0]).text().trim("\n").trim("\t");
       const time = $(tds[2]).text().trim("\n").trim("\t");
       const address = $(tds[4]).text().trim("\n").trim("\t");
       const city = $(tds[5]).text().trim("\n").trim("\t");
@@ -33,6 +33,11 @@ const crawl = async ({ url }) => {
         link: url,
       });
     });
+  data = data.filter((record) => {
+    if (record.date != "Date") {
+      return record;
+    }
+  });
 
   return data;
 };

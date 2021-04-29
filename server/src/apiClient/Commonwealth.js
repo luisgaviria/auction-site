@@ -39,7 +39,7 @@ const crawl = async ({ url }) => {
       // status: "On schedule" || article[0],
       status: article[0].length ? "Sold" : "On Schedule",
       logo: logo,
-      date: article[1].split(" ")[0].replace("/2021", "/21"),
+      date: article[1].split(" ")[0],
       link: url,
       address: article[2],
       deposit: article[4],

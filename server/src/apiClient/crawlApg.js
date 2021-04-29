@@ -72,7 +72,7 @@ const crawl = async ({ url }) => {
   data.map((record) => {
     record.date = convertStringDateToDate(record.date);
   });
-  console.log(data);
+
   return data;
 };
 

@@ -13,7 +13,7 @@ const NewRepoTile = (props) => {
           className="thumb"
         />
 
-        <div className="status">Status: {status ? status : "no status displayed"}</div>
+        <div className="status">Status: {status ? status : "On Schedule"}</div>
         <div className="date">Date: {date ? date : "no date displayed"}</div>
         <div className="address">Address: {address ? address : "no address displayed"}</div>
         {city ? <div className="address">City: {city ? city : null} </div> : null}

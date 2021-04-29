@@ -12,7 +12,7 @@ import crawlTache from "../../../apiClient/crawlTache.js";
 import crawlHarvard from "../../../apiClient/Harvard.js";
 import crawlDaniel from "../../../apiClient/Danielp.js";
 import crawlRi from "../../../apiClient/crawlRi.js";
-import crawlBaystate from "../../../apiClient/crawlBaystate.js";
+// import crawlBaystate from "../../../apiClient/crawlBaystate.js";
 
 const crawlRouter = new express.Router();
 
@@ -54,12 +54,18 @@ crawlRouter.get("/", async (req, res) => {
     };
 
     allAuctions = data.concat(data1, data2, data3, data4, data5, data6, data7, data8);
+
     let sorted = allAuctions.sort(date_sort_asc);
 
     sorted = allAuctions.sort(date_sort_asc).reverse();
-    sorted = allAuctions.sort(date_sort_asc).reverse();
-    sorted = allAuctions.sort(date_sort_asc).reverse();
 
+    sorted = sorted.filter((auction) => {
+      let date_future = new Date();
+      date_future.setDate(date_future.getDate() - 1);
+      if (new Date(auction.date) > date_future) {
+        return auction;
+      }
+    });
     console.log(allAuctions);
     return res.status(200).json({ allAuctions: sorted });
   } catch (error) {

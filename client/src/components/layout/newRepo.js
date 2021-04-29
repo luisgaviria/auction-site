@@ -31,21 +31,25 @@ const RepoList = (props) => {
   }, []);
 
   const repoListItems = state.repo.map((repoItem, i) => {
-    if (repoItem.status && repoItem.date) {
-      if (
-        !repoItem.status.toUpperCase().includes("SOLD") &&
-        !repoItem.date.toUpperCase().includes("SOLD") &&
-        !repoItem.status.toUpperCase().includes("CANCEL") &&
-        !repoItem.date.toUpperCase().includes("DATE")
+    if (repoItem.date) {
+      if (repoItem.status) {
+        if (
+          !repoItem.status.toUpperCase().includes("SOLD") &&
+          !repoItem.date.toUpperCase().includes("SOLD") &&
+          !repoItem.status.toUpperCase().includes("CANCEL")
+          // !repoItem.date.toUpperCase().includes("DATE")
 
-        // repoItem.status !== "sold" &&
-        // repoItem.status !== "Sold" &&
-        // repoItem.status !== "Sold at Auction" &&
-        // repoItem.status !== "Cancelled" &&
-        // repoItem.status !== "Sealed Bid Sale" &&
-        // repoItem.status !== "SOLD!!!" &&
-        // repoItem.status !== "SOLD"
-      ) {
+          // repoItem.status !== "sold" &&
+          // repoItem.status !== "Sold" &&
+          // repoItem.status !== "Sold at Auction" &&
+          // repoItem.status !== "Cancelled" &&
+          // repoItem.status !== "Sealed Bid Sale" &&
+          // repoItem.status !== "SOLD!!!" &&
+          // repoItem.status !== "SOLD"
+        ) {
+          return <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
+        }
+      } else {
         return <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
       }
     }
