@@ -6,7 +6,7 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
-  const logo = "http://www.commonwealthauction.com/images/logo.gif";
+  const logo = "https://i.postimg.cc/JnBtmSVs/logocomm.gif";
 
   const real_data = [];
   let data = [];
