@@ -5,21 +5,19 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
-  const logo = "http://www.deanassociatesinc.com/logo%20sample.jpg";
+  const logo = "https://i.postimg.cc/rsVkcYR5/logo-sample.jpg";
 
-  const data = [];
+  let data = [];
 
   let links = $("body > center:nth-child(2) > table > tbody > tr")
     .toArray()
     .map((item) => {
       const tds = $(item).find("td");
-      let date = $(tds[0])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
+      let date = new Date(
+        $(tds[0]).text().trim().replace(/\n/g, "").replace(/\t/g, "").replace(/  +/g, " ").trim()
+      ).toLocaleDateString();
+
+      // let date = new Date($(tds[0]).text().trim("\n")).toLocaleDateString();
       const hour = $(tds[1])
         .text()
         .trim()
@@ -49,6 +47,7 @@ const crawl = async ({ url }) => {
         .trim();
 
       data.push({
+        logo: logo,
         date: date,
         hour: hour,
         address: address,
@@ -61,6 +60,14 @@ const crawl = async ({ url }) => {
   data.pop();
   data.shift();
   data.shift();
+
+  data = data.filter((article) => {
+    if (article.address.search("CANCELLED") < 0) {
+      console.log(article);
+      return article;
+    }
+    console.log(article.address.search("CANCELLED"));
+  });
 
   // console.log(data);
   return data;

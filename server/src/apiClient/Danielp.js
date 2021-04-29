@@ -37,7 +37,7 @@ const crawl = async ({ url }) => {
         logo: logo,
       });
     } else {
-      const date = $(insideDivs[4]).find("b").text().split("-")[0].trim().replace("/2021", "/21");
+      const date = $(insideDivs[4]).find("b").text().split("-")[0].trim();
       const time = $(insideDivs[4]).find("b").text().split("-")[1].trim();
       data.push({
         image: image,
