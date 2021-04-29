@@ -36,7 +36,8 @@ const crawl = async ({ url }) => {
   });
   data.map((article) => {
     real_data.push({
-      status: "On schedule" || article[0],
+      // status: "On schedule" || article[0],
+      status: article[0].length ? "Sold" : "On Schedule",
       logo: logo,
       date: article[1].split(" ")[0].replace("/2021", "/21"),
       link: url,
