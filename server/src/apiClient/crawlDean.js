@@ -63,10 +63,10 @@ const crawl = async ({ url }) => {
 
   data = data.filter((article) => {
     if (article.address.search("CANCELLED") < 0) {
-      console.log(article);
+      // console.log(article);
       return article;
     }
-    console.log(article.address.search("CANCELLED"));
+    // console.log(article.address.search("CANCELLED"));
   });
 
   // console.log(data);

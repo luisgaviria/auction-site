@@ -27,7 +27,7 @@ crawlRouter.get("/", async (req, res) => {
 
     const data2 = await crawlTowne({ url: "https://www3.towneauction.com/Auctions_NoNav.aspx" });
     const data3 = await crawlDean({ url: "http://www.deanassociatesinc.com/auctions.htm" });
-    const data4 = await crawlApg({ url: "https://apg-online.com/auction-schedule/" });
+    // const data4 = await crawlApg({ url: "https://apg-online.com/auction-schedule/" });
     const data5 = await crawlTache({
       url:
         "https://docs.google.com/spreadsheets/u/1/d/14nrcaKBhCA61FcnBwU6EbiDbRQtOP-gQVxJVvxg5_o0/pubhtml/sheet?headers=false&gid=0",
@@ -53,7 +53,7 @@ crawlRouter.get("/", async (req, res) => {
       return 0;
     };
 
-    allAuctions = data.concat(data1, data2, data3, data4, data5, data6, data7, data8);
+    allAuctions = data.concat(data1, data2, data3, data5, data6, data7, data8);
 
     let sorted = allAuctions.sort(date_sort_asc);
 
@@ -66,7 +66,9 @@ crawlRouter.get("/", async (req, res) => {
         return auction;
       }
     });
-    console.log(allAuctions);
+
+    console.log(data3);
+
     return res.status(200).json({ allAuctions: sorted });
   } catch (error) {
     return res.status(500).json({ errors: error });
