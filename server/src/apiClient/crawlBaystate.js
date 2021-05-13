@@ -35,6 +35,6 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl("https://www.baystateauction.com/auctions/state/ma");
+// crawl("https://www.baystateauction.com/auctions/state/ma");
 
 export default crawl;
