@@ -35,7 +35,6 @@ const crawl = async ({ url }) => {
     });
   data = data.filter((record) => {
     if (record.date != "Date" && record.status.search("Postponed") == -1) {
-      console.log(record.status);
       return record;
     }
   });

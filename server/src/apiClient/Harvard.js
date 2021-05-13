@@ -8,7 +8,7 @@ const crawl = async ({ url }) => {
 
   const logo = "http://harvardauctioneers.com/images/hdrimg.jpg";
 
-  const data = [];
+  let data = [];
 
   $("#Table_01 > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr")
     .toArray()
@@ -39,7 +39,14 @@ const crawl = async ({ url }) => {
         logo: logo,
       });
     });
+
+  data = data.filter((record) => {
+    if (record.date != "TBD") {
+      return record;
+    }
+  });
   data.shift();
+  console.log(data);
 
   return data;
 };
