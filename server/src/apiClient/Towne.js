@@ -39,7 +39,7 @@ const crawl = async ({ url }) => {
     });
 
   data = data.filter((article) => {
-    if (article.date != "Invalid Date") {
+    if (article.date != "Invalid Date" && article.status.search("Postponed") == -1) {
       return article;
     }
   });

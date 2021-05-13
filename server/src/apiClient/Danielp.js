@@ -23,7 +23,7 @@ const crawl = async ({ url }) => {
     const deposit = $(lis[2]).text().split(":")[1].trim();
     if ($(insideDivs[4]).find(".Postponed").length) {
       const postpone = $(insideDivs[4]).find(".Postponed").text().trim();
-      const date = $(insideDivs[4]).find("b").text().split("-")[0].trim().replace("/2021", "/21");
+      const date = $(insideDivs[4]).find("b").text().split("-")[0].trim();
       const time = $(insideDivs[4]).find("b").text().split("-")[1].trim();
       data.push({
         image: image,

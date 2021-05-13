@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import Map from "./Map";
 import * as fetch from "node-fetch";
-import * as cheerio from "cheerio";
+
+import Geocode from "react-geocode";
 
 import NewRepoTile from "./newRepoTile.js";
 
 const RepoList = (props) => {
   const [state, setState] = useState({
     repo: [],
+    addresses: [],
   });
 
   const getRepo = async () => {
@@ -18,9 +21,22 @@ const RepoList = (props) => {
         throw error;
       }
       const body = await response.json();
-      const $ = cheerio.load(body);
+
       console.log(body);
-      setState({ ...state, repo: body.allAuctions });
+      Geocode.setApiKey("AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4");
+      Geocode.setLanguage("en");
+      Geocode.setRegion("us");
+      //Geocode.enableDebug();
+      const auctions_addresses = [];
+      body.allAuctions.map(async (auction) => {
+        const response = await Geocode.fromAddress(auction.address);
+        const location = response.results[0].geometry.location;
+        auctions_addresses.push({
+          location,
+        });
+      });
+      console.log(auctions_addresses);
+      setState({ ...state, repo: body.allAuctions, addresses: auctions_addresses });
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`);
     }
@@ -37,15 +53,6 @@ const RepoList = (props) => {
           !repoItem.status.toUpperCase().includes("SOLD") &&
           !repoItem.date.toUpperCase().includes("SOLD") &&
           !repoItem.status.toUpperCase().includes("CANCEL")
-          // !repoItem.date.toUpperCase().includes("DATE")
-
-          // repoItem.status !== "sold" &&
-          // repoItem.status !== "Sold" &&
-          // repoItem.status !== "Sold at Auction" &&
-          // repoItem.status !== "Cancelled" &&
-          // repoItem.status !== "Sealed Bid Sale" &&
-          // repoItem.status !== "SOLD!!!" &&
-          // repoItem.status !== "SOLD"
         ) {
           return <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
         }
@@ -55,20 +62,14 @@ const RepoList = (props) => {
     }
   });
 
-  // function allLetter(inputtxt) {
-  //   var letters = /^[A-Za-z]+$/;
-  //   if (inputtxt.value.match(letters)) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-  // for(let i = 0; i < repoListItems.length; i++){
-  // if(allLetter(repoListItems[i].date ) {
-
-  // }
-  // }
-  return <div className="list-item">{repoListItems}</div>;
+  return (
+    <>
+      <div className="map">
+        <Map addresses={state.addresses} />
+      </div>
+      <div className="list-item">{repoListItems}</div>
+    </>
+  );
 };
 
 export default RepoList;

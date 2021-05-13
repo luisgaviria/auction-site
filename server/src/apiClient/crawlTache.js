@@ -8,7 +8,7 @@ const crawl = async ({ url }) => {
 
   const logo = "http://tacheauctionsandsales.com/images/ta.png?crc=3835416695";
 
-  const data = [];
+  let data = [];
 
   let trs = $("body > div > div > div > table > tbody > tr").toArray();
   for (let i = 0; i < 4; i++) {
@@ -40,6 +40,12 @@ const crawl = async ({ url }) => {
     });
   });
   data.pop();
+
+  data = data.filter((record) => {
+    if (record.status.search("PP") == -1) {
+      return record;
+    }
+  });
 
   return data;
 };
