@@ -66,7 +66,7 @@ const crawl = async ({ url }) => {
       console.log(article);
       return article;
     }
-    console.log(article.address.search("CANCELLED"));
+    // console.log(article.address.search("CANCELLED"));
   });
 
   // console.log(data);
