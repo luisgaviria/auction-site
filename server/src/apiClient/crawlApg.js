@@ -32,7 +32,7 @@ const crawl = async ({ url }) => {
           auction_date = $(dd[i]).text();
         }
         if ($(dt[i]).text() == "Address:") {
-          address = $(dd[i]).text();
+          address = $(dd[i]).text().replace(".,", ",");
         }
         if ($(dt[i]).text() == "Description:") {
           description = $(dd[i]).text();

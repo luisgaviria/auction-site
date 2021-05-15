@@ -28,9 +28,12 @@ const crawl = async ({ url }) => {
       record.date = record.date.split(" <s")[0].replace("at", "@");
       const date = new Date(record.date).toLocaleDateString();
       record.date = date;
+      console.log(record.date, date);
       return record;
     }
   });
+
+  console.log(data);
   browser.close();
   return data;
 };
