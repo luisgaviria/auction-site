@@ -40,9 +40,9 @@ crawlRouter.get("/", async (req, res) => {
       url: "http://www.auctionsri.com/scripts/auctions.asp?category=R",
     });
 
-    const data9 = await crawlBaystate({
-      url: "https://www.baystateauction.com/auctions/state/ma",
-    });
+    // const data9 = await crawlBaystate({
+    //   url: "https://www.baystateauction.com/auctions/state/ma",
+    // });
 
     var date_sort_asc = function (date2, date1) {
       // This is a comparison function that will result in dates being sorted in
@@ -53,7 +53,7 @@ crawlRouter.get("/", async (req, res) => {
       return 0;
     };
 
-    allAuctions = data.concat(data1, data2, data3, data4, data5, data6, data7, data8, data9);
+    allAuctions = data.concat(data1, data2, data3, data4, data5, data6, data7, data8);
 
     let sorted = allAuctions.sort(date_sort_asc);
 
@@ -66,8 +66,6 @@ crawlRouter.get("/", async (req, res) => {
         return auction;
       }
     });
-
-    // console.log(allAuctions);
 
     return res.status(200).json({ allAuctions: sorted });
   } catch (error) {
