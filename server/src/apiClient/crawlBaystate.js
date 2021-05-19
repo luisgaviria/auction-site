@@ -7,7 +7,10 @@ const crawl = async ({ url }) => {
   const logo =
     "https://clubrunner.blob.core.windows.net/00000000439/Images/auctioneer-export-2-001.jpg";
   const link = "https://www.baystateauction.com/auctions";
-  const browser = await puppeteer.launch();
+
+  const browser = await puppeteer.launch({
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const page = await browser.newPage();
   await page.goto(url);
   const element = await page.waitForSelector("#main > div.row.main > script");
