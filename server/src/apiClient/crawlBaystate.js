@@ -4,6 +4,9 @@ import fetch from "node-fetch";
 import * as cheerio from "cheerio";
 
 const crawl = async ({ url }) => {
+  const logo =
+    "https://clubrunner.blob.core.windows.net/00000000439/Images/auctioneer-export-2-001.jpg";
+  const link = "https://www.baystateauction.com/auctions";
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url);
@@ -28,7 +31,9 @@ const crawl = async ({ url }) => {
       record.date = record.date.split(" <s")[0].replace("at", "@");
       const date = new Date(record.date).toLocaleDateString();
       record.date = date;
-      console.log(record.date, date);
+      record.link = link;
+      record.logo = logo;
+
       return record;
     }
   });

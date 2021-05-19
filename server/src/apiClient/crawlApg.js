@@ -71,6 +71,7 @@ const crawl = async ({ url }) => {
   });
   data.map((record) => {
     record.date = convertStringDateToDate(record.date);
+    record.status = "On Schedule";
   });
 
   return data;
