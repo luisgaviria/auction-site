@@ -14,9 +14,9 @@ const crawl = async ({ url }) => {
     .toArray()
     .map((tr) => {
       const tds = $(tr).find("td");
-      const date = $(tds[0]).text().trim("\t").trim("\n");
+      const date = $(tds[0]).text().trim("\t").trim("\n").replace("/21", "/2021");
       const time = $(tds[1]).text().trim("\t").trim("\n");
-      const address = $(tds[2])
+      let address = $(tds[2])
         .text()
         .replace(/\n/g, "")
         .replace(/\t/g, "")
@@ -26,6 +26,7 @@ const crawl = async ({ url }) => {
       const city = $(tds[3]).text().trim("\t").trim("\n");
       const deposit = $(tds[4]).text().trim();
 
+      address += " " + city + ", MA";
       const status = $(tds[5]).text();
 
       data.push({
@@ -41,12 +42,12 @@ const crawl = async ({ url }) => {
     });
 
   data = data.filter((record) => {
-    if (record.date != "TBD") {
+    if (record.date != "TBD" && record.date.length) {
       return record;
     }
   });
   data.shift();
-
+  // console.log(data);
   return data;
 };
 

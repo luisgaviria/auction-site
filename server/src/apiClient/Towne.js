@@ -19,11 +19,13 @@ const crawl = async ({ url }) => {
       const date = new Date($(tds[0]).text().trim("\n")).toLocaleDateString();
 
       const time = $(tds[1]).text().trim("\n");
-      const address = $(tds[3]).text().trim("\n");
+      let address = $(tds[3]).text().trim("\n");
       const city = $(tds[4]).text().trim("\n");
       const state = $(tds[5]).text().trim("\n");
       const status = $(tds[2]).text().trim("\n");
       const deposit = $(tds[9]).text().trim("\n");
+
+      address += ", " + city;
 
       data.push({
         logo: logo,
