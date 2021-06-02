@@ -17,14 +17,16 @@ const crawl = async ({ url }) => {
 
   trs.map((tr) => {
     const tds = $(tr).find("td");
-    const date = $(tds[0]).text().substring(1).replace("/0", "/");
+    const date = $(tds[0]).text().substring(1).replace("/0", "/").replace("/21", "/2021");
     const time = $(tds[1]).text();
-    const address = $(tds[2]).text();
+    let address = $(tds[2]).text();
     const city = $(tds[3]).text();
     const state = $(tds[4]).text();
     const zip = $(tds[5]).text();
     const status = $(tds[6]).text();
     const deposit = $(tds[7]).text();
+
+    address += " " + city + ", " + state;
 
     data.push({
       logo: logo,

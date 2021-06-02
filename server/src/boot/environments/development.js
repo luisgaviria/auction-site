@@ -1,4 +1,5 @@
 import getNodeEnv from "../../config/getNodeEnv.js";
+// import "regenerator-runtime/runtime";
 
 if (getNodeEnv() === "development") {
   // development specific middlewares here

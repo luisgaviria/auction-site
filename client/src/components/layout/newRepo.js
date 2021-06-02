@@ -3,7 +3,6 @@ import Map from "./Map";
 import * as fetch from "node-fetch";
 
 import Geocode from "react-geocode";
-
 import NewRepoTile from "./newRepoTile.js";
 
 const RepoList = (props) => {
@@ -32,10 +31,11 @@ const RepoList = (props) => {
         const response = await Geocode.fromAddress(auction.address);
         const location = response.results[0].geometry.location;
         auctions_addresses.push({
-          location,
+          location: location,
+          address: auction.address,
         });
       });
-      console.log(auctions_addresses);
+      console.log(location);
       setState({ ...state, repo: body.allAuctions, addresses: auctions_addresses });
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`);
@@ -65,7 +65,7 @@ const RepoList = (props) => {
   return (
     <>
       <div className="map">
-        <Map addresses={state.addresses} />
+        <Map />
       </div>
       <div className="list-item">{repoListItems}</div>
     </>

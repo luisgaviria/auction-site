@@ -15,11 +15,13 @@ const crawl = async ({ url }) => {
       const tds = $(tr).find("td");
       const date = $(tds[0]).text().trim("\n").trim("\t");
       const time = $(tds[2]).text().trim("\n").trim("\t");
-      const address = $(tds[4]).text().trim("\n").trim("\t");
+      let address = $(tds[4]).text().trim("\n").trim("\t");
       const city = $(tds[5]).text().trim("\n").trim("\t");
       const state = $(tds[6]).text().trim("\n").trim("\t");
       const status = $(tds[8]).text().trim("\n").trim("\t");
       const deposit = $(tds[9]).text().trim("\n").trim("\t");
+
+      address += ", " + city + ", " + state;
 
       data.push({
         logo: logo,
@@ -34,11 +36,15 @@ const crawl = async ({ url }) => {
       });
     });
   data = data.filter((record) => {
-    if (record.date != "Date" && record.status.search("Postponed") == -1) {
+    if (
+      record.date != "Date" &&
+      record.status.search("Postponed") == -1 &&
+      record.address.search("FEATURED") == -1
+    ) {
       return record;
     }
   });
-
+  // console.log(data);
   return data;
 };
 
