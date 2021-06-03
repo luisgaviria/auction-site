@@ -15,11 +15,7 @@
     "generate-secret": "./scripts/generate-secret.js",
     "dev:e2e": "NODE_ENV=e2e PORT=8765 nodemon src/app.js"
   },
-  "jest": {
-    "setupFile": [
-      "<rootDir>/setupTest.js"
-    ]
-  },
+
   "license": "UNLICENSED",
   "private": true,
   "type": "module",

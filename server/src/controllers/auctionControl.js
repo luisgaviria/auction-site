@@ -58,6 +58,7 @@ const auctionControl = async (req, res) => {
 
     return res.status(200).json({ allAuctions: sorted });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ errors: error });
   }
 };
