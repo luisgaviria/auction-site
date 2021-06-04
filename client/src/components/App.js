@@ -28,10 +28,13 @@ const App = (props) => {
   }, []);
   return (
     <Router>
-      <TopBar user={currentUser} />
+      {/* <TopBar user={currentUser} /> */}
       <Header />
       <Switch>
         <Route exact path="/" component={RepoList} />
+        <Route exact path="/:id">
+          <repoShow user={currentUser} />
+        </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/users/new" component={RegistrationForm} />

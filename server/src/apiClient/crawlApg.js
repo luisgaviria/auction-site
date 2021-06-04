@@ -10,7 +10,7 @@ const crawl = async ({ url }) => {
 
   let data = [];
 
-  let links = $("#content > div.columns.three.properties > div")
+  $("#content > div.columns.three.properties > div")
     .toArray()
     .map((item) => {
       const dt = $(item).find("dt");
@@ -52,7 +52,7 @@ const crawl = async ({ url }) => {
       });
     });
 
-  function convertStringDateToDate(date) {
+  const convertStringDateToDate = (date) => {
     date = date.split(" ");
 
     Date.prototype.addHours = function (h) {
@@ -63,7 +63,7 @@ const crawl = async ({ url }) => {
     date = date[0] + " " + date[1] + " " + date[2];
     date = new Date(date).addHours(2).toLocaleDateString();
     return date;
-  }
+  };
   data = data.filter((record) => {
     if (record.date && record.status != "Off") {
       return record;

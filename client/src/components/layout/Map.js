@@ -1,137 +1,3 @@
-// const containerStyle = {
-//   width: "1000px",
-//   height: "400px",
-// };
-
-// const center = { lat: 42.361145, lng: -71.057083 };
-
-// const directionService = new google.maps.DirectionsService();
-
-// const directionDisplay = new google.maps.DirectionsRenderer();
-
-// const map = new google.maps.Map(document.getElementsByClassName("map"));
-
-// directionDisplay.setMap(map);
-
-// function calcRoute() {
-//   const request = {
-//     origin: document.getElementsByClassName("from").value,
-//     destination: document.getElementsByClassName("to"),
-//     travelMode: google.maps.TravelMode.DRIVING,
-//     unitSystem: google.maps.UnitSystem.IMPERIAL,
-//   };
-//   directionService.route(request, (result, status) => {
-//     if (status === google.maps.DirectionsStatus.OK) {
-//       const output = document.querySelector(".output");
-//       output.innerHTML =
-//         "<div class='alert-info'> From: " +
-//         document.getElementsByClassName("from").value +
-//         ".<br /> To: " +
-//         document.getElementsByClassName("to").value +
-//         "<br /> Driving distance:" +
-//         result.routes[0].legs[0].distance.text +
-//         ".<br />Duration: " +
-//         result.routes[0].legs[0].duration.text +
-//         ". </div>";
-
-//       // display routes
-
-//       directionDisplay.setDirections(result);
-//     } else {
-//       directionDisplay.setDirections({ routes: [] });
-//       // center map
-//       map.setCenter(center);
-
-//       //show error
-
-//       output.innerHTML = "<div class='alert-danger'>Dude that won't work... </div>";
-//     }
-//   });
-// }
-
-// // auto complete
-// const options = {
-//   types: ["(cities)"],
-// };
-
-// const input1 = document.getElementsByClassName("from");
-// const autoComplete1 = new google.maps.places.Autocomplete(input1, options);
-
-// const input2 = document.getElementsByClassName("to");
-// const autoComplete2 = new google.maps.places.Autocomplete(input2, options);
-
-/*class MapContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      position: {
-        lat: 42.361145,
-        lng: -71.057083,
-      },
-      google: props.google,
-      visible: false,
-    };
-  }
-
-  onMouseoverMarker(props) {
-    console.log(props.name);
-  }
-  componentWillReceiveProps(props) {
-    this.setState({
-      position: {
-        lat: 42.361145,
-        lng: -72.057083,
-      },
-      google: props.google,
-      addresses: props.addresses,
-      visible: true,
-    });
-  }
-
-  displayMarkers = () => {
-    if (this.state.addresses) {
-      return this.state.addresses.map((address, index) => {
-        return (
-          <Marker
-            key={index}
-            id={index}
-            position={{
-              lat: address.location.lat,
-              lng: address.location.lng,
-            }}
-            onMouseover={this.onMouseoverMarker}
-            name={address}
-          />
-        );
-      });
-    }
-  };
-  render() {
-
-    return (
-      <div>
-        <Map
-          value={this.state.address}
-          visible={this.state.visible ? true : false}
-          // style={containerStyle}
-          initialCenter={this.state.position}
-          google={this.state.google}
-          zoom={8}
-          onIdle={() => {
-            this.forceUpdate();
-          }}
-        >
-          {this.displayMarkers()}
-        </Map>
-      </div>
-    );
-  }
-}
-
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4",
-})(MapContainer); */
-
 import React, { useEffect } from "react";
 import { compose, withProps, lifecycle } from "recompose";
 import Geocode from "react-geocode";
@@ -143,12 +9,16 @@ import {
   DirectionsRenderer,
 } from "react-google-maps";
 
+import mapStyles from "./mapStyles.js";
+
+import auctionMarker from "./photos/auction.png";
+
 const MyMapComponent = compose(
   withProps({
     googleMapURL:
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `480px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
@@ -157,10 +27,16 @@ const MyMapComponent = compose(
   const [state, updateState] = React.useState({ directions: [] });
   const forceUpdate = React.useCallback(() => updateState({ ...state }), []);
 
+  const options = {
+    styles: mapStyles,
+    disableDefaultUI: true,
+    zoomControl: true,
+  };
+
   const onClick = (location, myPosition) => {
     const DirectionsService = new google.maps.DirectionsService();
     console.log(myPosition);
-    console.log(location);
+    //console.log(location);
     DirectionsService.route(
       {
         origin: new google.maps.LatLng(42.42143, -71.1363), //myPosition.lat, myPosition.lng),
@@ -192,13 +68,20 @@ const MyMapComponent = compose(
         lng: -72.057083,
       }}
       onIdle={() => forceUpdate()}
+      options={options}
     >
       {props.positions.map((address, index) => {
         return props.isMarkerShown ? (
           <Marker
             key={index}
             position={address.location}
-            onClick={() => onClick(address.location, props.positions[0].location)}
+            icon={{
+              url: auctionMarker,
+              scaledSize: new window.google.maps.Size(30, 30),
+              origin: new window.google.maps.Point(0, 0),
+              // anchor: new window.google.maps.Point(15, 15),
+            }}
+            onClick={() => onClick(address.location, props.positions[0])}
           />
         ) : null;
       })}
@@ -241,7 +124,12 @@ class MyFancyComponent extends React.PureComponent {
           address: auction.address,
         });
       });
-      navigator.geolocation.getCurrentPosition(function (position) {
+      await navigator.geolocation.getCurrentPosition(async function (position) {
+        /*console.log(position);
+        address = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }*/
         auctions_addresses.push({
           location: {
             lat: position.coords.latitude,
