@@ -1,6 +1,6 @@
-import getNodeEnv from "../../config/getNodeEnv.js";
 // import "regenerator-runtime/runtime";
 
+import getNodeEnv from "../../config/getNodeEnv.js";
 if (getNodeEnv() === "development") {
   // development specific middlewares here
   const { default: dotenv } = await import("dotenv");

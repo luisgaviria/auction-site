@@ -11,7 +11,7 @@ const crawl = async ({ url }) => {
   const real_data = [];
   let data = [];
   let temp_data = [];
-  const links = $(
+  $(
     "body > table.menu > tbody > tr:nth-child(2) > td.pagebody > table > tbody > tr > td:nth-child(2) > div"
   )
     .toArray()
@@ -36,7 +36,6 @@ const crawl = async ({ url }) => {
   });
   data.map((article) => {
     real_data.push({
-      // status: "On schedule" || article[0],
       status: article[0].length ? "Sold" : "On Schedule",
       logo: logo,
       date: article[1].split(" ")[0],

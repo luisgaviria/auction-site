@@ -8,6 +8,7 @@ import Tache from "../src/apiClient/crawlTache.js";
 import Danielp from "../src/apiClient/Danielp.js";
 import Harvard from "../src/apiClient/Harvard.js";
 import Towne from "../src/apiClient/Towne.js";
+import auctionControl from "../src/controllers/auctionControl.js";
 
 describe("Tests Crawl Functions", () => {
   it("tests that HarvardCrawl returns an array with data", async () => {
@@ -148,25 +149,26 @@ describe("Tests Crawl Functions", () => {
     }
   });
 
-  // it("tests that Baystate returns an array with data", async () => {
-  //   const response = await Baystate({
-  //     url: "https://www.baystateauction.com/auctions/state/ma",
-  //   });
+  it("tests that Baystate returns an array with data", async () => {
+    jest.setTimeout(10000);
+    const response = await Baystate({
+      url: "https://www.baystateauction.com/auctions/state/ma",
+    });
 
-  //   try {
-  //     expect(response.length).not.toEqual(0);
-  //     response.map((data) => {
-  //       expect(data.date).not.toEqual(0);
-  //       expect(data.status).not.toEqual(0);
-  //       expect(data.address).not.toEqual(0);
-  //       expect(data.deposit).not.toEqual(0);
-  //     });
-  //   } catch (e) {
-  //     expect(e).toEqual({
-  //       error: "This field is empty",
-  //     });
-  //   }
-  // });
+    try {
+      expect(response.length).not.toEqual(0);
+      response.map((data) => {
+        expect(data.date).not.toEqual(0);
+        expect(data.status).not.toEqual(0);
+        expect(data.address).not.toEqual(0);
+        expect(data.deposit).not.toEqual(0);
+      });
+    } catch (e) {
+      expect(e).toEqual({
+        error: "This field is empty",
+      });
+    }
+  });
 
   it("tests that Client returns an array with data", async () => {
     const response = await Client({
@@ -201,6 +203,38 @@ describe("Tests Crawl Functions", () => {
         expect(data.address).not.toEqual(0);
         expect(data.deposit).not.toEqual(0);
       });
+    } catch (e) {
+      expect(e).toEqual({
+        error: "This field is empty",
+      });
+    }
+  });
+
+  it("tests that the dates are in order", async () => {
+    let sorted = true;
+    try {
+      jest.setTimeout(10000);
+
+      const res = {
+        statusCode: 0,
+        allAuctions: {},
+        status: function (code) {
+          this.statusCode = code;
+          return this;
+        },
+        json: function (data) {
+          this.allAuctions = data.allAuctions;
+        },
+      };
+      await auctionControl({}, res);
+      for (let i = 0; i < res.allAuctions.length - 1; i++) {
+        if (new Date(res.allAuctions[i].date) > new Date(res.allAuctions[i + 1].date)) {
+          console.log(res.allAuctions[i], res.allAuctions[i + 1]);
+          sorted = false;
+          break;
+        }
+      }
+      expect(sorted).toEqual(true);
     } catch (e) {
       expect(e).toEqual({
         error: "This field is empty",

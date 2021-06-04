@@ -1,7 +1,9 @@
 import React from "react";
+// import { Link } from "react-router-dom";
+// import crawl from "../../../../server/src/apiClient/crawlClient";
 
 const NewRepoTile = (props) => {
-  const { status, date, address, city, state, link, deposit, logo, id } = props.repoData;
+  const { status, date, address, city, state, link, deposit, logo, id, crawlId } = props.repoData;
   return (
     <div key={id} className="card">
       <a href={link} target="_blank">
@@ -23,23 +25,5 @@ const NewRepoTile = (props) => {
     </div>
   );
 };
-
-// <div key={i} className="card">
-
-//   <div className="infos">
-//     <div className="status">
-//       Status: {repoItem.status ? repoItem.status : "no status displayed"}
-//     </div>
-//     <div className="date">
-//       Date: {repoItem.date ? repoItem.date : "no date displayed"}
-//     </div>
-//     <div className="address">
-//       {repoItem.address ? repoItem.address : "no address displayed"}
-//     </div>
-//     <div className="address">{repoItem.city || ""} </div>
-//     <div className="address">{repoItem.state || ""}</div>
-//     <div className="address">{repoItem.link || ""}</div>
-//   </div>
-// </div>
 
 export default NewRepoTile;
