@@ -10,7 +10,9 @@ You can also visit the site at https://auction-site-ma.herokuapp.com/
 
 You can find the functions that collect data on the controllers folder on the auctionControl file.
 
-This project utilizes jest testing to ensure that each function collects the appropiate data and to make sure that the dates which are rendered are all sorted in ascending order. To run async jest tests you will need to comment out all the code on the files located in the server/sr/boot/environments folder and add import “generator-runtime/runtime" to the development.js file. After this you can enter the command yarn test from the server directory to run tests.
+This project utilizes jest testing to ensure that each function collects the appropiate data and to make sure that the dates which are rendered are all sorted in ascending order. 
+
+To run async jest tests you will need to comment out all the code on the files located in the server/sr/boot/environments folder and add import “generator-runtime/runtime" to the development.js file. After this you can enter the command yarn test from the server directory to run tests.
 
 
 
