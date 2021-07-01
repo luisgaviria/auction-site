@@ -4,108 +4,81 @@ import * as cheerio from "cheerio";
 const crawl = async ({ url }) => {
   const response = await fetch(url);
   const body = await response.text();
-  const $ = cheerio.load(body);
-
-  const logo = "https://i.postimg.cc/NfKnTct5/300x83.jpg";
-
+  const $ = await cheerio.load(body);
+  //console.log($.html());
   let data = [];
+  await Promise.all(
+    $("#block-yui_3_17_2_1_1617145124998_5821 > div > div > div > div > div")
+      .toArray()
+      .map(async (div) => {
+        const month = $(div).find("span.summary-thumbnail-event-date-month").text();
+        const date = $(div).find("span.summary-thumbnail-event-date-day").text();
+        const title = $(div).find("div.summary-title > a").text();
+        const href = "https://www.amgauction.com" + $(div).find("a").attr("href");
+        const response_details_page = await fetch(href);
+        const body_details_page = await response_details_page.text();
+        const $2 = await cheerio.load(body_details_page);
+        const details = $2("#page").find(".sqs-block-content");
+        const time_start = await $2("#page").find("time.event-time-12hr-start").text();
+        //console.log(time_start);
 
-  let links = $(
-    "body > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > center:nth-child(3) > table > tbody > tr"
-  )
-    .toArray()
-    .map((item) => {
-      const tds = $(item).find("td");
-      const image = $(tds[0]).find("img").attr("src");
-      const number = $(tds[0]).text().trim();
-      const status = $(tds[1])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-      const date = $(tds[2])
-        .text()
-        .trim()
-        .replace(/\n\t\t\t/g, " ");
-      const address = $(tds[3])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-      const victorian_family = $(tds[4])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
+        await details
+          .find("p")
+          .toArray()
+          .map(async (item) => {
+            let temp_info = $2(item).html().split("<br>");
+            const keys = [];
+            const values = [];
+            for (let i = 0; i < temp_info.length; i++) {
+              temp_info[i] = temp_info[i].replace("<strong>", "");
+              temp_info[i] = temp_info[i].replace("</strong>", "");
+              temp_info[i] = temp_info[i].replace(/&nbsp;/g, "");
+              const key = temp_info[i].split(":")[0];
+              const value = temp_info[i].split(":")[1];
+              keys.push(key);
+              values.push(value);
+            }
+            const object = {};
+            for (let i = 0; i < keys.length; i++) {
+              object[keys[i]] = values[i];
+            }
+            const formatted_date = new Date(month + " " + date + " " + "2021").toLocaleDateString();
+            data.push({ address: title, date: formatted_date, time: time_start, ...object });
+          });
+      })
+  );
 
-      data.push({
-        logo: logo,
-        serial_number: number,
-        image: image,
-        status: status,
-        date: date,
-        address: address,
-        victorian_family: victorian_family,
-        link: url,
-      });
-    });
-  data.shift();
-  data.pop();
-
-  function convertStringDateToDate(date) {
-    date = date.split(" ");
-
-    Date.prototype.addHours = function (h) {
-      this.setTime(this.getTime() + h * 60 * 60 * 1000);
-      return this;
-    };
-
-    date = date[1] + " " + date[2] + " " + date[3];
-    //   console.log(date);
-    date = new Date(date).addHours(2).toLocaleDateString();
-    return date;
-  }
-
-  data = data.filter((record) => {
-    if (
-      record.status != "SOLD" &&
-      record.status != "Sold at Auction" &&
-      record.date != "" &&
-      record.date != "Sold" &&
-      record.date != "SOLD"
-    ) {
-      return record;
+  data = data.filter((item) => {
+    const keys = Object.keys(item);
+    if (keys.length > 10) {
+      return item;
     }
   });
 
-  data.map((record) => {
-    record.date = convertStringDateToDate(record.date);
+  data = data.filter((item) => {
+    if (item.address.search("CANCELLED") == -1) {
+      return item;
+    }
   });
 
-  //console.log(data);
+  for (let auction of data) {
+    if (auction.Terms) {
+      const array = auction.Terms.split(" ");
+      for (const item of array) {
+        //console.log(item.toString().search('.00'));
+        if (item.toString().search(".00") != -1) {
+          //console.log(item);
+          auction.deposit = item;
+        }
+      }
+    }
+  }
 
-  /*links.map(tr=>{
-    //console.log(td.children());
-    console.log($(tr).text()) 
-  })*/
-  //links = links.substr(55,links.length);
-
-  //links = links.split('#');
-  //.children('td[width="82%"]').text();
-
-  //console.log(links)
-
-  //console.log(data);
   return data;
 };
 
 crawl({
-  url: "http://www.auctionmarketinggroup.com/auctions.html",
+  url: "https://www.amgauction.com/",
 });
+
 export default crawl;

@@ -21,7 +21,6 @@ const RepoList = (props) => {
       }
       const body = await response.json();
 
-      console.log(body);
       Geocode.setApiKey("AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4");
       Geocode.setLanguage("en");
       Geocode.setRegion("us");
@@ -35,7 +34,7 @@ const RepoList = (props) => {
           address: auction.address,
         });
       });
-      console.log(location);
+
       setState({ ...state, repo: body.allAuctions, addresses: auctions_addresses });
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`);

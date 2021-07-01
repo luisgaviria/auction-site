@@ -17,7 +17,7 @@ const crawl = async ({ url }) => {
 
   trs.map((tr) => {
     const tds = $(tr).find("td");
-    const date = $(tds[0]).text().substring(1).replace("/0", "/").replace("/21", "/2021");
+    const date = $(tds[0]).text().replace("/21", "/2021");
     const time = $(tds[1]).text();
     let address = $(tds[2]).text();
     const city = $(tds[3]).text();

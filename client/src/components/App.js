@@ -12,8 +12,11 @@ import UserProfile from "./layout/UserProfile.js";
 
 import TopBar from "./layout/TopBar";
 import Header from "./layout/Header";
+import NewMap from "./layout/newMap";
 
 import RepoList from "../components/layout/newRepo";
+
+import Favorites from "../components/layout/Favorites.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -21,6 +24,7 @@ const App = (props) => {
     getCurrentUser()
       .then((user) => {
         setCurrentUser(user);
+        console.log(user);
       })
       .catch(() => {
         setCurrentUser(null);
@@ -28,12 +32,17 @@ const App = (props) => {
   }, []);
   return (
     <Router>
-      {/* <TopBar user={currentUser} /> */}
+      <TopBar user={currentUser} />
       <Header />
       <Switch>
-        <Route exact path="/" component={RepoList} />
-        <Route exact path="/:id">
-          <repoShow user={currentUser} />
+        <Route exact path="/">
+          <RepoList user={currentUser} />
+        </Route>
+        <Route exact path="/favorites">
+          <Favorites user={currentUser} />
+        </Route>
+        <Route exact path="/map" component={NewMap}>
+          <NewMap user={currentUser} />
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

@@ -149,50 +149,50 @@ describe("Tests Crawl Functions", () => {
     }
   });
 
-  it("tests that Baystate returns an array with data", async () => {
-    jest.setTimeout(10000);
-    const response = await Baystate({
-      url: "https://www.baystateauction.com/auctions/state/ma",
-    });
+  // it("tests that Client returns an array with data", async () => {
+  //   const response = await Client({
+  //     url: "http://www.auctionmarketinggroup.com/auctions.html",
+  //   });
 
-    try {
-      expect(response.length).not.toEqual(0);
-      response.map((data) => {
-        expect(data.date).not.toEqual(0);
-        expect(data.status).not.toEqual(0);
-        expect(data.address).not.toEqual(0);
-        expect(data.deposit).not.toEqual(0);
-      });
-    } catch (e) {
-      expect(e).toEqual({
-        error: "This field is empty",
-      });
-    }
-  });
-
-  it("tests that Client returns an array with data", async () => {
-    const response = await Client({
-      url: "http://www.auctionmarketinggroup.com/auctions.html",
-    });
-
-    try {
-      expect(response.length).not.toEqual(0);
-      response.map((data) => {
-        expect(data.date).not.toEqual(0);
-        expect(data.status).not.toEqual(0);
-        expect(data.address).not.toEqual(0);
-        expect(data.deposit).not.toEqual(0);
-      });
-    } catch (e) {
-      expect(e).toEqual({
-        error: "This field is empty",
-      });
-    }
-  });
+  //   try {
+  //     expect(response.length).not.toEqual(0);
+  //     response.map((data) => {
+  //       expect(data.date).not.toEqual(0);
+  //       expect(data.status).not.toEqual(0);
+  //       expect(data.address).not.toEqual(0);
+  //       expect(data.deposit).not.toEqual(0);
+  //     });
+  //   } catch (e) {
+  //     expect(e).toEqual({
+  //       error: "This field is empty",
+  //     });
+  //   }
+  // });
 
   it("tests that DanielP returns an array with data", async () => {
     const response = await Danielp({
       url: "https://www.re-auctions.com/Auction-Schedule/PropertyAgentName/-1/sortBy/cf11",
+    });
+
+    try {
+      expect(response.length).not.toEqual(0);
+      response.map((data) => {
+        expect(data.date).not.toEqual(0);
+        expect(data.status).not.toEqual(0);
+        expect(data.address).not.toEqual(0);
+        expect(data.deposit).not.toEqual(0);
+      });
+    } catch (e) {
+      expect(e).toEqual({
+        error: "This field is empty",
+      });
+    }
+  });
+
+  it("tests that Baystate returns an array with data", async () => {
+    jest.setTimeout(10000);
+    const response = await Baystate({
+      url: "https://www.baystateauction.com/auctions/state/ma",
     });
 
     try {
@@ -229,7 +229,7 @@ describe("Tests Crawl Functions", () => {
       await auctionControl({}, res);
       for (let i = 0; i < res.allAuctions.length - 1; i++) {
         if (new Date(res.allAuctions[i].date) > new Date(res.allAuctions[i + 1].date)) {
-          console.log(res.allAuctions[i], res.allAuctions[i + 1]);
+          console.log("This is the error log", res.allAuctions[i], res.allAuctions[i + 1]);
           sorted = false;
           break;
         }
@@ -237,7 +237,7 @@ describe("Tests Crawl Functions", () => {
       expect(sorted).toEqual(true);
     } catch (e) {
       expect(e).toEqual({
-        error: "This field is empty",
+        error: "These dates are not sorted correctly",
       });
     }
   });

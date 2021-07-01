@@ -14,7 +14,6 @@ exports.up = async (knex) => {
     return knex.schema.createTable(tableName, (table) => {
       table.bigIncrements("id");
 
-      table.string("comments").notNullable();
       table.bigInteger("auctionId").unsigned().notNullable().index().references("auctions.id");
       table.bigInteger("userId").unsigned().notNullable().index().references("users.id");
       table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());

@@ -8,7 +8,7 @@ const UserProfile = (props) => {
   }
   return (
     <div className="callout small-10 small-centered columns" id="user-profile-card">
-      <h1 className="centered-text">Profile: {userName}</h1>
+      <h3 className="centered-text">Profile: {userName}</h3>
       <div>
         <Link to="/stories/new" className="add-new-story">
           Contribute a local story!

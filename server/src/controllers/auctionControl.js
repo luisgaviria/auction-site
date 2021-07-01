@@ -8,12 +8,17 @@ import crawlHarvard from "../../src/apiClient/Harvard.js";
 import crawlDaniel from "../../src/apiClient/Danielp.js";
 import crawlRi from "../../src/apiClient/crawlRi.js";
 import crawlBaystate from "../../src/apiClient/crawlBaystate.js";
+import PatriotCrawl from "../../src/apiClient/PatriotCrawl.js";
+import crawlSullivan from "../../src/apiClient/crawlSullivan.js";
+import crawlJake from "../../src/apiClient/crawlJake.js";
+
+import Auction from "../models/Auction.js";
 
 const auctionControl = async (req, res) => {
   try {
     let allAuctions = [];
 
-    const data = await crawlClient({ url: "http://www.auctionmarketinggroup.com/auctions.html" });
+    const data = await crawlClient({ url: "https://www.amgauction.com" });
     const data1 = await crawlCommonwealth({
       url: "http://www.commonwealthauction.com/auctions.asp?location=1",
     });
@@ -37,13 +42,40 @@ const auctionControl = async (req, res) => {
       url: "https://www.baystateauction.com/auctions/state/ma",
     });
 
+    const data10 = await PatriotCrawl({
+      url: "https://patriotauctioneers.com/auctions-in-massachusetts/",
+    });
+
+    const data11 = await crawlSullivan({
+      url: "https://sullivan-auctioneers.com/massachusetts/",
+    });
+
+    const data12 = await crawlJake({
+      url: "https://www.jkauctioneers.com/list1.htm",
+    });
+
     let date_sort_asc = (date2, date1) => {
       if (new Date(date1.date) > new Date(date2.date)) return 1;
       if (new Date(date1.date) < new Date(date2.date)) return -1;
       return 0;
     };
 
-    allAuctions = data.concat(data1, data2, data3, data4, data5, data6, data7, data8, data9);
+    console.log(data11);
+
+    allAuctions = data.concat(
+      data1,
+      data2,
+      data3,
+      data4,
+      data5,
+      data6,
+      data7,
+      data8,
+      data9,
+      data10,
+      data11,
+      data12
+    );
 
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
@@ -55,7 +87,36 @@ const auctionControl = async (req, res) => {
       }
     });
 
-    return res.status(200).json({ allAuctions: sorted });
+    const sorted2 = [];
+
+    for (const auction of sorted) {
+      try {
+        const auctionTemp = await Auction.query().insertAndFetch({
+          deposit: auction.deposit,
+          link: auction.link,
+          logo: auction.logo,
+          state: auction.state,
+          city: auction.city,
+          date: auction.date,
+          address: auction.address,
+          time: auction.time,
+          status: auction.status,
+        });
+
+        sorted2.push(auctionTemp);
+      } catch (error) {
+        const auctionTemp = await Auction.query().where({ address: auction.address });
+        sorted2.push(auctionTemp[0]);
+      }
+    }
+
+    sorted2.map((auc) => {
+      auc.date = new Date(auc.date).toLocaleDateString();
+    });
+
+    console.log(data11, data10);
+
+    return res.status(200).json({ allAuctions: sorted2 });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ errors: error });
