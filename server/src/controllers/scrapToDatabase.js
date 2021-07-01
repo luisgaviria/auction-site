@@ -1,22 +1,24 @@
-import crawlClient from "../../src/apiClient/crawlClient.js";
-import crawlCommonwealth from "../../src/apiClient/Commonwealth.js";
+import crawlClient from "../apiClient/crawlClient.js";
+import crawlCommonwealth from "../apiClient/Commonwealth.js";
 import crawlTowne from "../../src/apiClient/Towne.js";
-import crawlApg from "../../src/apiClient/crawlApg.js";
-import crawlDean from "../../src/apiClient/crawlDean.js";
-import crawlTache from "../../src/apiClient/crawlTache.js";
-import crawlHarvard from "../../src/apiClient/Harvard.js";
-import crawlDaniel from "../../src/apiClient/Danielp.js";
-import crawlRi from "../../src/apiClient/crawlRi.js";
-import crawlBaystate from "../../src/apiClient/crawlBaystate.js";
-import PatriotCrawl from "../../src/apiClient/PatriotCrawl.js";
-import crawlSullivan from "../../src/apiClient/crawlSullivan.js";
-import crawlJake from "../../src/apiClient/crawlJake.js";
+import crawlApg from "../apiClient/crawlApg.js";
+import crawlDean from "../apiClient/crawlDean.js";
+import crawlTache from "../apiClient/crawlTache.js";
+import crawlHarvard from "../apiClient/Harvard.js";
+import crawlDaniel from "../apiClient/Danielp.js";
+import crawlRi from "../apiClient/crawlRi.js";
+import crawlBaystate from "../apiClient/crawlBaystate.js";
+import PatriotCrawl from "../apiClient/PatriotCrawl.js";
+import crawlSullivan from "../apiClient/crawlSullivan.js";
+import crawlJake from "../apiClient/crawlJake.js";
 
 import Auction from "../models/Auction.js";
 
-const auctionControl = async (req, res) => {
+const scrapToDatabase = async (req, res) => {
   try {
     let allAuctions = [];
+
+    console.log("start");
 
     const data = await crawlClient({ url: "https://www.amgauction.com" });
     const data1 = await crawlCommonwealth({
@@ -60,7 +62,7 @@ const auctionControl = async (req, res) => {
       return 0;
     };
 
-    console.log(data11);
+    //console.log(data11);
 
     allAuctions = data.concat(
       data1,
@@ -77,6 +79,8 @@ const auctionControl = async (req, res) => {
       data12
     );
 
+    console.log(allAuctions);
+
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
     sorted = sorted.filter((auction) => {
@@ -87,26 +91,24 @@ const auctionControl = async (req, res) => {
       }
     });
 
-    const sorted2 = [];
+    const sorted2 = sorted;
 
-    for (const auction of sorted) {
+    for (let i = 0; i < sorted2.length; i++) {
       try {
-        const auctionTemp = await Auction.query().insertAndFetch({
-          deposit: auction.deposit,
-          link: auction.link,
-          logo: auction.logo,
-          state: auction.state,
-          city: auction.city,
-          date: auction.date,
-          address: auction.address,
-          time: auction.time,
-          status: auction.status,
+        console.log(sorted2[i]);
+        const auctionTemp = await Auction.query().insert({
+          deposit: sorted2[i].deposit,
+          link: sorted2[i].link,
+          logo: sorted2[i].logo,
+          state: sorted2[i].state,
+          city: sorted2[i].city,
+          date: sorted2[i].date,
+          address: sorted2[i].address,
+          time: sorted2[i].time,
+          status: sorted2[i].status,
         });
-
-        sorted2.push(auctionTemp);
       } catch (error) {
-        const auctionTemp = await Auction.query().where({ address: auction.address });
-        sorted2.push(auctionTemp[0]);
+        // const auctionTemp = await Auction.query().where({ address: sorted2[i].address });
       }
     }
 
@@ -114,13 +116,14 @@ const auctionControl = async (req, res) => {
       auc.date = new Date(auc.date).toLocaleDateString();
     });
 
-    console.log(data11, data10);
+    //console.log(data11, data10);
+    console.log(sorted2.length);
 
-    return res.status(200).json({ allAuctions: sorted2 });
+    return res.status(200).json({ message: "Succesfully updated database", allAuctions: sorted2 });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ errors: error });
   }
 };
 
-export default auctionControl;
+export default scrapToDatabase;

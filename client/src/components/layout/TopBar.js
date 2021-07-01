@@ -30,7 +30,13 @@ const TopBar = ({ user }) => {
         <ul className="menu">
           {/* <li className="menu-text">App</li> */}
           <li>
-            <button onClick={onClickHandle}>favorites</button>
+            <button
+              type="button"
+              class="button hollow secondary large color black"
+              onClick={onClickHandle}
+            >
+              Favorites
+            </button>
           </li>
         </ul>
       </div>

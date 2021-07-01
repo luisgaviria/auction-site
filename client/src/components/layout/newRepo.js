@@ -61,11 +61,22 @@ const RepoList = (props) => {
     }
   });
 
+  const refreshDatabaseHandleClickButton = async () => {
+    const response = await fetch("/api/v1/crawl/scrap");
+    console.log(response.data);
+  };
+
   return (
     <>
       <div className="map">
         <Map />
       </div>
+      <div className="button-container">
+        <a className="button large secondary " onClick={refreshDatabaseHandleClickButton}>
+          Refresh Auctions
+        </a>
+      </div>
+
       <div className="list-item">{repoListItems}</div>
     </>
   );
