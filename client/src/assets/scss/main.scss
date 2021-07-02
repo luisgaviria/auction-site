@@ -6,6 +6,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ewert&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Reenie+Beanie&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Reenie+Beanie&family=Sunflower:wght@500&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Sunflower:wght@500&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Sunflower:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Quicksand&display=swap");
 // place global css here
 *,
@@ -240,17 +246,23 @@
 }
 
 .not-container {
+  background: url("https://i.postimg.cc/wTjbqjsv/20945153-Convert-Image.jpg") no-repeat center
+    center;
   text-align: center;
   width: 100%;
-  // padding-top: 6rem;
-  padding-bottom: 0%;
+  height: 44vh;
+  margin-bottom: -1rem;
+  background-size: contain;
   // background: #f4f7f673;
+  display: flex;
+
+  // box-shadow: 0 0 rgba(0, 0, 0, 0.3), 0 1px 7px 0 rgba(0, 0, 0, 0.15);
 }
 
 .octopus {
   height: 30vh;
   margin-bottom: 0%;
-  margin-top: -6px;
+  margin-top: 0px;
 }
 
 // * {
@@ -341,32 +353,51 @@
 //   background-image: url("https://www.youtube.com/watch?v=hMmzmTpOTvA");
 // }
 
-h1 {
-  font-family: "Roboto Slab", Times, serif;
-  // font-size: 2.4rem;
-  max-width: 1200px;
-  padding-bottom: 2rem;
-  padding-top: 0px;
-  margin-bottom: 0;
-  margin-top: -4px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #063249;
-  align-content: center;
-  font-weight: 500;
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8em;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: -1.4rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-h2 {
-  color: rgba(17, 14, 14, 0.7);
-  display: block;
-  max-width: 900px;
-  font-size: 1.3rem;
-  font-family: "Open Sans", Arial, sans-serif;
-  font-weight: 400;
-  margin-left: auto;
-  margin-right: auto;
-  align-content: center;
+@media (max-width: 26.25em) {
+  h3 {
+    font-size: 1.2em;
+  }
 }
+
+h1 {
+  font-family: "Reenie Beanie", cursive;
+  // font-family: "Sunflower", sans-serif;
+  // font-family: "Cinzel Decorative", cursive;
+  font-size: 6em;
+
+  margin: 0 auto;
+  margin-bottom: -1rem;
+  margin-top: 0.2em;
+  text-align: center;
+}
+
+@media (max-width: 26.25em) {
+  h1 {
+    font-size: 4em;
+  }
+}
+
+// h2 {
+//   color: rgba(17, 14, 14, 0.7);
+//   display: block;
+//   max-width: 900px;
+//   font-size: 1.3rem;
+//   font-family: "Open Sans", Arial, sans-serif;
+//   font-weight: 400;
+//   margin-left: auto;
+//   margin-right: auto;
+//   align-content: center;
+// }
 
 .not-map {
   width: 100%;
@@ -380,6 +411,34 @@ h2 {
   width: 100%;
   // height: 60vh;
   padding: 10px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   position: relative;
+}
+
+.webgl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  outline: none;
+  mix-blend-mode: exclusion;
+}
+
+.favorite-button {
+  height: 4vh;
+  margin-bottom: 10pt;
+}
+
+.button-container {
+  width: 100%;
+  height: 10vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  font-family: "Ubuntu Mono", monospace;
+  border-radius: 2rem;
+  font-weight: 600;
 }

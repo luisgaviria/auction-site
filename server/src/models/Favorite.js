@@ -10,7 +10,7 @@ class Favorite extends Model {
     const User = require("./User.js");
 
     return {
-      park: {
+      auction: {
         relation: Model.BelongsToOneRelation,
         modelClass: Auction,
         join: {

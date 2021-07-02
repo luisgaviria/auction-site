@@ -7,6 +7,9 @@ import "./boot.js";
 import configuration from "./config.js";
 import addMiddlewares from "./middlewares/addMiddlewares.js";
 import rootRouter from "./routes/rootRouter.js";
+import cron from "node-cron";
+
+import scrapToDatabase from "../src/controllers/scrapToDatabase.js";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -35,6 +38,11 @@ app.use(
 app.use(bodyParser.json());
 addMiddlewares(app);
 app.use(rootRouter);
+
+cron.schedule("0 */2 * * *", () => {
+  scrapToDatabase();
+});
+
 app.listen(configuration.web.port, configuration.web.host, () => {
   console.log("Server is listening...");
 });

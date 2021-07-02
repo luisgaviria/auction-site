@@ -1,8 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
 
 const TopBar = ({ user }) => {
+  const history = useHistory();
+  const onClickHandle = () => {
+    history.push("/favorites");
+  };
   const unauthenticatedListItems = [
     <li key="sign-in">
       <Link to="/user-sessions/new">Sign In</Link>
@@ -26,13 +30,19 @@ const TopBar = ({ user }) => {
         <ul className="menu">
           {/* <li className="menu-text">App</li> */}
           <li>
-            <Link to="/">Home</Link>
+            <button
+              type="button"
+              class="button hollow secondary large color black"
+              onClick={onClickHandle}
+            >
+              Favorites
+            </button>
           </li>
         </ul>
       </div>
-      {/* <div className="top-bar-right">
+      <div className="top-bar-right">
         <ul className="menu">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
-      </div> */}
+      </div>
     </div>
   );
 };

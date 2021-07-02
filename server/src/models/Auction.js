@@ -21,14 +21,14 @@ class Auction extends unique(Model) {
           to: "favorites.auctionId",
         },
       },
-      user: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: User,
-        join: {
-          from: "auctions.userId",
-          to: "users.id",
-        },
-      },
+      // user: {
+      //   relation: Model.BelongsToOneRelation,
+      //   modelClass: User,
+      //   join: {
+      //     from: "auctions.userId",
+      //     to: "users.id",
+      //   },
+      // },
     };
   }
   static get jsonSchema() {

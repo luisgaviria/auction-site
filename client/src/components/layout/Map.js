@@ -7,6 +7,7 @@ import {
   GoogleMap,
   Marker,
   DirectionsRenderer,
+  InfoWindow,
 } from "react-google-maps";
 
 import mapStyles from "./mapStyles.js";
@@ -26,12 +27,18 @@ const MyMapComponent = compose(
 )((props) => {
   const [state, updateState] = React.useState({ directions: [] });
   const forceUpdate = React.useCallback(() => updateState({ ...state }), []);
+  const [selected, setSelected] = React.useState(null);
 
   const options = {
     styles: mapStyles,
     disableDefaultUI: true,
     zoomControl: true,
   };
+
+  const mapRef = React.useRef();
+  const onMapLoad = React.useCallback((map) => {
+    mapRef.current = map;
+  }, []);
 
   const onClick = (location, myPosition) => {
     const DirectionsService = new google.maps.DirectionsService();
@@ -82,9 +89,19 @@ const MyMapComponent = compose(
               // anchor: new window.google.maps.Point(15, 15),
             }}
             onClick={() => onClick(address.location, props.positions[0])}
+            // onMouseOver={() => {
+            //   console.log(address);
+            // }}
           />
         ) : null;
       })}
+      {/* {selected ? (
+        <InfoWindow>
+          <div>
+            <h1>{address.location}</h1>
+          </div>
+        </InfoWindow>
+      ) : null} */}
       {props.directions && <DirectionsRenderer directions={state.directions} />}
     </GoogleMap>
   );

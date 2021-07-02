@@ -5,11 +5,15 @@ const { ValidationError } = objection;
 
 import { Auction } from "../../../models/index.js";
 
-import auctionControl from "../../../controllers/auctionControl.js";
+import scrapToDatabase from "../../../controllers/scrapToDatabase.js";
+
+import getData from "../../../controllers/getData.js";
 
 const crawlRouter = new express.Router();
 
-crawlRouter.get("/", auctionControl);
+crawlRouter.get("/", getData);
+
+crawlRouter.get("/scrap", scrapToDatabase);
 
 crawlRouter.get("/:id", async (req, res) => {
   const crawlId = req.params.id;

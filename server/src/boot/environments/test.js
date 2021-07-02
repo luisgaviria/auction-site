@@ -5,3 +5,4 @@ if (getNodeEnv() === "test") {
   const { default: dotenv } = await import("dotenv");
   await dotenv.config();
 }
+// import "regenerator-runtime/runtime";
