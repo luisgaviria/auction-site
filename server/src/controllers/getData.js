@@ -1,7 +1,7 @@
-import Auction from "../models/Auction.js";
+import filter from "../utils/Filter.js";
 
 const getData = async (req, res) => {
-  let auctions = await Auction.query();
+  let auctions = await filter();
 
   for (let auction of auctions) {
     auction.date = auction.date.toLocaleDateString();
