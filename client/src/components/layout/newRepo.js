@@ -21,7 +21,7 @@ const RepoList = (props) => {
       }
       const body = await response.json();
 
-      Geocode.setApiKey("AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4");
+      Geocode.setApiKey("AIzaSyC7idetxYH3xqundQWiHiQ3PNtXxW7-ygY");
       Geocode.setLanguage("en");
       Geocode.setRegion("us");
       //Geocode.enableDebug();
