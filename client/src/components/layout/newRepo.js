@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Map from "./Map";
+
 import * as fetch from "node-fetch";
 
-import Geocode from "react-geocode";
+//import Geocode from "react-geocode";
 import NewRepoTile from "./newRepoTile.js";
 
 const RepoList = (props) => {
@@ -21,14 +22,22 @@ const RepoList = (props) => {
       }
       const body = await response.json();
 
-      Geocode.setApiKey("AIzaSyC7idetxYH3xqundQWiHiQ3PNtXxW7-ygY");
-      Geocode.setLanguage("en");
-      Geocode.setRegion("us");
+      // Geocode.setApiKey("AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4");
+      // Geocode.setLanguage("en");
+      // Geocode.setRegion("us");
       //Geocode.enableDebug();
       const auctions_addresses = [];
       body.allAuctions.map(async (auction) => {
-        const response = await Geocode.fromAddress(auction.address);
-        const location = response.results[0].geometry.location;
+        let response2 = await fetch(
+          `https://api.opencagedata.com/geocode/v1/geojson?q=${auction.address}&key=5d72e4941deb43e2ad787f1e9fe5a68b&pretty=1`
+        );
+        response2 = await response2.json();
+        console.log(response2);
+        const location = {
+          lat: response2.features[0].geometry.coordinates[0],
+          lng: response2.features[0].geometry.coordinates[1],
+        };
+        // const response = await Geocode.fromAddress(auction.address);
         auctions_addresses.push({
           location: location,
           address: auction.address,

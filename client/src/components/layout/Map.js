@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { compose, withProps, lifecycle } from "recompose";
-import Geocode from "react-geocode";
+import fetch from "node-fetch";
 import {
   withScriptjs,
   withGoogleMap,
@@ -17,7 +17,7 @@ import auctionMarker from "./photos/auction.png";
 const MyMapComponent = compose(
   withProps({
     googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4",
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyC7idetxYH3xqundQWiHiQ3PNtXxW7-ygY",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `480px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
@@ -128,14 +128,20 @@ class MyFancyComponent extends React.PureComponent {
       const body = await response.json();
 
       //console.log(body);
-      Geocode.setApiKey("AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4");
-      Geocode.setLanguage("en");
-      Geocode.setRegion("us");
+      // Geocode.setApiKey("AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4");
+      // Geocode.setLanguage("en");
+      // Geocode.setRegion("us");
       //Geocode.enableDebug();
       const auctions_addresses = [];
       body.allAuctions.map(async (auction) => {
-        const response = await Geocode.fromAddress(auction.address);
-        const location = response.results[0].geometry.location;
+        let response2 = await fetch(
+          `https://api.opencagedata.com/geocode/v1/geojson?q=${auction.address}&key=5d72e4941deb43e2ad787f1e9fe5a68b&pretty=1`
+        );
+        response2 = await response2.json();
+        const location = {
+          lat: response2.features[0].geometry.coordinates[1],
+          lng: response2.features[0].geometry.coordinates[0],
+        };
         auctions_addresses.push({
           location: location,
           address: auction.address,
