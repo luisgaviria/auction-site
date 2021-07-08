@@ -71,8 +71,7 @@ const RepoList = (props) => {
   });
 
   const refreshDatabaseHandleClickButton = async () => {
-    const response = await fetch("/api/v1/crawl/scrap");
-    console.log(response.data);
+    await fetch("/api/v1/crawl/scrap");
   };
 
   return (

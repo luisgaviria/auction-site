@@ -39,7 +39,6 @@ export default function NewMap() {
 
   return (
     <div>
-      <h1>Hello world</h1>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={8}

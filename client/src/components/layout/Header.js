@@ -5,7 +5,7 @@ import React from "react";
 const Header = () => {
   return (
     <>
-      <h1>Auction & Co.</h1>
+      <h1>Auction-site Mass.</h1>
       <div className="not-container">
         {/* <Shape /> */}
         {/* <img

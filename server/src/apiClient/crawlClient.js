@@ -20,6 +20,7 @@ const crawl = async ({ url }) => {
         const $2 = await cheerio.load(body_details_page);
         const details = $2("#page").find(".sqs-block-content");
         const time_start = await $2("#page").find("time.event-time-12hr-start").text();
+        const logo = "https://i.postimg.cc/d1P2Y51k/imageedit-153-8952288824.png";
         //console.log(time_start);
 
         await details
@@ -43,7 +44,13 @@ const crawl = async ({ url }) => {
               object[keys[i]] = values[i];
             }
             const formatted_date = new Date(month + " " + date + " " + "2021").toLocaleDateString();
-            data.push({ address: title, date: formatted_date, time: time_start, ...object });
+            data.push({
+              address: title,
+              date: formatted_date,
+              time: time_start,
+              logo: logo,
+              ...object,
+            });
           });
       })
   );
