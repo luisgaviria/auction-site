@@ -1,4 +1,4 @@
-import filter from "../utils/Filter.js";
+import filter from "../utils/filter.js";
 
 const getData = async (req, res) => {
   let auctions = await filter();
