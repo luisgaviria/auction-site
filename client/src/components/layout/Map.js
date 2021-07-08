@@ -46,7 +46,7 @@ const MyMapComponent = compose(
     //console.log(location);
     DirectionsService.route(
       {
-        origin: new google.maps.LatLng(42.42143, -71.1363), //myPosition.lat, myPosition.lng),
+        origin: new google.maps.LatLng(42.42143, -71.1363),
         destination: new google.maps.LatLng(location.lat, location.lng),
         travelMode: google.maps.TravelMode.DRIVING,
       },

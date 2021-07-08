@@ -79,8 +79,6 @@ const scrapToDatabase = async (req, res) => {
       data12
     );
 
-    console.log(allAuctions);
-
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
     sorted = sorted.filter((auction) => {
@@ -95,7 +93,7 @@ const scrapToDatabase = async (req, res) => {
 
     for (let i = 0; i < sorted2.length; i++) {
       try {
-        console.log(sorted2[i]);
+        // console.log(sorted2[i]);
         const auctionTemp = await Auction.query().insert({
           deposit: sorted2[i].deposit,
           link: sorted2[i].link,
@@ -116,6 +114,22 @@ const scrapToDatabase = async (req, res) => {
       auc.date = new Date(auc.date).toLocaleDateString();
     });
 
+    const databaseAuctions = await Auction.query();
+    sorted2.map(async (auc) => {
+      console.log(auc.address);
+      // if(auc.address.search('Natick')!=-1){
+      //   console.log(auc);
+      // }
+      databaseAuctions.map(async (databaseAuction) => {
+        if (
+          auc.address == databaseAuction.address &&
+          new Date(auc.date).setHours(0, 0, 0, 0) !=
+            new Date(databaseAuction.date).setHours(0, 0, 0, 0)
+        ) {
+          await databaseAuction.$query().patch({ date: new Date(auc.date) });
+        }
+      });
+    });
     //console.log(data11, data10);
     console.log(sorted2.length);
 

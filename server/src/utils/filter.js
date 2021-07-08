@@ -6,8 +6,9 @@ const filter = async () => {
   for (const auction of auctions) {
     const date = auction.date;
     const status = auction.status;
+    // console.log(status);
 
-    if (date < new Date()) {
+    if (date < new Date().setHours(0, 0, 0, 0)) {
       await Auction.query().deleteById(auction.id);
     }
     if (
