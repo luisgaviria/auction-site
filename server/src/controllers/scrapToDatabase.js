@@ -11,8 +11,16 @@ import crawlBaystate from "../apiClient/crawlBaystate.js";
 import PatriotCrawl from "../apiClient/PatriotCrawl.js";
 import crawlSullivan from "../apiClient/crawlSullivan.js";
 import crawlJake from "../apiClient/crawlJake.js";
+import NodeGeocoder from "node-geocoder";
 
 import Auction from "../models/Auction.js";
+
+const options = {
+  provider: "google",
+  apiKey: "AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4",
+};
+
+const geocoder = NodeGeocoder(options);
 
 const scrapToDatabase = async (req, res) => {
   try {
@@ -25,7 +33,7 @@ const scrapToDatabase = async (req, res) => {
       url: "http://www.commonwealthauction.com/auctions.asp?location=1",
     });
 
-    const data2 = await crawlTowne({ url: "https://www3.towneauction.com/Auctions_NoNav.aspx" });
+    // const data2 = await crawlTowne({ url: "https://www3.towneauction.com/Auctions_NoNav.aspx" });
     const data3 = await crawlDean({ url: "http://www.deanassociatesinc.com/auctions.htm" });
     const data4 = await crawlApg({ url: "https://apg-online.com/auction-schedule/" });
     const data5 = await crawlTache({
@@ -64,7 +72,7 @@ const scrapToDatabase = async (req, res) => {
 
     allAuctions = data.concat(
       data1,
-      data2,
+      // data2,
       data3,
       data4,
       data5,
@@ -77,7 +85,7 @@ const scrapToDatabase = async (req, res) => {
       data12
     );
 
-    console.log(allAuctions);
+    // console.log(allAuctions);
 
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
@@ -93,19 +101,33 @@ const scrapToDatabase = async (req, res) => {
 
     for (let i = 0; i < sorted2.length; i++) {
       try {
-        // console.log(sorted2[i]);
-        const auctionTemp = await Auction.query().insert({
-          deposit: sorted2[i].deposit,
-          link: sorted2[i].link,
-          logo: sorted2[i].logo,
-          state: sorted2[i].state,
-          city: sorted2[i].city,
-          date: sorted2[i].date,
+        let auctionTemp = await Auction.query().findOne({
           address: sorted2[i].address,
-          time: sorted2[i].time,
-          status: sorted2[i].status,
         });
-      } catch (error) {}
+
+        if (!auctionTemp) {
+          const geostuff = await geocoder.geocode(sorted2[i].address);
+          const lat = geostuff[0].latitude.toString();
+          const lng = geostuff[0].longitude.toString();
+          console.log(lat, lng);
+          console.log(sorted2[i].status);
+          const auctionTemp = await Auction.query().insert({
+            deposit: sorted2[i].deposit,
+            link: sorted2[i].link,
+            logo: sorted2[i].logo,
+            state: sorted2[i].state,
+            city: sorted2[i].city,
+            date: sorted2[i].date,
+            address: sorted2[i].address,
+            time: sorted2[i].time,
+            status: sorted2[i].status,
+            lat: lat,
+            lng: lng,
+          });
+        }
+      } catch (error) {
+        // console.log(error);
+      }
     }
 
     sorted2.map((auc) => {
@@ -114,7 +136,7 @@ const scrapToDatabase = async (req, res) => {
 
     const databaseAuctions = await Auction.query();
     sorted2.map(async (auc) => {
-      console.log(auc.address);
+      // console.log(auc.address);
       // if(auc.address.search('Natick')!=-1){
       //   console.log(auc);
       // }
@@ -133,7 +155,7 @@ const scrapToDatabase = async (req, res) => {
 
     return res.status(200).json({ message: "Succesfully updated database", allAuctions: sorted2 });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(500).json({ errors: error });
   }
 };
