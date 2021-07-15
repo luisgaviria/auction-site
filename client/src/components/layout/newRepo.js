@@ -37,12 +37,43 @@ const RepoList = (props) => {
           lat: response2.features[0].geometry.coordinates[0],
           lng: response2.features[0].geometry.coordinates[1],
         };
+
+        sendLocationToDb(location);
+
         // const response = await Geocode.fromAddress(auction.address);
         auctions_addresses.push({
           location: location,
           address: auction.address,
         });
       });
+
+      const sendLocationToDb = async (location) => {
+        try {
+          const response = await fetch(`/api/v1/crawl`, {
+            method: "POST",
+            headers: new Headers({
+              "Content-Type": "application/json",
+            }),
+            body: JSON.stringify(location),
+          });
+          if (!response.ok) {
+            if (response.status === 422) {
+              const body = await response.json();
+              const newErrors = translateServerErrors(body.errors);
+
+              return setErrors(newErrors);
+            } else {
+              const errorMessage = `${response.status} (${response.statusText})`;
+              const error = new Error(errorMessage);
+              throw error;
+            }
+          } else {
+            return;
+          }
+        } catch (error) {
+          console.error(`Error in fetch: ${error.message}`);
+        }
+      };
 
       setState({ ...state, repo: body.allAuctions, addresses: auctions_addresses });
     } catch (err) {
@@ -77,7 +108,7 @@ const RepoList = (props) => {
   return (
     <>
       <div className="map">
-        <Map />
+        <Map alt="map, centered in the Mass area, markers displayed on each auction location." />
       </div>
       <div className="button-container">
         <a className="button large secondary " onClick={refreshDatabaseHandleClickButton}>

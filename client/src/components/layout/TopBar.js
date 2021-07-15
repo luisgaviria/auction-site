@@ -28,7 +28,11 @@ const TopBar = ({ user }) => {
     <div className="main-header">
       <div className="top-bar-left">
         <ul className="menu">
-          {/* <li className="menu-text">App</li> */}
+          <li>
+            <a type="button" class="button hollow secondary large color black" href="/">
+              Home
+            </a>
+          </li>
           <li>
             <button
               type="button"

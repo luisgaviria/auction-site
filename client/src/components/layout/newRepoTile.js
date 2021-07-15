@@ -1,7 +1,6 @@
 import React from "react";
 
 const NewRepoTile = (props) => {
-  debugger;
   const { status, date, address, city, state, link, deposit, logo, id } = props.repoData;
 
   // const userId = props.user.id;
@@ -25,7 +24,7 @@ const NewRepoTile = (props) => {
   return (
     <div key={id} className="card">
       <a href={link} target="_blank">
-        <img src={logo} className="thumb" />
+        <img src={logo} className="thumb" alt="image of auctioneer website logo" />
 
         <div className="status">{status ? status : "On Schedule"}</div>
         <div className="date">Date: {date ? date : "no date displayed"}</div>

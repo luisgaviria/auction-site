@@ -13,7 +13,7 @@ import UserProfile from "./layout/UserProfile.js";
 import TopBar from "./layout/TopBar";
 import Header from "./layout/Header";
 import NewMap from "./layout/newMap";
-
+import AboutUs from "./layout/AboutUs";
 import RepoList from "../components/layout/newRepo";
 
 import Favorites from "../components/layout/Favorites.js";
@@ -43,6 +43,9 @@ const App = (props) => {
         </Route>
         <Route exact path="/map" component={NewMap}>
           <NewMap user={currentUser} />
+        </Route>
+        <Route exact path="/about" component={AboutUs}>
+          <AboutUs user={currentUser} />
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

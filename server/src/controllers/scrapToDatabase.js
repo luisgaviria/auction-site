@@ -62,8 +62,6 @@ const scrapToDatabase = async (req, res) => {
       return 0;
     };
 
-    //console.log(data11);
-
     allAuctions = data.concat(
       data1,
       data2,
@@ -78,6 +76,8 @@ const scrapToDatabase = async (req, res) => {
       data11,
       data12
     );
+
+    console.log(allAuctions);
 
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
@@ -105,9 +105,7 @@ const scrapToDatabase = async (req, res) => {
           time: sorted2[i].time,
           status: sorted2[i].status,
         });
-      } catch (error) {
-        // const auctionTemp = await Auction.query().where({ address: sorted2[i].address });
-      }
+      } catch (error) {}
     }
 
     sorted2.map((auc) => {

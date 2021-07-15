@@ -148,11 +148,6 @@ class MyFancyComponent extends React.PureComponent {
         });
       });
       await navigator.geolocation.getCurrentPosition(async function (position) {
-        /*console.log(position);
-        address = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }*/
         auctions_addresses.push({
           location: {
             lat: position.coords.latitude,
