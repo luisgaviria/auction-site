@@ -20,31 +20,11 @@ const RepoList = (props) => {
         const error = new Error(errorMessage);
         throw error;
       }
+
+      console.log(response.body);
       const body = await response.json();
 
-      // Geocode.setApiKey("AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4");
-      // Geocode.setLanguage("en");
-      // Geocode.setRegion("us");
-      //Geocode.enableDebug();
-      const auctions_addresses = [];
-      body.allAuctions.map(async (auction) => {
-        let response2 = await fetch(
-          `https://api.opencagedata.com/geocode/v1/geojson?q=${auction.address}&key=5d72e4941deb43e2ad787f1e9fe5a68b&pretty=1`
-        );
-        response2 = await response2.json();
-        console.log(response2);
-        const location = {
-          lat: response2.features[0].geometry.coordinates[0],
-          lng: response2.features[0].geometry.coordinates[1],
-        };
-        // const response = await Geocode.fromAddress(auction.address);
-        auctions_addresses.push({
-          location: location,
-          address: auction.address,
-        });
-      });
-
-      setState({ ...state, repo: body.allAuctions, addresses: auctions_addresses });
+      setState({ ...state, repo: body.allAuctions });
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`);
     }
@@ -77,7 +57,7 @@ const RepoList = (props) => {
   return (
     <>
       <div className="map">
-        <Map />
+        <Map alt="map, centered in the Mass area, markers displayed on each auction location." />
       </div>
       <div className="button-container">
         <a className="button large secondary " onClick={refreshDatabaseHandleClickButton}>
