@@ -354,7 +354,31 @@ h1 {
   text-align: center;
 }
 
-// .about-us-container {
-//   place-items: center;
-//   justify-content: center;
+.sign-in {
+  margin-right: 10px;
+  // margin-left: 10vw;
+}
+
+.navbar-brand-text {
+  margin-right: 1rem;
+  margin-top: 5px;
+  text-align: center;
+  display: flex;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #312f2f;
+}
+// .navbar-brand-text:hover {
+//   transition: 0.3s;
+//   text-decoration: 2px overline #e2e7f194;
+//   background-size: 100% 5px, auto;
 // }
+
+.d-inline-block {
+  margin-left: 1.4rem;
+  border-radius: 49%;
+  // border: 1px solid black;
+  box-shadow: #383434;
+  width: 100;
+  height: 12vh;
+}
