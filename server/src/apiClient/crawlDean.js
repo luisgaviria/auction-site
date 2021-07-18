@@ -1,5 +1,5 @@
-import fetch from "node-fetch";
 import * as cheerio from "cheerio";
+
 const crawl = async ({ url }) => {
   const response = await fetch(url);
   const body = await response.text();
