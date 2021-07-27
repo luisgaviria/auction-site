@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 import * as cheerio from "cheerio";
 
 const crawl = async ({ url }) => {
@@ -32,7 +33,7 @@ const crawl = async ({ url }) => {
         date: date,
         time: time,
         address: address,
-        city: city,
+        // city: city,
         deposit: deposit,
         status: status.length ? "Sold" : "Available",
         link: url,

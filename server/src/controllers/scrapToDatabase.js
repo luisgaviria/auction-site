@@ -28,12 +28,12 @@ const scrapToDatabase = async (req, res) => {
 
     console.log("start");
 
-    const data = await crawlClient({ url: "https://www.amgauction.com" });
+    // const data = await crawlClient({ url: "https://www.amgauction.com" });
     const data1 = await crawlCommonwealth({
       url: "http://www.commonwealthauction.com/auctions.asp?location=1",
     });
 
-    // const data2 = await crawlTowne({ url: "https://www3.towneauction.com/Auctions_NoNav.aspx" });
+    const data2 = await crawlTowne({ url: "https://www3.towneauction.com/Auctions_NoNav.aspx" });
     const data3 = await crawlDean({ url: "http://www.deanassociatesinc.com/auctions.htm" });
     const data4 = await crawlApg({ url: "https://apg-online.com/auction-schedule/" });
     const data5 = await crawlTache({
@@ -70,9 +70,9 @@ const scrapToDatabase = async (req, res) => {
       return 0;
     };
 
-    allAuctions = data.concat(
-      data1,
-      // data2,
+    allAuctions = data1.concat(
+      // data1,
+      data2,
       data3,
       data4,
       data5,
@@ -85,7 +85,7 @@ const scrapToDatabase = async (req, res) => {
       data12
     );
 
-    // console.log(allAuctions);
+    console.log(allAuctions);
 
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
@@ -98,6 +98,7 @@ const scrapToDatabase = async (req, res) => {
     });
 
     const sorted2 = sorted;
+    // console.log(sorted2);
 
     for (let i = 0; i < sorted2.length; i++) {
       try {
@@ -106,12 +107,13 @@ const scrapToDatabase = async (req, res) => {
         });
 
         if (!auctionTemp) {
+          console.log(auctionTemp);
           const geostuff = await geocoder.geocode(sorted2[i].address);
           const lat = geostuff[0].latitude.toString();
           const lng = geostuff[0].longitude.toString();
           console.log(lat, lng);
           console.log(sorted2[i].status);
-          const auctionTemp = await Auction.query().insert({
+          await Auction.query().insert({
             deposit: sorted2[i].deposit,
             link: sorted2[i].link,
             logo: sorted2[i].logo,
@@ -126,7 +128,7 @@ const scrapToDatabase = async (req, res) => {
           });
         }
       } catch (error) {
-        // console.log(error);
+        console.log(error);
       }
     }
 

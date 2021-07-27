@@ -58,7 +58,7 @@ const TopBar = ({ user }) => {
             </Nav.Link>
 
             <Nav.Link className="navbar-brand-text">
-              <Link className="navbar-brand-text" to="/favorites">
+              <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}>
                 Favorites
               </Link>
             </Nav.Link>

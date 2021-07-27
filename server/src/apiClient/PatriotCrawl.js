@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio";
+import fetch from "node-fetch";
 
 const crawl = async ({ url }) => {
   const response = await fetch(url);
