@@ -35,11 +35,16 @@ const crawl = async ({ url }) => {
       return record;
     }
   });
+  data.map((record) => {
+    record.address = record.address + " " + record.city + ", " + record.state;
+    delete record.state;
+    delete record.city;
+  });
   browser.close();
   // console.log(data);
   return data;
 };
 
-//crawl('https://www.baystateauction.com/auctions/state/ma');
+crawl("https://www.baystateauction.com/auctions/state/ma");
 
 export default crawl;

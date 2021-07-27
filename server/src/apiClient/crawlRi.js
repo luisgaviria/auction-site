@@ -1,3 +1,4 @@
+import fetch from "node-fetch";
 import * as cheerio from "cheerio";
 
 const crawl = async ({ url }) => {
@@ -27,8 +28,8 @@ const crawl = async ({ url }) => {
         date: date,
         time: time,
         address: address,
-        city: city,
-        state: state,
+        // city: city,
+        // state: state,
         status: status,
         deposit: deposit,
         link: url,
@@ -43,7 +44,6 @@ const crawl = async ({ url }) => {
       return record;
     }
   });
-  // console.log(data);
   return data;
 };
 

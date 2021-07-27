@@ -25,15 +25,15 @@ const crawl = async ({ url }) => {
       const status = $(tds[2]).text().trim("\n");
       const deposit = $(tds[9]).text().trim("\n");
 
-      address += ", " + city;
+      address += ", " + city + ", " + state;
 
       data.push({
         logo: logo,
         date: date,
         time: time,
         address: address,
-        city: city,
-        state: state,
+        // city: city,
+        // state: state,
         status: status,
         deposit: deposit,
         link: url,
@@ -49,8 +49,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl({
-  url: "https://www3.towneauction.com/Auctions_NoNav.aspx",
-});
+// crawl({
+//   url: "https://www3.towneauction.com/Auctions_NoNav.aspx",
+// });
 
 export default crawl;
