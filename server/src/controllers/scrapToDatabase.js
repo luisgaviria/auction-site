@@ -150,6 +150,10 @@ const scrapToDatabase = async (req, res) => {
         ) {
           await databaseAuction.$query().patch({ date: new Date(auc.date) });
         }
+
+        if (auc.status == "Cancelled" && auc.address == databaseAuction.address) {
+          await databaseAuction.$query().delete();
+        }
       });
     });
     //console.log(data11, data10);
