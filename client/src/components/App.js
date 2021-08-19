@@ -12,7 +12,7 @@ import UserProfile from "./layout/UserProfile.js";
 
 const TopBar = lazy(() => import("./layout/TopBar"));
 const Header = lazy(() => import("./layout/Header"));
-const NewMap = lazy(() => import("./layout/NewMap"));
+// const NewMap = lazy(() => import("./layout/NewMap"));
 const AboutUs = lazy(() => import("./layout/AboutUs"));
 const RepoList = lazy(() => import("../components/layout/newRepo"));
 
@@ -20,7 +20,7 @@ const Favorites = lazy(() => import("./layout/Favorites"));
 
 // import TopBar from "./layout/TopBar";
 // import Header from "./layout/Header";
-// import NewMap from "./layout/newMap";
+import NewMap from "./layout/newMap";
 // import AboutUs from "./layout/AboutUs";
 // import RepoList from "../components/layout/newRepo";
 
