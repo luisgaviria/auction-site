@@ -14,7 +14,6 @@ const crawl = async ({ url }) => {
       const link = "https://sullivan-auctioneers.com/massachusetts" + $(div).find("a").attr("href");
       let date = $(div).find(".auction-date").text().trim();
       // const img = "https://sullivan-auctioneers.com/massachusetts" + $(div).find("img").attr("src");
-      const status = "On schedule";
       date = date.split("Continued")[0].trim();
       date = date.split("Postponed")[0].trim();
 
@@ -28,6 +27,15 @@ const crawl = async ({ url }) => {
         .split("deposit")[0]
         .trim();
 
+      let status = $2(
+        "#calendar > div:nth-child(2) > div > div.col-md-4.col-print-4 > div:nth-child(2) > p > span.text-red"
+      )
+        .text()
+        .trim();
+      if (!status.length) {
+        status = "On Schedule";
+      }
+
       data.push({
         status: status,
         address: address,
@@ -37,7 +45,7 @@ const crawl = async ({ url }) => {
         logo: logo,
       });
     }
-
+    console.log(data);
     return data;
   } catch (err) {
     console.log(err);
