@@ -16,8 +16,6 @@ const crawl = async ({ url }) => {
 
     date = date.split("Continued")[0].trim();
 
-    const status = "On schedule";
-
     const response2 = await fetch(href);
     const body2 = await response2.text();
     const $2 = await cheerio.load(body2);
@@ -25,6 +23,15 @@ const crawl = async ({ url }) => {
       .text()
       .split("deposit")[0]
       .trim();
+
+    let status = $2(
+      "#calendar > div:nth-child(2) > div > div.col-md-4.col-print-4 > div:nth-child(2) > p > span.text-red"
+    )
+      .text()
+      .trim();
+    if (!status.length) {
+      status = "On Schedule";
+    }
 
     data.push({
       status: status,

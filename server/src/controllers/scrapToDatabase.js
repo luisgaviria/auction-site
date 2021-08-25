@@ -85,7 +85,7 @@ const scrapToDatabase = async (req, res) => {
       data12
     );
 
-    console.log(allAuctions);
+    // console.log(allAuctions);
 
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
@@ -107,12 +107,12 @@ const scrapToDatabase = async (req, res) => {
         });
 
         if (!auctionTemp) {
-          console.log(auctionTemp);
+          // console.log(auctionTemp);
           const geostuff = await geocoder.geocode(sorted2[i].address);
           const lat = geostuff[0].latitude.toString();
           const lng = geostuff[0].longitude.toString();
-          console.log(lat, lng);
-          console.log(sorted2[i].status);
+          // console.log(lat, lng);
+          // console.log(sorted2[i].status);
           await Auction.query().insert({
             deposit: sorted2[i].deposit,
             link: sorted2[i].link,
@@ -151,13 +151,16 @@ const scrapToDatabase = async (req, res) => {
           await databaseAuction.$query().patch({ date: new Date(auc.date) });
         }
 
-        if (auc.status == "Cancelled" && auc.address == databaseAuction.address) {
+        if (
+          (auc.status == "Cancelled" || auc.status == "cancelled" || auc.status == "CANCELLED") &&
+          auc.address == databaseAuction.address
+        ) {
           await databaseAuction.$query().delete();
         }
       });
     });
     //console.log(data11, data10);
-    console.log(sorted2.length);
+    // console.log(sorted2.length);
 
     return res.status(200).json({ message: "Succesfully updated database", allAuctions: sorted2 });
   } catch (error) {
