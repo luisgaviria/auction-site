@@ -11,7 +11,6 @@ import crawlBaystate from "../apiClient/crawlBaystate.js";
 import PatriotCrawl from "../apiClient/PatriotCrawl.js";
 import crawlSullivan from "../apiClient/crawlSullivan.js";
 import crawlJake from "../apiClient/crawlJake.js";
-import NodeGeocoder from "node-geocoder";
 
 import Auction from "../models/Auction.js";
 
@@ -20,7 +19,7 @@ const options = {
   apiKey: "AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4",
 };
 
-const geocoder = NodeGeocoder(options);
+// const geocoder = NodeGeocoder(options);
 
 const scrapToDatabase = async (req, res) => {
   try {

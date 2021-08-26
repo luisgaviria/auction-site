@@ -16,17 +16,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-import hbsMiddleware from "express-handlebars";
+// import hbsMiddleware from "express-handlebars";
 
-app.set("views", path.join(__dirname, "../views"));
-app.engine(
-  "hbs",
-  hbsMiddleware({
-    defaultLayout: "default",
-    extname: ".hbs",
-  })
-);
-app.set("view engine", "hbs");
+// app.set("views", path.join(__dirname, "../views"));
+// app.engine(
+//   "hbs",
+//   hbsMiddleware({
+//     defaultLayout: "default",
+//     extname: ".hbs",
+//   })
+// );
+// app.set("view engine", "hbs");
 // app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
