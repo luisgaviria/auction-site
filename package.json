@@ -10,7 +10,7 @@
     "build:client": "yarn workspace auction-site-client build",
     "dev": "yarn workspace auction-site-server dev",
     "dev:debug": "yarn workspace auction-site-server dev:debug",
-    "heroku-postbuild": "curl -sf https://gobinaries.com/tj/node-prune | PREFIX=. sh&&./node-prune",
+    "heroku-postbuild": "yarn workspace auction-site-client build",
     "start": "yarn workspace auction-site-server start",
     "dev:cypress": "yarn workspace auction-site-server dev:e2e",
     "e2e:open": "yarn workspace auction-site-e2e e2e:open",
@@ -23,5 +23,3 @@
     "node-fetch": "^2.6.1"
   }
 }
-
-
