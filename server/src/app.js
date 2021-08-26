@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import logger from "morgan";
+// import logger from "morgan";
 import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
 import "./boot.js";
@@ -27,7 +27,7 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
-app.use(logger("dev"));
+// app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(
