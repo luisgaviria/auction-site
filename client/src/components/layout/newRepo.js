@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Map from "./Map";
+import { Helmet } from "react-helmet";
+const NewRepoTile = React.lazy(() => import("./newRepoTile.js"));
 
 import * as fetch from "node-fetch";
 
 //import Geocode from "react-geocode";
-import NewRepoTile from "./newRepoTile.js";
+// import NewRepoTile from "./newRepoTile.js";
 
 const RepoList = (props) => {
   const [state, setState] = useState({
@@ -56,6 +58,11 @@ const RepoList = (props) => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta name="description" content="Auction Website" />
+        <title>Auction and Company</title>
+      </Helmet>
       <div className="map">
         <Map alt="map, centered in the Mass area, markers displayed on each auction location." />
       </div>

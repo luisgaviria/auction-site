@@ -85,7 +85,7 @@ const MyMapComponent = compose(
             position={auction.location}
             icon={{
               url: auctionMarker,
-              scaledSize: new window.google.maps.Size(30, 30),
+              scaledSize: new window.google.maps.Size(48, 48),
               origin: new window.google.maps.Point(0, 0),
               // anchor: new window.google.maps.Point(15, 15),
             }}

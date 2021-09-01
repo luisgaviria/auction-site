@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 const NewRepoTile = (props) => {
   const { status, date, address, city, state, link, deposit, logo, id } = props.repoData;
@@ -23,7 +24,13 @@ const NewRepoTile = (props) => {
 
   return (
     <div key={id} className="card">
-      <a href={link} target="_blank">
+      <Helmet>
+        <meta name={"address" + id} content={address} />
+        <meta name={"date" + id} content={date} />
+        <meta name={"deposit" + id} content={deposit} />
+        <link rel={"canonical" + id} href={link} />
+      </Helmet>
+      <a href={link}>
         <img src={logo} className="thumb" alt="image of auctioneer website logo" />
 
         <div className="status">{status ? status : "On Schedule"}</div>
@@ -34,9 +41,9 @@ const NewRepoTile = (props) => {
         <div className="deposit">Deposit: {deposit ? deposit : "not available"}</div>
       </a>
 
-      <button onClick={onClickHandle}>
+      {/* <button onClick={onClickHandle}>
         <img className="favorite-button" src="https://i.postimg.cc/15kK2Gwp/icons8-heart-64.png" />
-      </button>
+      </button> */}
     </div>
   );
 };
