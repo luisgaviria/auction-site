@@ -44,10 +44,22 @@ const RepoList = (props) => {
           !repoItem.date.toUpperCase().includes("SOLD") &&
           !repoItem.status.toUpperCase().includes("CANCEL")
         ) {
-          return <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
+          return (
+            <>
+              <React.Suspense fallback={<div>Loading...</div>}>
+                <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
+              </React.Suspense>
+            </>
+          );
         }
       } else {
-        return <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
+        return (
+          <>
+            <React.Suspense fallback={<div>Loading...</div>}>
+              <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
+            </React.Suspense>
+          </>
+        );
       }
     }
   });
