@@ -78,7 +78,7 @@ const MyMapComponent = compose(
       options={options}
     >
       {props.auctions.map((auction, index) => {
-        console.log(auction);
+        // console.log(auction);
         return props.isMarkerShown ? (
           <Marker
             key={index}
@@ -193,4 +193,4 @@ class MyFancyComponent extends React.PureComponent {
   }
 }
 
-export default MyFancyComponent;
+export const MemoizedMap = React.memo(MyFancyComponent);

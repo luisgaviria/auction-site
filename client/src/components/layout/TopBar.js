@@ -10,8 +10,10 @@ const TopBar = ({ user }) => {
     history.push("/favorites");
   };
   const unauthenticatedListItems = [
-    <Button variant="outline-secondary" className="sign-in">
-      <Link to="/user-sessions/new">Sign In</Link>
+    <Button key="5" variant="outline-secondary" className="sign-in">
+      <Link key="6" to="/user-sessions/new">
+        Sign In
+      </Link>
     </Button>,
     // <li key="sign-in" className="button" id="sign-out">
     //   <Link to="/user-sessions/new">Sign In</Link>
@@ -21,7 +23,7 @@ const TopBar = ({ user }) => {
     //     Sign Up
     //   </Link>
     // </li>,
-    <Button className="sign-up" variant="outline-secondary">
+    <Button key="sign-up" className="sign-up" variant="outline-secondary">
       <Link to="/users/new">Sign Up</Link>
     </Button>,
   ];
@@ -36,12 +38,11 @@ const TopBar = ({ user }) => {
     <header>
       <Navbar className="navbar" collapseOnSelect expand="md" bg="light" variant="light">
         <Navbar.Brand>
-          <a href="http://www.urabatv.com" className="navbar-brand">
-            <img
-              className="d-inline-block"
-              src="https://i.postimg.cc/gcw0FY8B/circle-cropped-4-1.png"
-            ></img>
-          </a>
+          <img
+            alt="icon"
+            className="d-inline-block"
+            src="https://i.postimg.cc/gcw0FY8B/circle-cropped-4-1.png"
+          ></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -51,25 +52,22 @@ const TopBar = ({ user }) => {
                 Home
               </Link>
             </Nav.Link>  */}
-            <Nav.Link className="navbar-brand-text">
-              <Link className="navbar-brand-text" to="/">
-                Home
-              </Link>
+            <Nav.Link key="1" className="navbar-brand-text" href="/">
+              {/* <Link className="navbar-brand-text" to="/"> */}
+              Home
             </Nav.Link>
 
-            <Nav.Link className="navbar-brand-text">
-              <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}>
-                Favorites
-              </Link>
+            <Nav.Link href="/favorites" key="2" className="navbar-brand-text">
+              {/* <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}> */}
+              Favorites
             </Nav.Link>
-            <Nav.Link className="navbar-brand-text">
-              <Link className="navbar-brand-text" to="/about">
-                About Us
-              </Link>
+            <Nav.Link href="/about" key="3" className="navbar-brand-text">
+              {/* <Link className="navbar-brand-text" to="/about"> */}
+              About Us
             </Nav.Link>
           </Nav>
 
-          <Nav.Link className="ml-auto">
+          <Nav.Link key="4" className="ml-auto">
             {user ? authenticatedListItems : unauthenticatedListItems}
           </Nav.Link>
         </Navbar.Collapse>

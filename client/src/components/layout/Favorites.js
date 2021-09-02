@@ -4,7 +4,7 @@ const Favorites = (props) => {
   const [favorites, setFavorites] = useState([]);
 
   const getFavorites = async () => {
-    console.log(props.user.id);
+    // console.log(props.user.id);
     // const response = await fetch(`/api/v1/favorites/${props.user.id}`);
     const response = await fetch(`/api/v1/favorite/${props.user.id}`, {
       method: "GET",
@@ -14,7 +14,7 @@ const Favorites = (props) => {
     });
 
     const body = await response.json();
-    console.log("body:", body.favorites);
+    // console.log("body:", body.favorites);
     setFavorites(body.favorites);
   };
 

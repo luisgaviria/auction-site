@@ -32,7 +32,7 @@ const App = (props) => {
     getCurrentUser()
       .then((user) => {
         setCurrentUser(user);
-        console.log(user);
+        // console.log(user);
       })
       .catch(() => {
         setCurrentUser(null);

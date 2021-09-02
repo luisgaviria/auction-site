@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Map from "./Map";
+import { MemoizedMap } from "./Map";
 import { Helmet } from "react-helmet";
+import Spinner from "react-bootstrap/Spinner";
 const NewRepoTile = React.lazy(() => import("./newRepoTile.js"));
 
 import * as fetch from "node-fetch";
@@ -23,7 +24,7 @@ const RepoList = (props) => {
         throw error;
       }
 
-      console.log(response.body);
+      // console.log(response.body);
       const body = await response.json();
 
       setState({ ...state, repo: body.allAuctions });
@@ -37,6 +38,7 @@ const RepoList = (props) => {
   }, []);
 
   const repoListItems = state.repo.map((repoItem, i) => {
+    // console.log(repoItem.id);
     if (repoItem.date) {
       if (repoItem.status) {
         if (
@@ -46,8 +48,8 @@ const RepoList = (props) => {
         ) {
           return (
             <>
-              <React.Suspense fallback={<div>Loading...</div>}>
-                <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
+              <React.Suspense>
+                <NewRepoTile key={repoItem.id} repoData={repoItem} user={props.user} />
               </React.Suspense>
             </>
           );
@@ -55,8 +57,14 @@ const RepoList = (props) => {
       } else {
         return (
           <>
-            <React.Suspense fallback={<div>Loading...</div>}>
-              <NewRepoTile key={i} repoData={repoItem} user={props.user} />;
+            <React.Suspense
+            // fallback={
+            //   <Spinner animation="border" role="status">
+            //     <span className="visually-hidden"></span>
+            //   </Spinner>
+            // }
+            >
+              <NewRepoTile key={repoItem.id} repoData={repoItem} user={props.user} />
             </React.Suspense>
           </>
         );
@@ -76,7 +84,7 @@ const RepoList = (props) => {
         <title>Auction and Company</title>
       </Helmet>
       <div className="map">
-        <Map alt="map, centered in the Mass area, markers displayed on each auction location." />
+        <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." />
       </div>
       <div className="button-container">
         <a className="button large secondary " onClick={refreshDatabaseHandleClickButton}>
