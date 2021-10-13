@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 addMiddlewares(app);
 app.use(rootRouter);
 
-cron.schedule("0 */2 * * *", () => {
+cron.schedule("*/15 * * * *", () => {
   scrapToDatabase();
 });
 

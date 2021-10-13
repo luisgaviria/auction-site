@@ -10,14 +10,15 @@ import {
   InfoWindow,
 } from "react-google-maps";
 
+import { google_key } from "../../google-key.js";
+
 import mapStyles from "./mapStyles.js";
 
 import auctionMarker from "./photos/auction.png";
 
 const MyMapComponent = compose(
   withProps({
-    googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyC7idetxYH3xqundQWiHiQ3PNtXxW7-ygY",
+    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${google_key}`,
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `480px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
