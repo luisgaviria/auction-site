@@ -215,6 +215,46 @@
   height: 44vh;
 }
 
+.heading-primary {
+  animation-name: moveInLeft;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+}
+
+.heading-primary-main {
+  animation: moveInRight 0.5s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translate(-100px);
+  }
+  80% {
+    opacity: 0;
+    transform: translate(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translate(100px);
+  }
+  80% {
+    opacity: 0;
+    transform: translate(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
 .octopus {
   height: 30vh;
   margin-bottom: 0%;
