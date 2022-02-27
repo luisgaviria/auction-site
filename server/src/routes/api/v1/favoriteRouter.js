@@ -12,7 +12,7 @@ favoriteRouter.post("/:auctionId", async (req, res) => {
   const auctionId = req.params.auctionId;
   const userId = req.body.userId;
   const currentAuction = await Auction.query().findOne({ id: auctionId });
-  console.log(auctionId, userId);
+  // console.log(auctionId, userId);
   try {
     await Favorite.query().insertAndFetch({ auctionId: currentAuction.id, userId: userId });
 

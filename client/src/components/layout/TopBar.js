@@ -29,7 +29,7 @@ const TopBar = ({ user }) => {
   ];
 
   const authenticatedListItems = [
-    <li key="sign-out">
+    <li key="sign-out" className="sign-out-button">
       <SignOutButton />
     </li>,
   ];
@@ -57,7 +57,12 @@ const TopBar = ({ user }) => {
               Home
             </Nav.Link>
 
-            <Nav.Link href="/favorites" key="2" className="navbar-brand-text">
+            <Nav.Link
+              href="/favorites"
+              key="2"
+              className="navbar-brand-text"
+              onClick={onClickHandle}
+            >
               {/* <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}> */}
               Favorites
             </Nav.Link>

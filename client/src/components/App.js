@@ -32,7 +32,7 @@ const App = (props) => {
     getCurrentUser()
       .then((user) => {
         setCurrentUser(user);
-        // console.log(user);
+        localStorage.setItem("userId", user.id);
       })
       .catch(() => {
         setCurrentUser(null);
