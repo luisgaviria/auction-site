@@ -35,49 +35,43 @@ const TopBar = ({ user }) => {
   ];
 
   return (
-    <header>
-      <Navbar className="navbar" collapseOnSelect expand="md" bg="light" variant="light">
-        <Navbar.Brand>
-          <img
+    <Navbar className="navbar" collapseOnSelect expand="md" bg="light" variant="light">
+      <Navbar.Brand className="logo-nav-bar">
+        {/* <img
             alt="icon"
             className="d-inline-block"
             src="https://i.postimg.cc/gcw0FY8B/circle-cropped-4-1.png"
-          ></img>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto">
-            {/* <Nav.Link className="navbar-brand-text">
+          ></img> */}
+        A&CO
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="nav-home">
+          {/* <Nav.Link className="navbar-brand-text">
               <Link className="navbar-brand-text" to="/">
                 Home
               </Link>
             </Nav.Link>  */}
-            <Nav.Link key="1" className="navbar-brand-text" href="/">
-              {/* <Link className="navbar-brand-text" to="/"> */}
-              Home
-            </Nav.Link>
-
-            <Nav.Link
-              href="/favorites"
-              key="2"
-              className="navbar-brand-text"
-              onClick={onClickHandle}
-            >
-              {/* <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}> */}
-              Favorites
-            </Nav.Link>
-            <Nav.Link href="/about" key="3" className="navbar-brand-text">
-              {/* <Link className="navbar-brand-text" to="/about"> */}
-              About Us
-            </Nav.Link>
-          </Nav>
-
-          <Nav.Link key="4" className="ml-auto">
-            {user ? authenticatedListItems : unauthenticatedListItems}
+          <Nav.Link key="1" className="navbar-brand-text" href="/">
+            {/* <Link className="navbar-brand-text" to="/"> */}
+            Home
           </Nav.Link>
-        </Navbar.Collapse>
-      </Navbar>
-    </header>
+
+          <Nav.Link href="/favorites" key="2" className="navbar-brand-text" onClick={onClickHandle}>
+            {/* <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}> */}
+            Favorites
+          </Nav.Link>
+          <Nav.Link href="/about" key="3" className="navbar-brand-text">
+            {/* <Link className="navbar-brand-text" to="/about"> */}
+            About Us
+          </Nav.Link>
+        </Nav>
+
+        <Nav.Link key="4" className="">
+          {user ? authenticatedListItems : unauthenticatedListItems}
+        </Nav.Link>
+      </Navbar.Collapse>
+    </Navbar>
 
     // return (
     //   <div className="main-header">

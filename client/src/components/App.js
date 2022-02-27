@@ -39,7 +39,7 @@ const App = (props) => {
       });
   }, []);
   return (
-    <Suspense fallback={<h1>Loading...</h1>}>
+    <Suspense fallback={<div class="loader">Loading...</div>}>
       <Router>
         <TopBar user={currentUser} />
         <Header />
