@@ -34,9 +34,9 @@ const NewRepoTile = (props) => {
         <div className="deposit">Deposit: {deposit ? deposit : "not available"}</div>
       </a>
 
-      {/* <button onClick={onClickHandle}>
+      <button onClick={onClickHandle}>
         <img className="favorite-button" src="https://i.postimg.cc/15kK2Gwp/icons8-heart-64.png" />
-      </button> */}
+      </button>
     </div>
   );
 };

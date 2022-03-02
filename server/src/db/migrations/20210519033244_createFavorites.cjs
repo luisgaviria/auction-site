@@ -13,8 +13,17 @@ exports.up = async (knex) => {
     console.log(`Creating ${tableName}`);
     return knex.schema.createTable(tableName, (table) => {
       table.bigIncrements("id");
-
-      table.bigInteger("auctionId").unsigned().notNullable().index().references("auctions.id");
+      table.string("address", 1000000).notNullable();
+      table.string("city", 1000000);
+      table.string("state", 1000000);
+      table.string("time", 1000000);
+      table.string("logo", 1000000);
+      table.string("status", 1000000);
+      table.string("link", 1000000);
+      table.date("date", 1000000);
+      table.string("deposit", 1000000);
+      table.string("lat", 1000000);
+      table.string("lng", 1000000);
       table.bigInteger("userId").unsigned().notNullable().index().references("users.id");
       table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
       table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());

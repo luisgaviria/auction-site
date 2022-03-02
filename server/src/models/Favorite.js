@@ -10,14 +10,14 @@ class Favorite extends Model {
     const User = require("./User.js");
 
     return {
-      auction: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: Auction,
-        join: {
-          from: "favorites.auctionId",
-          to: "auctions.id",
-        },
-      },
+      // auction: {
+      //   relation: Model.BelongsToOneRelation,
+      //   modelClass: Auction,
+      //   join: {
+      //     from: "favorites.auctionId",
+      //     to: "auctions.id",
+      //   },
+      // },
       user: {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
