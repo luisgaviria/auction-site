@@ -10,6 +10,7 @@ import rootRouter from "./routes/rootRouter.js";
 import cron from "node-cron";
 
 import scrapToDatabase from "../src/controllers/scrapToDatabase.js";
+import messageSend from "./utils/messageSend.js";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -41,6 +42,9 @@ app.use(rootRouter);
 
 cron.schedule("*/15 * * * *", () => {
   scrapToDatabase();
+});
+cron.schedule("0 8 * * *", () => {
+  messageSend();
 });
 
 app.listen(configuration.web.port, configuration.web.host, () => {

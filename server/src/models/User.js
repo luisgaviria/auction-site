@@ -5,13 +5,12 @@ const Model = require("./Model");
 
 const saltRounds = 10;
 
-const uniqueFunc = unique({
-  fields: ["email"],
-  fields: ["phoneNumber"],
-  identifiers: ["id"],
-});
+// const uniqueFunc = unique({
+//   fields: [],
+//   identifiers: ["id"],
+// });
 
-class User extends uniqueFunc(Model) {
+class User extends Model {
   static get tableName() {
     return "users";
   }
