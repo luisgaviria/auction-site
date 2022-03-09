@@ -13,14 +13,14 @@ class Auction extends unique(Model) {
   static get relationMappings() {
     const { Favorite, User } = require("./index.js");
     return {
-      favorites: {
-        relation: Model.HasManyRelation,
-        modelClass: Favorite,
-        join: {
-          from: "auctions.id",
-          to: "favorites.auctionId",
-        },
-      },
+      // favorites: {
+      //   relation: Model.HasManyRelation,
+      //   modelClass: Favorite,
+      //   join: {
+      //     from: "auctions.id",
+      //     to: "favorites.auctionId",
+      //   },
+      // },
       // user: {
       //   relation: Model.BelongsToOneRelation,
       //   modelClass: User,

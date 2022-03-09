@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import logger from "morgan";
+// import logger from "morgan";
 import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
 import "./boot.js";
@@ -10,24 +10,25 @@ import rootRouter from "./routes/rootRouter.js";
 import cron from "node-cron";
 
 import scrapToDatabase from "../src/controllers/scrapToDatabase.js";
+import messageSend from "./utils/messageSend.js";
 
 const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
 
 const app = express();
-import hbsMiddleware from "express-handlebars";
+// import hbsMiddleware from "express-handlebars";
 
-app.set("views", path.join(__dirname, "../views"));
-app.engine(
-  "hbs",
-  hbsMiddleware({
-    defaultLayout: "default",
-    extname: ".hbs",
-  })
-);
-app.set("view engine", "hbs");
-app.use(logger("dev"));
+// app.set("views", path.join(__dirname, "../views"));
+// app.engine(
+//   "hbs",
+//   hbsMiddleware({
+//     defaultLayout: "default",
+//     extname: ".hbs",
+//   })
+// );
+// app.set("view engine", "hbs");
+// app.use(logger("dev"));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(
@@ -39,8 +40,11 @@ app.use(bodyParser.json());
 addMiddlewares(app);
 app.use(rootRouter);
 
-cron.schedule("0 */2 * * *", () => {
+cron.schedule("*/15 * * * *", () => {
   scrapToDatabase();
+});
+cron.schedule("0 8 * * *", () => {
+  messageSend();
 });
 
 app.listen(configuration.web.port, configuration.web.host, () => {

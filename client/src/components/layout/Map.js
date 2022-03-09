@@ -10,14 +10,15 @@ import {
   InfoWindow,
 } from "react-google-maps";
 
+import { google_key } from "../../google-key.js";
+
 import mapStyles from "./mapStyles.js";
 
 import auctionMarker from "./photos/auction.png";
 
 const MyMapComponent = compose(
   withProps({
-    googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyC7idetxYH3xqundQWiHiQ3PNtXxW7-ygY",
+    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${google_key}`,
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `480px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
@@ -78,14 +79,14 @@ const MyMapComponent = compose(
       options={options}
     >
       {props.auctions.map((auction, index) => {
-        console.log(auction);
+        // console.log(auction);
         return props.isMarkerShown ? (
           <Marker
             key={index}
             position={auction.location}
             icon={{
               url: auctionMarker,
-              scaledSize: new window.google.maps.Size(30, 30),
+              scaledSize: new window.google.maps.Size(48, 48),
               origin: new window.google.maps.Point(0, 0),
               // anchor: new window.google.maps.Point(15, 15),
             }}
@@ -193,4 +194,4 @@ class MyFancyComponent extends React.PureComponent {
   }
 }
 
-export default MyFancyComponent;
+export const MemoizedMap = React.memo(MyFancyComponent);

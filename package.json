@@ -19,7 +19,5 @@
   "engines": {
     "node": "^14.15"
   },
-  "dependencies": {
-    "node-fetch": "^2.6.1"
-  }
+  "dependencies": {}
 }

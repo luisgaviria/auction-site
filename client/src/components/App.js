@@ -32,14 +32,14 @@ const App = (props) => {
     getCurrentUser()
       .then((user) => {
         setCurrentUser(user);
-        console.log(user);
+        localStorage.setItem("userId", user.id);
       })
       .catch(() => {
         setCurrentUser(null);
       });
   }, []);
   return (
-    <Suspense fallback={<h1>Loading...</h1>}>
+    <Suspense fallback={<div class="loader">Loading...</div>}>
       <Router>
         <TopBar user={currentUser} />
         <Header />

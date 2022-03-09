@@ -12,6 +12,7 @@ const SignOutButton = () => {
       }),
     }).then((resp) => {
       if (resp.ok) {
+        localStorage.removeItem("userId");
         return resp.json().then(() => {
           setShouldRedirect(true);
           return { status: "ok" };

@@ -10,8 +10,10 @@ const TopBar = ({ user }) => {
     history.push("/favorites");
   };
   const unauthenticatedListItems = [
-    <Button variant="outline-secondary" className="sign-in">
-      <Link to="/user-sessions/new">Sign In</Link>
+    <Button key="5" variant="outline-secondary" className="sign-in">
+      <Link key="6" to="/user-sessions/new">
+        Sign In
+      </Link>
     </Button>,
     // <li key="sign-in" className="button" id="sign-out">
     //   <Link to="/user-sessions/new">Sign In</Link>
@@ -21,60 +23,55 @@ const TopBar = ({ user }) => {
     //     Sign Up
     //   </Link>
     // </li>,
-    <Button className="sign-up" variant="outline-secondary">
+    <Button key="sign-up" className="sign-up" variant="outline-secondary">
       <Link to="/users/new">Sign Up</Link>
     </Button>,
   ];
 
   const authenticatedListItems = [
-    <li key="sign-out">
+    <li key="sign-out" className="sign-out-button">
       <SignOutButton />
     </li>,
   ];
 
   return (
-    <header>
-      <Navbar className="navbar" collapseOnSelect expand="md" bg="light" variant="light">
-        <Navbar.Brand>
-          <a href="http://www.urabatv.com" className="navbar-brand">
-            <img
-              className="d-inline-block"
-              src="https://i.postimg.cc/gcw0FY8B/circle-cropped-4-1.png"
-            ></img>
-          </a>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto">
-            {/* <Nav.Link className="navbar-brand-text">
+    <Navbar className="navbar" collapseOnSelect expand="md" bg="light" variant="light">
+      <Navbar.Brand className="logo-nav-bar">
+        {/* <img
+            alt="icon"
+            className="d-inline-block"
+            src="https://i.postimg.cc/gcw0FY8B/circle-cropped-4-1.png"
+          ></img> */}
+        A&CO
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="nav-home">
+          {/* <Nav.Link className="navbar-brand-text">
               <Link className="navbar-brand-text" to="/">
                 Home
               </Link>
             </Nav.Link>  */}
-            <Nav.Link className="navbar-brand-text">
-              <Link className="navbar-brand-text" to="/">
-                Home
-              </Link>
-            </Nav.Link>
-
-            <Nav.Link className="navbar-brand-text">
-              <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}>
-                Favorites
-              </Link>
-            </Nav.Link>
-            <Nav.Link className="navbar-brand-text">
-              <Link className="navbar-brand-text" to="/about">
-                About Us
-              </Link>
-            </Nav.Link>
-          </Nav>
-
-          <Nav.Link className="ml-auto">
-            {user ? authenticatedListItems : unauthenticatedListItems}
+          <Nav.Link key="1" className="navbar-brand-text" href="/">
+            {/* <Link className="navbar-brand-text" to="/"> */}
+            Home
           </Nav.Link>
-        </Navbar.Collapse>
-      </Navbar>
-    </header>
+
+          <Nav.Link href="/favorites" key="2" className="navbar-brand-text" onClick={onClickHandle}>
+            {/* <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}> */}
+            Favorites
+          </Nav.Link>
+          <Nav.Link href="/about" key="3" className="navbar-brand-text">
+            {/* <Link className="navbar-brand-text" to="/about"> */}
+            About Us
+          </Nav.Link>
+        </Nav>
+
+        <Nav.Link key="4" className="">
+          {user ? authenticatedListItems : unauthenticatedListItems}
+        </Nav.Link>
+      </Navbar.Collapse>
+    </Navbar>
 
     // return (
     //   <div className="main-header">

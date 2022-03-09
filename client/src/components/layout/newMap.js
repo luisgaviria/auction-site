@@ -2,8 +2,6 @@ import React from "react";
 
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 
-import { formatRelative } from "date-fns";
-
 import mapStyles2 from "./mapStyles2.js";
 
 const libraries = ["places"];

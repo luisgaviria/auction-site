@@ -3,7 +3,7 @@ import "./Marker.scss";
 
 const Marker = (props) => {
   return (
-    <div>
+    <div role="listitem" aria-checked="true">
       <div className="pin"></div>
 
       <div className="pulse"></div>

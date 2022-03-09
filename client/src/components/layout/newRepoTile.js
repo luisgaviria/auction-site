@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const NewRepoTile = (props) => {
+  const [favorites, setFavorites] = useState(false);
   const { status, date, address, city, state, link, deposit, logo, id } = props.repoData;
 
   // const userId = props.user.id;
@@ -17,14 +18,13 @@ const NewRepoTile = (props) => {
           userId: props.user.id,
         }),
       });
-      console.log(response);
     } catch (error) {}
   };
 
   return (
-    <div key={id} className="card">
-      <a href={link} target="_blank">
-        <img src={logo} className="thumb" alt="image of auctioneer website logo" />
+    <div className="card">
+      <a href={link}>
+        <img rel="noopener" src={logo} className="thumb" alt="image of auctioneer website logo" />
 
         <div className="status">{status ? status : "On Schedule"}</div>
         <div className="date">Date: {date ? date : "no date displayed"}</div>
