@@ -7,6 +7,7 @@ const saltRounds = 10;
 
 const uniqueFunc = unique({
   fields: ["email"],
+  fields: ["phoneNumber"],
   identifiers: ["id"],
 });
 
@@ -31,6 +32,7 @@ class User extends uniqueFunc(Model) {
       properties: {
         email: { type: "string" },
         cryptedPassword: { type: "string" },
+        phoneNumber: { type: "string" },
       },
     };
   }

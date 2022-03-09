@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const NewRepoTile = (props) => {
+  const [favorites, setFavorites] = useState(false);
   const { status, date, address, city, state, link, deposit, logo, id } = props.repoData;
 
   // const userId = props.user.id;
@@ -17,7 +18,6 @@ const NewRepoTile = (props) => {
           userId: props.user.id,
         }),
       });
-      // console.log(response);
     } catch (error) {}
   };
 
