@@ -28,6 +28,12 @@ const AboutUs = () => {
         Massachusetts which are then displayed for you on one site sorted by the soonest auctions
         happening every day.
       </p>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 };
