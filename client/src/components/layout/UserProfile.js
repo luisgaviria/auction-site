@@ -32,12 +32,30 @@ const UserProfile = (props) => {
   };
 
   return (
-    <div className="callout small-10 small-centered columns" id="user-profile-card">
+    <div className="grid-container">
+      <br />
       <h3 className="centered-text">Profile: {userName}</h3>
-
-      <h1>Add phone number</h1>
-      <input onChange={onChangeInput} value={phoneNumber} />
-      <button onClick={acceptPhoneNumber}>Ok</button>
+      <br />
+      <h3>Add a phone number</h3>
+      <form>
+        <div>
+          <label>
+            Phone Number
+            <input
+              type="text"
+              name="phoneNumber"
+              onChange={onChangeInput}
+              value={phoneNumber}
+              placeHolder="123-45-678"
+            />
+          </label>
+        </div>
+        <div>
+          <input type="submit" className="button" value="Add Number" />
+        </div>
+      </form>
+      <br />
+      <br />
     </div>
   );
 };

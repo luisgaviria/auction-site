@@ -1,12 +1,12 @@
 import User from "../models/User.js";
 import Favorite from "../models/Favorite.js";
 import filterFavorite from "../utils/filterFavorites.js";
-const accountSid = "AC67aca721d5fe9c0966e75450ff6eae59"; //  process.env.TWILIO_ACCOUNT_SID;
-const authToken = "ec378ebcd0cf20e9e058e31551f5610c"; // process.env.TWILIO_AUTH_TOKEN;
-const phoneNumber = "+15672294953";
+import dotenv from "dotenv";
+
 import twilio from "twilio";
 
-const client = twilio(accountSid, authToken);
+dotenv.config();
+const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 const messageSend = async () => {
   const users = await User.query();
@@ -37,7 +37,7 @@ const messageSend = async () => {
     var message = client.messages
       .create({
         body: body,
-        from: phoneNumber,
+        from: process.env.PHONE_NUMBER,
         to: "+1" + user.phoneNumber,
       })
       .then((message) => console.log(message.status))

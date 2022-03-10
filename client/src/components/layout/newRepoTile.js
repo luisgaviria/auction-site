@@ -8,6 +8,7 @@ const NewRepoTile = (props) => {
 
   const onClickHandle = async () => {
     // console.log(props.user.id);
+    setFavorites(true);
     try {
       const response = await fetch(`/api/v1/favorite/${id}`, {
         method: "POST",
@@ -35,7 +36,14 @@ const NewRepoTile = (props) => {
       </a>
 
       <button onClick={onClickHandle}>
-        <img className="favorite-button" src="https://i.postimg.cc/15kK2Gwp/icons8-heart-64.png" />
+        <img
+          className="favorite-button"
+          src={
+            favorites
+              ? "https://i.postimg.cc/Y90MNm5m/accept.png"
+              : "https://i.postimg.cc/15kK2Gwp/icons8-heart-64.png"
+          }
+        />
       </button>
     </div>
   );
