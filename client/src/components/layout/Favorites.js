@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 
 const Favorites = (props) => {
-  const [favorites, setFavorites] = useState({
-    toggle: false,
-  });
+  const [favorites, setFavorites] = useState([]);
 
   const getFavorites = async () => {
     // console.log(props.user.id);
