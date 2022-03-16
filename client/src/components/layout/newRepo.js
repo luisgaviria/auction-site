@@ -47,26 +47,23 @@ const RepoList = (props) => {
           !repoItem.status.toUpperCase().includes("CANCEL")
         ) {
           return (
-            <>
-              <React.Suspense>
-                <NewRepoTile key={repoItem.id} repoData={repoItem} user={props.user} />
-              </React.Suspense>
-            </>
+            <React.Suspense key={repoItem.id}>
+              <NewRepoTile repoData={repoItem} user={props.user} />
+            </React.Suspense>
           );
         }
       } else {
         return (
-          <>
-            <React.Suspense
+          <React.Suspense
+            key={repoItem.id}
             // fallback={
             //   <Spinner animation="border" role="status">
             //     <span className="visually-hidden"></span>
             //   </Spinner>
             // }
-            >
-              <NewRepoTile key={repoItem.id} repoData={repoItem} user={props.user} />
-            </React.Suspense>
-          </>
+          >
+            <NewRepoTile repoData={repoItem} user={props.user} />
+          </React.Suspense>
         );
       }
     }
@@ -77,7 +74,7 @@ const RepoList = (props) => {
   };
 
   return (
-    <>
+    <div key="1">
       <Helmet>
         <meta charSet="utf-8" />
         <meta name="description" content="Auction Website" />
@@ -93,7 +90,7 @@ const RepoList = (props) => {
       </div>
 
       <div className="list-item">{repoListItems}</div>
-    </>
+    </div>
   );
 };
 

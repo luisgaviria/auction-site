@@ -4,11 +4,23 @@ const NewRepoTile = (props) => {
   const [favorites, setFavorites] = useState(false);
   const { status, date, address, city, state, link, deposit, logo, id } = props.repoData;
 
-  // const userId = props.user.id;
+  // Make this button only available of logged in
+  // const authenticatedListItems = [
+  //   <button onClick={onClickHandle}>
+  //     <img
+  //       className="favorite-button"
+  //       src={
+  //         favorites
+  //           ? "https://i.postimg.cc/cJ33YSkQ/icons8-heart-64-1.png"
+  //           : "https://i.postimg.cc/JnWk52SS/icons8-heart-80.png"
+  //       }
+  //     />
+  //   </button>,
+  // ];
 
   const onClickHandle = async () => {
-    // console.log(props.user.id);
-    setFavorites(true);
+    setFavorites(!favorites);
+
     try {
       const response = await fetch(`/api/v1/favorite/${id}`, {
         method: "POST",
@@ -24,7 +36,7 @@ const NewRepoTile = (props) => {
 
   return (
     <div className="card">
-      <a href={link}>
+      <a href={link} className="card-logo">
         <img rel="noopener" src={logo} className="thumb" alt="image of auctioneer website logo" />
 
         <div className="status">{status ? status : "On Schedule"}</div>
@@ -40,8 +52,8 @@ const NewRepoTile = (props) => {
           className="favorite-button"
           src={
             favorites
-              ? "https://i.postimg.cc/Y90MNm5m/accept.png"
-              : "https://i.postimg.cc/15kK2Gwp/icons8-heart-64.png"
+              ? "https://i.postimg.cc/cJ33YSkQ/icons8-heart-64-1.png"
+              : "https://i.postimg.cc/JnWk52SS/icons8-heart-80.png"
           }
         />
       </button>

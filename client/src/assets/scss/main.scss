@@ -31,11 +31,13 @@
   background-color: rgba(208, 210, 211, 0.041);
   transition: transform 0.09s;
   border-radius: 2%;
-
-  filter: grayscale(1);
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
 
   // box-shadow: 1px 1px 0px 0px #cecbcb;
+}
+
+.card-logo {
+  filter: grayscale(1);
 }
 
 .card:hover {
@@ -172,7 +174,6 @@
 
 .thumb {
   border-radius: 3px;
-
   width: auto;
   height: 10vh;
   position: relative;
@@ -323,6 +324,11 @@ h1 {
   width: auto;
   height: 4vh;
   margin-bottom: 10pt;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
 }
 
 .button-container {

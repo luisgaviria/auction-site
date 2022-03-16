@@ -36,8 +36,8 @@ app.use(
     extended: true,
   })
 );
-app.use(bodyParser.json());
 addMiddlewares(app);
+app.use(bodyParser.json());
 app.use(rootRouter);
 
 cron.schedule("*/15 * * * *", () => {

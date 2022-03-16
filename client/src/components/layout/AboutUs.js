@@ -3,7 +3,7 @@ import React from "react";
 const AboutUs = () => {
   return (
     <div>
-      <h2 className="about-us-title">About Us</h2>
+      <br />
       <p className="about-us-text">
         This website was originally created as a personal tool to save time on the Real Estate
         auction purchases.
