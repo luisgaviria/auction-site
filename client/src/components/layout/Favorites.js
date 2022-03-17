@@ -27,31 +27,29 @@ const Favorites = (props) => {
   }, []);
 
   const deleteFavorite = async (favoriteId) => {
-    if (confirm("Are you sure?")) {
-      try {
-        const response = await fetch(`/api/v1/favorite/${favoriteId}`, {
-          method: "DELETE",
-          headers: new Headers({
-            "Content-Type": "application/json",
-          }),
-        });
+    try {
+      const response = await fetch(`/api/v1/favorite/${favoriteId}`, {
+        method: "DELETE",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      });
 
-        if (!response.ok) {
-          if (response.status === 422) {
-            const body = await response.json();
-            const newErrors = translateServerErrors(body.errors);
-            return setErrors(newErrors);
-          } else {
-            const errorMessage = `${response.status} (${response.statusText})`;
-            const error = new Error(errorMessage);
-            throw error;
-          }
+      if (!response.ok) {
+        if (response.status === 422) {
+          const body = await response.json();
+          const newErrors = translateServerErrors(body.errors);
+          return setErrors(newErrors);
+        } else {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          const error = new Error(errorMessage);
+          throw error;
         }
-
-        await getFavorites();
-      } catch (err) {
-        console.log(err);
       }
+
+      await getFavorites();
+    } catch (err) {
+      console.log(err);
     }
   };
 

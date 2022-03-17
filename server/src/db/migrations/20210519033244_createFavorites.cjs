@@ -24,6 +24,7 @@ exports.up = async (knex) => {
       table.string("deposit", 1000000);
       table.string("lat", 1000000);
       table.string("lng", 1000000);
+      table.string("repoId", 1000000);
       table.bigInteger("userId").unsigned().notNullable().index().references("users.id");
       table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
       table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());

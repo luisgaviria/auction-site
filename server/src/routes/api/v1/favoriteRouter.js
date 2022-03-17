@@ -35,6 +35,7 @@ favoriteRouter.post("/:auctionId", async (req, res) => {
       deposit: currentAuction.deposit,
       lat: currentAuction.lat,
       lng: currentAuction.lng,
+      repoId: currentAuction.id,
       userId: userId,
     });
 
@@ -69,6 +70,20 @@ favoriteRouter.delete("/:favoriteId", async (req, res) => {
 
   try {
     await Favorite.query().deleteById(favoriteId);
+    return res.status(200).json({
+      message: "Succesfully deleted Favorite auction",
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: err });
+  }
+});
+
+favoriteRouter.delete("/favoriteRepo/:repoId", async (req, res) => {
+  const repoId = req.params.repoId;
+
+  try {
+    await Favorite.query().delete().where("repoId", "=", repoId);
     return res.status(200).json({
       message: "Succesfully deleted Favorite auction",
     });
