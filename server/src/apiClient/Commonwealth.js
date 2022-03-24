@@ -29,21 +29,32 @@ const crawl = async ({ url }) => {
     }
   }
 
-  data = data.filter((article) => {
-    if (!article[6].length) {
-      return article;
+  //   data = data.filter((article) => {
+  //     if (!article[6].length) {
+  //       return article;
+  //     }
+  //   }); // check for postponed
+
+  data.map((article) => {
+    // console.log(article[0]);
+    if (
+      article[0] == "3rd Party Purchase" ||
+      article[0] == "Postponed" ||
+      article[0] == "Cancelled"
+    ) {
+    } else {
+      real_data.push({
+        status: article[0].length ? article[0] : "On Schedule",
+        logo: logo,
+        date: article[1].split(" ")[0],
+        link: url,
+        address: article[2],
+        deposit: article[4],
+      });
     }
   });
-  data.map((article) => {
-    real_data.push({
-      status: article[0].length ? "Sold" : "On Schedule",
-      logo: logo,
-      date: article[1].split(" ")[0],
-      link: url,
-      address: article[2],
-      deposit: article[4],
-    });
-  });
+
+  // console.log(real_data);
 
   return real_data;
 };

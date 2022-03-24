@@ -37,7 +37,7 @@ const RepoList = (props) => {
         }),
       });
       const body2 = await response2.json();
-      console.log(body2);
+      // console.log(body2);
       setState((prevState) => {
         return { ...prevState, repo: body1.allAuctions, favorites: body2.favorites };
       });
@@ -68,6 +68,7 @@ const RepoList = (props) => {
 
   const getFavorites = async () => {
     const id = localStorage.getItem("userId");
+    console.log(id);
     const response = await fetch(`/api/v1/favorite/${id}`, {
       method: "GET",
       headers: new Headers({

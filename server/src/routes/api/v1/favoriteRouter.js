@@ -52,7 +52,12 @@ favoriteRouter.post("/:auctionId", async (req, res) => {
 });
 
 favoriteRouter.get("/:userId", async (req, res) => {
+  // console.log(req.params.userId);
+  if (req.params.userId === "null") {
+    return res.status(200).json({ favorites: [] });
+  }
   const favorites = await filterFavorite(req.params.userId);
+
   // console.log(favorites);
   try {
     return res.status(201).json({ favorites: favorites });

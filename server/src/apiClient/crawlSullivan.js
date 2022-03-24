@@ -28,7 +28,7 @@ const crawl = async ({ url }) => {
         .trim();
 
       let status = $2(
-        "#calendar > div:nth-child(2) > div > div.col-md-4.col-print-4 > div:nth-child(2) > p > span.text-red"
+        "#calendar > div:nth-child(2) > div > div.col-md-4.col-print-4 > div:nth-child(2) > p > span > strong"
       )
         .text()
         .trim();
@@ -45,7 +45,7 @@ const crawl = async ({ url }) => {
         logo: logo,
       });
     }
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (err) {
     console.log(err);

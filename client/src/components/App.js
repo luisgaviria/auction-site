@@ -10,7 +10,7 @@ import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 import SignInForm from "./authentication/SignInForm";
 import UserProfile from "./layout/UserProfile.js";
 
-import ScrollToTop from "./layout/ScrollToTop.js";
+// import ScrollToTop from "./layout/ScrollToTop.js";
 
 const TopBar = lazy(() => import("./layout/TopBar"));
 const Header = lazy(() => import("./layout/Header"));

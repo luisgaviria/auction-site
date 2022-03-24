@@ -327,6 +327,39 @@ h1 {
   outline: none;
 }
 
+.delete-button-container {
+  display: grid;
+  place-items: center;
+}
+
+.favorite-delete-button {
+  width: auto;
+  max-width: 200px;
+  margin-bottom: 15px;
+
+  position: relative;
+  display: inline-block;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  border: 1px solid grey;
+  border-radius: 6px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.favorite-delete-button:hover {
+  background-color: #f74d4db4;
+  outline: 0;
+}
+
 button:focus {
   outline: none;
 }
@@ -351,6 +384,8 @@ button:focus {
 
 .sign-out-button {
   list-style: none;
+  max-width: 200px;
+  width: auto;
 }
 
 .about-us-text {
