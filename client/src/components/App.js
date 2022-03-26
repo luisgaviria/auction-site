@@ -20,7 +20,7 @@ const RepoList = lazy(() => import("../components/layout/newRepo"));
 
 const Favorites = lazy(() => import("./layout/Favorites"));
 
-import NewMap from "./layout/newMap";
+// import NewMap from "./layout/newMap";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -39,7 +39,7 @@ const App = (props) => {
       <Router>
         {/* <ScrollToTop /> */}
         <TopBar user={currentUser} />
-        <Header />
+        <Header user={currentUser} />
         <Switch>
           <Route exact path="/">
             <RepoList user={currentUser} />
@@ -47,9 +47,9 @@ const App = (props) => {
           <Route exact path="/favorites">
             <Favorites user={currentUser} />
           </Route>
-          <Route exact path="/map" component={NewMap}>
+          {/* <Route exact path="/map" component={NewMap}>
             <NewMap user={currentUser} />
-          </Route>
+          </Route> */}
           <Route exact path="/about" component={AboutUs}>
             <AboutUs user={currentUser} />
           </Route>

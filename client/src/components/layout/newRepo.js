@@ -68,7 +68,7 @@ const RepoList = (props) => {
 
   const getFavorites = async () => {
     const id = localStorage.getItem("userId");
-    console.log(id);
+    // console.log(id);
     const response = await fetch(`/api/v1/favorite/${id}`, {
       method: "GET",
       headers: new Headers({
@@ -137,6 +137,7 @@ const RepoList = (props) => {
   //     }
   //   }
   // });
+  // console.log("This is props:", props);
 
   const refreshDatabaseHandleClickButton = async () => {
     await fetch("/api/v1/crawl/scrap");
@@ -149,24 +150,37 @@ const RepoList = (props) => {
         <meta name="description" content="Auction Website" />
         <title>Auction and Company</title>
       </Helmet>
-      <div className="map">
-        <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." />
-      </div>
-      <div className="button-container">
-        <a className="button large secondary " onClick={refreshDatabaseHandleClickButton}>
-          Refresh Auctions
-        </a>
-      </div>
+      {props.user == null ? (
+        <>
+          <br></br>
+          <div className="map">
+            <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." />
+          </div>
+        </>
+      ) : null}
 
-      {state.favorites ? (
-        <div className="list-item">
-          <NewRepoList
-            getFavorites={getFavorites}
-            repo={state.repo}
-            favorites={state.favorites}
-            user={localStorage.getItem("userId")}
-          />
+      {props.user ? (
+        <div className="button-container">
+          <a className="button large secondary " onClick={refreshDatabaseHandleClickButton}>
+            Refresh Auctions
+          </a>
         </div>
+      ) : null}
+
+      {state.favorites && props.user ? (
+        <>
+          <div className="map">
+            <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." />
+          </div>
+          <div className="list-item">
+            <NewRepoList
+              getFavorites={getFavorites}
+              repo={state.repo}
+              favorites={state.favorites}
+              user={localStorage.getItem("userId")}
+            />
+          </div>
+        </>
       ) : null}
     </div>
   );

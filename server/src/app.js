@@ -40,10 +40,10 @@ addMiddlewares(app);
 app.use(bodyParser.json());
 app.use(rootRouter);
 
-cron.schedule("*/15 * * * *", () => {
+cron.schedule("0 0 */3 * * *", () => {
   scrapToDatabase();
 });
-cron.schedule("30 8 * * *", () => {
+cron.schedule("0 8 * * 1-5", () => {
   messageSend();
 });
 
