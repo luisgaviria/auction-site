@@ -1,12 +1,12 @@
 import User from "../models/User.js";
 import Favorite from "../models/Favorite.js";
 import filterFavorite from "../utils/filterFavorites.js";
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 
 import twilio from "twilio";
 
 // We need to comment out this dotenv function when we deploy to Heroku
-// dotenv.config();
+dotenv.config();
 const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 const messageSend = async () => {
@@ -16,6 +16,8 @@ const messageSend = async () => {
       return user;
     }
   });
+  // console.log(users);
+  // console.log(phoneNumberUsers);
 
   phoneNumberUsers.forEach(async (user) => {
     const favorites = await filterFavorite(user.id);

@@ -43,7 +43,7 @@ app.use(rootRouter);
 cron.schedule("*/15 * * * *", () => {
   scrapToDatabase();
 });
-cron.schedule("* * * * *", () => {
+cron.schedule("30 8 * * *", () => {
   messageSend();
 });
 
