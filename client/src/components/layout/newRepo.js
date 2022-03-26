@@ -68,7 +68,7 @@ const RepoList = (props) => {
 
   const getFavorites = async () => {
     const id = localStorage.getItem("userId");
-    console.log(id);
+    // console.log(id);
     const response = await fetch(`/api/v1/favorite/${id}`, {
       method: "GET",
       headers: new Headers({
