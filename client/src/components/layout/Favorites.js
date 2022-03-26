@@ -7,19 +7,24 @@ const Favorites = (props) => {
   const getFavorites = async () => {
     // console.log(props.user.id);
     // const response = await fetch(`/api/v1/favorites/${props.user.id}`);
-
-    const id = localStorage.getItem("userId");
-    const response = await fetch(`/api/v1/favorite/${id}`, {
-      method: "GET",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-    });
-
-    const body = await response.json();
-
-    // console.log("body:", body.favorites);
-    setFavorites(body.favorites);
+    try {
+      const id = localStorage.getItem("userId");
+      const response = await fetch(`/api/v1/favorite/${id}`, {
+        method: "GET",
+        headers: new Headers({
+          "Content-Type": "application/json",
+        }),
+      });
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
+      }
+      const body = await response.json();
+      setFavorites(body.favorites);
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
   };
 
   useEffect(() => {
@@ -34,19 +39,12 @@ const Favorites = (props) => {
           "Content-Type": "application/json",
         }),
       });
-
       if (!response.ok) {
-        if (response.status === 422) {
-          const body = await response.json();
-          const newErrors = translateServerErrors(body.errors);
-          return setErrors(newErrors);
-        } else {
-          const errorMessage = `${response.status} (${response.statusText})`;
-          const error = new Error(errorMessage);
-          throw error;
-        }
+        const errorMessage = `${response.status} (${response.statusText})`;
+        const error = new Error(errorMessage);
+        throw error;
       }
-
+      // const body = await response.json();
       await getFavorites();
     } catch (err) {
       console.log(err);
@@ -57,7 +55,6 @@ const Favorites = (props) => {
     <div className="list-item">
       {favorites.map((fav) => {
         const { status, date, address, city, state, link, deposit, logo, id } = fav;
-
         return (
           <div key={id} className="card">
             <a href={link} target="_blank">
@@ -68,9 +65,7 @@ const Favorites = (props) => {
                 }
                 className="thumb"
               />
-
               <div className="status">{status ? status : "On Schedule"}</div>
-
               <div className="date">Date: {date ? date : "no date displayed"}</div>
               <div className="address">Address: {address ? address : null}</div>
               {city ? <div className="address">City: {city ? city : null} </div> : null}

@@ -67,13 +67,13 @@ const MyMapComponent = compose(
         props.auctions[0]
           ? props.auctions[0].location
           : {
-              lat: 42.361145,
-              lng: -72.057083,
+              lat: 42.0654,
+              lng: -71.2478,
             }
       }
       defaultCenter={{
-        lat: 42.361145,
-        lng: -72.057083,
+        lat: 42.0654,
+        lng: -71.2478,
       }}
       onIdle={() => forceUpdate()}
       options={options}
