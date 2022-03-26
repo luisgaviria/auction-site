@@ -77,7 +77,11 @@ const Favorites = (props) => {
               {city ? <div className="address">State: {state ? state : null} </div> : null}
               <div className="deposit">Deposit: {deposit ? deposit : "not available"}</div>
             </a>
-            <Button onClick={() => deleteFavorite(id)}>Delete</Button>
+            <div className="delete-button-container">
+              <button className="favorite-delete-button" onClick={() => deleteFavorite(id)}>
+                Delete
+              </button>
+            </div>
           </div>
         );
       })}

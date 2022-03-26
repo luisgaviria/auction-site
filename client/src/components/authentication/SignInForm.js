@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import config from "../../config";
 import FormError from "../layout/FormError";
 
@@ -28,6 +28,10 @@ const SignInForm = () => {
 
     setErrors(newErrors);
   };
+
+  useEffect(() => {
+    // window.location.reload(false);
+  }, []);
 
   const onSubmit = (event) => {
     event.preventDefault();

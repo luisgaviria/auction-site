@@ -1,17 +1,23 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, NavDropdown, Button } from "react-bootstrap";
 
 import SignOutButton from "../authentication/SignOutButton";
 
 const TopBar = ({ user }) => {
+  function refreshPage() {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 500);
+  }
+
   const history = useHistory();
   const onClickHandle = () => {
     history.push("/favorites");
   };
   const unauthenticatedListItems = [
     <Button key="5" variant="outline-secondary" className="sign-in">
-      <Link key="6" to="/user-sessions/new">
+      <Link key="6" to="/user-sessions/new" onClick={refreshPage}>
         Sign In
       </Link>
     </Button>,
@@ -24,7 +30,9 @@ const TopBar = ({ user }) => {
     //   </Link>
     // </li>,
     <Button key="sign-up" className="sign-up" variant="outline-secondary">
-      <Link to="/users/new">Sign Up</Link>
+      <Link to="/users/new" onClick={refreshPage}>
+        Sign Up
+      </Link>
     </Button>,
   ];
 

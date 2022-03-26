@@ -25,7 +25,7 @@ const crawl = async ({ url }) => {
       .trim();
 
     let status = $2(
-      "#calendar > div:nth-child(2) > div > div.col-md-4.col-print-4 > div:nth-child(2) > p > span.text-red"
+      "#calendar > div:nth-child(2) > div > div.col-md-4 > div:nth-child(1) > p > span.text-red > strong"
     )
       .text()
       .trim();

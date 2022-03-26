@@ -51,7 +51,7 @@ const UserProfile = (props) => {
           </label>
         </div>
         <div>
-          <input type="submit" className="button" value="Add Number" />
+          <input onClick={acceptPhoneNumber} type="submit" className="button" value="Add Number" />
         </div>
       </form>
       <br />

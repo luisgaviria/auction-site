@@ -36,16 +36,16 @@ app.use(
     extended: true,
   })
 );
-app.use(bodyParser.json());
 addMiddlewares(app);
+app.use(bodyParser.json());
 app.use(rootRouter);
 
 cron.schedule("*/15 * * * *", () => {
   scrapToDatabase();
 });
-// cron.schedule("* 8 * * *", () => {
-//   messageSend();
-// });
+cron.schedule("30 8 * * *", () => {
+  messageSend();
+});
 
 app.listen(configuration.web.port, configuration.web.host, () => {
   console.log("Server is listening...");

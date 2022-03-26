@@ -10,6 +10,8 @@ import AuthenticatedRoute from "./authentication/AuthenticatedRoute";
 import SignInForm from "./authentication/SignInForm";
 import UserProfile from "./layout/UserProfile.js";
 
+// import ScrollToTop from "./layout/ScrollToTop.js";
+
 const TopBar = lazy(() => import("./layout/TopBar"));
 const Header = lazy(() => import("./layout/Header"));
 // const NewMap = lazy(() => import("./layout/NewMap"));
@@ -18,13 +20,7 @@ const RepoList = lazy(() => import("../components/layout/newRepo"));
 
 const Favorites = lazy(() => import("./layout/Favorites"));
 
-// import TopBar from "./layout/TopBar";
-// import Header from "./layout/Header";
 import NewMap from "./layout/newMap";
-// import AboutUs from "./layout/AboutUs";
-// import RepoList from "../components/layout/newRepo";
-
-// import Favorites from "../components/layout/Favorites.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -39,8 +35,9 @@ const App = (props) => {
       });
   }, []);
   return (
-    <Suspense fallback={<div class="loader">Loading...</div>}>
+    <Suspense fallback={<div className="loader">Loading...</div>}>
       <Router>
+        {/* <ScrollToTop /> */}
         <TopBar user={currentUser} />
         <Header />
         <Switch>
