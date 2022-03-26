@@ -5,6 +5,7 @@ import filterFavorite from "../utils/filterFavorites.js";
 
 import twilio from "twilio";
 
+// We need to comment out this dotenv function when we deploy to Heroku
 // dotenv.config();
 const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 

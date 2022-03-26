@@ -43,9 +43,9 @@ app.use(rootRouter);
 cron.schedule("*/15 * * * *", () => {
   scrapToDatabase();
 });
-// cron.schedule("* 8 * * *", () => {
-//   messageSend();
-// });
+cron.schedule("* * * * *", () => {
+  messageSend();
+});
 
 app.listen(configuration.web.port, configuration.web.host, () => {
   console.log("Server is listening...");
