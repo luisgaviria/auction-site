@@ -39,6 +39,7 @@
     "react": "~16.13",
     "react-bootstrap": "^1.6.1",
     "react-dom": "~16.13",
+    "react-ga": "^3.3.0",
     "react-geocode": "^0.2.3",
     "react-google-maps": "^9.4.5",
     "react-helmet": "^6.1.0",

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { hot } from "react-hot-loader/root";
+// import { withRouter } from "react-router-dom";
 
 import getCurrentUser from "../services/getCurrentUser";
 import "../assets/scss/main.scss";
@@ -11,20 +12,21 @@ import SignInForm from "./authentication/SignInForm";
 import UserProfile from "./layout/UserProfile.js";
 
 // import ScrollToTop from "./layout/ScrollToTop.js";
-
+// import NewMap from "./layout/newMap";
+// const NewMap = lazy(() => import("./layout/NewMap"));
 const TopBar = lazy(() => import("./layout/TopBar"));
 const Header = lazy(() => import("./layout/Header"));
-// const NewMap = lazy(() => import("./layout/NewMap"));
 const AboutUs = lazy(() => import("./layout/AboutUs"));
 const RepoList = lazy(() => import("../components/layout/newRepo"));
-
 const Favorites = lazy(() => import("./layout/Favorites"));
 
-// import NewMap from "./layout/newMap";
+import ReactGA from "react-ga";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
+    ReactGA.initialize("G-Y1T5Q3760Z");
+    ReactGA.pageview(window.location.pathname + window.location.search);
     getCurrentUser()
       .then((user) => {
         setCurrentUser(user);
