@@ -8,6 +8,8 @@ import configuration from "./config.js";
 import addMiddlewares from "./middlewares/addMiddlewares.js";
 import rootRouter from "./routes/rootRouter.js";
 import cron from "node-cron";
+import herokuSSLRedirect from "heroku-ssl-redirect";
+const sslRedirect = herokuSSLRedirect.default;
 
 import scrapToDatabase from "../src/controllers/scrapToDatabase.js";
 import messageSend from "./utils/messageSend.js";
@@ -17,6 +19,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+app.use(sslRedirect());
 // import hbsMiddleware from "express-handlebars";
 
 // app.set("views", path.join(__dirname, "../views"));
