@@ -217,6 +217,7 @@
   margin: auto;
   height: 40vh;
   filter: grayscale(1);
+  margin-bottom: 30px;
 }
 .message-container {
   display: grid;
@@ -405,6 +406,7 @@ button:focus {
   list-style: none;
   max-width: 200px;
   width: auto;
+  margin-left: 20px;
 }
 
 .about-us-text {
@@ -460,12 +462,32 @@ button:focus {
 
 .nav-home {
   margin: auto;
-  place-items: center;
 }
+
+@media screen and (max-width: 480px) {
+  .nav-home {
+    place-items: left;
+    margin-left: 3rem;
+  }
+}
+
+// @media screen and (min-width: 380px) {
+//   .nav-home {
+//     margin-left: 3rem;
+//   }
+// }
 
 .navbar-collapse {
   margin-left: -4rem;
 }
+
+.nav-link {
+  margin-left: 2.5rem;
+}
+
+// .nav-home {
+//   text-align: left;
+// }
 
 // Loader spinner
 
