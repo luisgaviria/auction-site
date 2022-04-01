@@ -28,7 +28,7 @@ const NewRepoList = (props) => {
             if (
               !item.status.toUpperCase().includes("SOLD") &&
               !item.date.toUpperCase().includes("SOLD") &&
-              !item.status.toUpperCase().includes("CANCEL")
+              !item.status.toUpperCase().includes("CANCELLED")
             ) {
               return (
                 <React.Suspense key={item.id}>

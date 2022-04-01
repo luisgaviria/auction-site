@@ -39,7 +39,6 @@ const NewRepoTile = (props) => {
     <div className="card">
       <a href={link} className="card-logo">
         <img rel="noopener" src={logo} className="thumb" alt="image of auctioneer website logo" />
-
         <div className="status">{status ? status : "On Schedule"}</div>
         <div className="date">Date: {date ? date : "no date displayed"}</div>
         <div className="address">Address: {address ? address : "no address displayed"}</div>
