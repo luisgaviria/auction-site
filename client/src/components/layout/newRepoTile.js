@@ -4,19 +4,9 @@ const NewRepoTile = (props) => {
   const [favorites, setFavorites] = useState(props.favorite);
   let { status, date, address, city, state, link, deposit, logo, id } = props.repoData;
   date = new Date(date).toDateString();
-  // Make this button only available of logged in
-  // const authenticatedListItems = [
-  //   <button onClick={onClickHandle}>
-  //     <img
-  //       className="favorite-button"
-  //       src={
-  //         favorites
-  //           ? "https://i.postimg.cc/cJ33YSkQ/icons8-heart-64-1.png"
-  //           : "https://i.postimg.cc/JnWk52SS/icons8-heart-80.png"
-  //       }
-  //     />
-  //   </button>,
-  // ];
+  if (deposit.length > 48) {
+    deposit = `${deposit.substring(0, 48)}...`;
+  }
 
   const onClickHandle = async () => {
     // console.log(props.user.id);
