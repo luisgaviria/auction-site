@@ -335,9 +335,13 @@ h1 {
 .webgl {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 10px;
   outline: none;
   mix-blend-mode: exclusion;
+}
+
+.navbar-light .navbar-brand {
+  margin-left: 0.5rem;
 }
 
 .favorite-button {

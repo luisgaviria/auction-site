@@ -79,6 +79,38 @@ module.exports = {
           },
         ],
       },
+      // {
+      //   test: /\.html$/,
+      //   use: [
+      //     {
+      //       loader: "html-loader",
+      //       options: {
+      //         attrs: {
+      //           list: [
+      //             {
+      //               tag: "video",
+      //               attribute: "src",
+      //               type: "src",
+      //             },
+      //           ],
+      //         },
+      //       },
+      //     },
+      //   ],
+      // },
+
+      // {
+      //   test: /\.mp4$/,
+      //   use: [
+      //     {
+      //       loader: "url-loader",
+      //       options: {
+      //         limit: 10000,
+      //         mimetype: "video/mp4",
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
   resolve: {

@@ -3,10 +3,10 @@ import "./Marker.scss";
 
 const Marker = (props) => {
   return (
-    <div role="listitem" aria-checked="true">
-      <div className="pin"></div>
+    <div role="listitem" aria-checked="true" alt="map marker icon">
+      <div className="pin" alt="map marker icon"></div>
 
-      <div className="pulse"></div>
+      <div className="pulse" alt="map marker icon"></div>
     </div>
   );
 };
