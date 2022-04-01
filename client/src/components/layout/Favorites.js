@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 
 const Favorites = (props) => {
   const [favorites, setFavorites] = useState([]);
@@ -54,7 +54,8 @@ const Favorites = (props) => {
   return (
     <div className="list-item">
       {favorites.map((fav) => {
-        const { status, date, address, city, state, link, deposit, logo, id } = fav;
+        let { status, date, address, city, state, link, deposit, logo, id } = fav;
+        date = new Date(date).toDateString();
         return (
           <div key={id} className="card">
             <a href={link} target="_blank">

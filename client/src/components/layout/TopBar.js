@@ -45,12 +45,13 @@ const TopBar = ({ user }) => {
   return (
     <Navbar className="navbar" collapseOnSelect expand="md" bg="light" variant="light">
       <Navbar.Brand className="logo-nav-bar">
-        {/* <img
+        <a href="/">
+          <img
             alt="icon"
             className="d-inline-block"
-            src="https://i.postimg.cc/gcw0FY8B/circle-cropped-4-1.png"
-          ></img> */}
-        A&CO
+            src="https://i.postimg.cc/KYyDL9CX/letters-icon-25.png"
+          ></img>
+        </a>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

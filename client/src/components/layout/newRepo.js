@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { MemoizedMap } from "./Map";
 import { Helmet } from "react-helmet";
 import NewRepoList from "./newRepoList";
-import Spinner from "react-bootstrap/Spinner";
+// import Spinner from "react-bootstrap/Spinner";
+// import footage from "../layout/video/footage.mp4";
+
 const NewRepoTile = React.lazy(() => import("./newRepoTile.js"));
 
 import * as fetch from "node-fetch";
@@ -152,6 +154,7 @@ const RepoList = (props) => {
       </Helmet>
       {props.user == null ? (
         <>
+          {/* <video src="./footage.mp4" autoPlay loop muted type={"video/mp4"}></video> */}
           <br></br>
           <div className="map">
             <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." />

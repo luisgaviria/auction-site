@@ -6,7 +6,7 @@ import {
   withGoogleMap,
   GoogleMap,
   Marker,
-  DirectionsRenderer,
+  // DirectionsRenderer,
   InfoWindow,
 } from "react-google-maps";
 
@@ -83,6 +83,7 @@ const MyMapComponent = compose(
         return props.isMarkerShown ? (
           <Marker
             key={index}
+            alt="map marker icon"
             position={auction.location}
             icon={{
               url: auctionMarker,
@@ -120,7 +121,7 @@ const MyMapComponent = compose(
           </div>
         </InfoWindow>
       ) : null} */}
-      {props.directions && <DirectionsRenderer directions={state.directions} />}
+      {/* {props.directions && <DirectionsRenderer directions={state.directions} />} */}
     </GoogleMap>
   );
 });
@@ -159,14 +160,14 @@ class MyFancyComponent extends React.PureComponent {
           status: auction.status,
         });
       });
-      await navigator.geolocation.getCurrentPosition(async function (position) {
-        auctions.push({
-          location: {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          },
-        });
-      });
+      // await navigator.geolocation.getCurrentPosition(async function (position) {
+      //   auctions.push({
+      //     location: {
+      //       lat: position.coords.latitude,
+      //       lng: position.coords.longitude,
+      //     },
+      //   });
+      // });
       this.setState({ ...this.state, auctions: auctions, directions: [] });
     } catch (err) {
       console.log(err);
@@ -188,7 +189,6 @@ class MyFancyComponent extends React.PureComponent {
         isMarkerShown
         onClickEvent={this.onClickEvent}
         auctions={this.state.auctions}
-        directions={this.state.directions}
       />
     );
   }

@@ -4,7 +4,7 @@ const filterFavorite = async (userId) => {
   let auctions = await Auction.query().where({ userId: userId });
 
   for (const auction of auctions) {
-    const date = auction.date;
+    let date = auction.date;
     const status = auction.status;
     // console.log(status);
 
@@ -19,6 +19,9 @@ const filterFavorite = async (userId) => {
     ) {
       await Auction.query().deleteById(auction.id);
     }
+
+    date = new Date().toDateString();
+    // console.log(date);
   }
 
   auctions = await Auction.query().orderBy("date");

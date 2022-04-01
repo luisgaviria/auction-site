@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 const NewRepoTile = (props) => {
   const [favorites, setFavorites] = useState(props.favorite);
-  const { status, date, address, city, state, link, deposit, logo, id } = props.repoData;
-
+  let { status, date, address, city, state, link, deposit, logo, id } = props.repoData;
+  date = new Date(date).toDateString();
   // Make this button only available of logged in
   // const authenticatedListItems = [
   //   <button onClick={onClickHandle}>

@@ -31,7 +31,7 @@ favoriteRouter.post("/:auctionId", async (req, res) => {
       logo: currentAuction.logo,
       status: currentAuction.status,
       link: currentAuction.link,
-      date: currentAuction.date.toDateString(), //to see
+      date: currentAuction.date, //to see
       deposit: currentAuction.deposit,
       lat: currentAuction.lat,
       lng: currentAuction.lng,
