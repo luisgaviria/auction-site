@@ -140,6 +140,7 @@ const RepoList = (props) => {
   //   }
   // });
   // console.log("This is props:", props);
+  // console.log("This is state:", state.repo);
 
   const refreshDatabaseHandleClickButton = async () => {
     await fetch("/api/v1/crawl/scrap");
@@ -176,6 +177,11 @@ const RepoList = (props) => {
             <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." />
           </div>
           <div className="list-item">
+            <Helmet>
+              <title>Auction & Co.</title>
+              <meta name="description" content={state.repo.address} />
+              <link rel="canonical" href="/" />
+            </Helmet>
             <NewRepoList
               getFavorites={getFavorites}
               repo={state.repo}
