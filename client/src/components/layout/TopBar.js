@@ -61,7 +61,7 @@ const TopBar = ({ user }) => {
                 Home
               </Link>
             </Nav.Link>  */}
-          <Nav.Link key="1" className="navbar-brand-text" href="/">
+          <Nav.Link href="/" key="1" className="navbar-brand-text">
             {/* <Link className="navbar-brand-text" to="/"> */}
             Home
           </Nav.Link>

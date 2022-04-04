@@ -32,14 +32,13 @@ const MyMapComponent = compose(
 
   const options = {
     styles: mapStyles,
-    disableDefaultUI: true,
     zoomControl: true,
   };
 
   const mapRef = React.useRef();
-  const onMapLoad = React.useCallback((map) => {
-    mapRef.current = map;
-  }, []);
+  // const onMapLoad = React.useCallback((map) => {
+  //   mapRef.current = map;
+  // }, []);
 
   // const onClick = (location, myPosition) => {
   //   // const DirectionsService = new google.maps.DirectionsService();
