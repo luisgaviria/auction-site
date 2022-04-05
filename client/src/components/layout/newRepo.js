@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MemoizedMap } from "./Map";
 import { Helmet } from "react-helmet";
 import NewRepoList from "./newRepoList";
+import ScrollToTop from "./ScrollToTop";
+
 // import Spinner from "react-bootstrap/Spinner";
 // import footage from "../layout/video/footage.mp4";
 
@@ -182,6 +184,9 @@ const RepoList = (props) => {
               <meta name="description" content={state.repo.address} />
               <link rel="canonical" href="/" />
             </Helmet>
+            <>
+              <ScrollToTop />
+            </>
             <NewRepoList
               getFavorites={getFavorites}
               repo={state.repo}

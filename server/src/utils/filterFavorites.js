@@ -15,7 +15,9 @@ const filterFavorite = async (userId) => {
       status == "Sold" ||
       status == "Cancelled" ||
       status == "CANCELLED" ||
-      status == "Postponed"
+      status == "Postponed" ||
+      status == "Canceled" ||
+      status == "CANCELED"
     ) {
       await Auction.query().deleteById(auction.id);
     }

@@ -340,6 +340,36 @@ h1 {
   mix-blend-mode: exclusion;
 }
 
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  display: grid;
+  place-items: center;
+
+  width: 80%;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+@keyframes scrollTop {
+  from {
+    transform: translateY(2px);
+  }
+  to {
+    transform: translateY(-1px);
+  }
+}
+
+.to-top {
+  width: auto;
+  height: 10vh;
+
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .navbar-light .navbar-brand {
   margin-left: 0.5rem;
 }
