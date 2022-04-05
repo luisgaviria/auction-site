@@ -153,7 +153,10 @@ const scrapToDatabase = async (req, res) => {
         }
 
         if (
-          (auc.status == "Cancelled" || auc.status == "cancelled" || auc.status == "CANCELLED") &&
+          (auc.status == "Cancelled" ||
+            auc.status == "cancelled" ||
+            auc.status == "CANCELLED" ||
+            auc.status == "Canceled") &&
           auc.address == databaseAuction.address
         ) {
           await databaseAuction.$query().delete();
