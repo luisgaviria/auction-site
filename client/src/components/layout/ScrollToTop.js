@@ -21,7 +21,7 @@ const ScrollToTop = () => {
 
   return (
     <div className="scroll-to-top" onClick={scrollToTop}>
-      <img className="to-top" src="https://i.postimg.cc/wjqyXXNV/back-to-top-icon-png-8.png" />
+      <img className="to-top" src="https://i.postimg.cc/C1tJdjhh/imageedit-2-8071840377.png" />
     </div>
   );
 };
