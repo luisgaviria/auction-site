@@ -9,9 +9,11 @@ import scrapToDatabase from "../../../controllers/scrapToDatabase.js";
 
 import getData from "../../../controllers/getData.js";
 
+import {isAuth} from "../../../middlewares/isAuth.js";
+
 const crawlRouter = new express.Router();
 
-crawlRouter.get("/", getData);
+crawlRouter.get("/", isAuth, getData);
 
 crawlRouter.get("/scrap", scrapToDatabase);
 

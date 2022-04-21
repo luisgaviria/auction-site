@@ -1,7 +1,9 @@
 import Auction from "../models/Favorite.js";
 
 const filterFavorite = async (userId) => {
-  let auctions = await Auction.query().where({ userId: userId });
+  console.log(userId); 
+  let auctions = await Auction.query().select("id","address","city","state","time","logo","status","link","date","deposit","lat","lng","repoId","userId").where("userId",userId).orderBy("date");
+  // console.log(auctions);
 
   for (const auction of auctions) {
     let date = auction.date;
@@ -26,7 +28,7 @@ const filterFavorite = async (userId) => {
     // console.log(date);
   }
 
-  auctions = await Auction.query().orderBy("date");
+  // auctions = await Auction.query();
 
   return auctions;
 };
