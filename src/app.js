@@ -14,6 +14,8 @@ const sslRedirect = herokuSSLRedirect.default;
 import scrapToDatabase from "../src/controllers/scrapToDatabase.js";
 // import messageSend from "./utils/messageSend.js";
 
+console.log("This is a test");
+
 const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = path.dirname(__filename);
