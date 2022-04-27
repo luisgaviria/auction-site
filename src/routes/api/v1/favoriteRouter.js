@@ -1,16 +1,17 @@
 import express from "express";
 import objection from "objection";
-import cleanUserInput from "../../services/cleanUserInput.js";
+// import cleanUserInput from "../../services/cleanUserInput.js";
 import filterFavorite from "../../../../src/utils/filterFavorites.js";
 const { ValidationError } = objection;
+import { isAuth } from "../../../middlewares/isAuth.js";
 
 import Favorite from "../../../models/Favorite.js";
 import Auction from "../../../models/Auction.js";
 
 const favoriteRouter = new express.Router();
-favoriteRouter.post("/:auctionId", async (req, res) => {
+favoriteRouter.post("/:auctionId",isAuth, async (req, res) => {
   const auctionId = req.params.auctionId;
-  const userId = req.body.userId;
+  const userId = req.userId;
   const currentAuction = await Auction.query().findOne({ id: auctionId });
 
   const duplicate = await Favorite.query().findOne({ address: currentAuction.address });
@@ -41,7 +42,7 @@ favoriteRouter.post("/:auctionId", async (req, res) => {
 
     return res
       .status(201)
-      .json({ message: "success adding a favorite auction", auction: currentAuction });
+      .json({ message: "success added a favorite auction", auction: currentAuction });
   } catch (error) {
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data });
@@ -51,14 +52,13 @@ favoriteRouter.post("/:auctionId", async (req, res) => {
   }
 });
 
-favoriteRouter.get("/:userId", async (req, res) => {
-  // console.log(req.params.userId);
-  if (req.params.userId === "null") {
+favoriteRouter.get("/",isAuth, async (req, res) => {
+  const userId = req.userId;
+  if (userId === "null") {
     return res.status(200).json({ favorites: [] });
   }
-  const favorites = await filterFavorite(req.params.userId);
+  const favorites = await filterFavorite(userId);
 
-  // console.log(favorites);
   try {
     return res.status(201).json({ favorites: favorites });
   } catch (error) {
@@ -70,7 +70,7 @@ favoriteRouter.get("/:userId", async (req, res) => {
   }
 });
 
-favoriteRouter.delete("/:favoriteId", async (req, res) => {
+favoriteRouter.delete("/:favoriteId",isAuth, async (req, res) => {
   const favoriteId = req.params.favoriteId;
 
   try {
@@ -84,11 +84,12 @@ favoriteRouter.delete("/:favoriteId", async (req, res) => {
   }
 });
 
-favoriteRouter.delete("/favoriteRepo/:repoId", async (req, res) => {
+favoriteRouter.delete("/favoriteRepo/:repoId",isAuth, async (req, res) => {
   const repoId = req.params.repoId;
+  const userId = req.userId;
 
   try {
-    await Favorite.query().delete().where("repoId", "=", repoId);
+    await Favorite.query().delete().where("repoId", "=", repoId).where("userId","=",userId);
     return res.status(200).json({
       message: "Succesfully deleted Favorite auction",
     });
