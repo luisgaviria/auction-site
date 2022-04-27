@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node src/app.js",
     "clean": "rm -rf ./public/dist",
-    "dev": "concurrently \"nodemon src/app.js\" \"cd src/modern_client && npm start\"",
+    "dev": "concurrently \"nodemon src/app.js\" \"cd src/client && npm start\"",
     "dev:debug": "nodemon --inspect-brk src/app.js",
     "console": "node --experimental-repl-await ./src/console.js",
     "migrate:latest": "knex --knexfile ./knexfile.cjs migrate:latest",
@@ -15,8 +15,8 @@
     "generate-secret": "./scripts/generate-secret.js",
     "dev:e2e": "NODE_ENV=e2e PORT=8765 nodemon src/app.js",
     "sendMessage": "node src/utils/messageSend.js",
-    "install_client": "cd src/modern_client && npm install",
-    "build_client": "cd src/modern_client && npm run build",
+    "install_client": "cd src/client && npm install",
+    "build_client": "cd src/client && npm run build",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install_client && npm run build_client"
   },
   "license": "UNLICENSED",
