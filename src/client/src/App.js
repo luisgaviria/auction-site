@@ -12,6 +12,7 @@ const AboutUs = lazy(()=> import("./components/aboutUs/AboutUs.js"));
 const SignUp = lazy(()=> import("./components/authentication/SignUp.js"));
 const SignIn = lazy(()=>import("./components/authentication/SignIn.js"));
 const Favorites = lazy(()=>import("./components/favorites/Favorites.js"));
+const Profile = lazy(()=>import("./components/profile/Profile.js"));
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
       <Route exact path="/register" element={<SignUp/>}/>
       <Route exact path="/login" element={<SignIn/>}/>
       <Route exact path= "/favorites" element={<Favorites/>}/> 
+      <Route exact path="/profile" element={<Profile/>}/>
       </Routes>
 
 

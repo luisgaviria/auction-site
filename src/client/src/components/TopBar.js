@@ -66,10 +66,13 @@ const TopBar = ({ user }) => {
             {/* <Link className="navbar-brand-text" to="/about"> */}
             About Us
           </Nav.Link>
-          <Nav.Link href="/profile" key="4" className="navbar-brand-text">
+          {
+            localStorage.getItem("token") ?           <Nav.Link href="/profile" key="4" className="navbar-brand-text">
             {/* <Link className="navbar-brand-text" to="/about"> */}
             Profile
-          </Nav.Link>
+          </Nav.Link> : null
+          }
+
         </Nav>
 
         <Nav.Link key="4" className="">

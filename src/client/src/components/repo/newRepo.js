@@ -106,7 +106,14 @@ const NewRepo = (props) => {
 //   console.log("This is state:", state.repo);
 
   const refreshDatabaseHandleClickButton = async () => {
-    await fetch("/api/v1/crawl/scrap");
+    await axios.get(url+"/api/v1/crawl/scrap",{
+      headers:{
+        "Authorization": "Bearer "+localStorage.getItem("token"),
+        "Content-Type": "application/json"
+      }
+    });
+    
+    // await fetch("/api/v1/crawl/scrap");
   };
 
   return (
@@ -126,7 +133,7 @@ const NewRepo = (props) => {
         </>
       ) : null}
 
-      {props.user ? (
+      {localStorage.getItem('token') ? (
         <div className="button-container">
           <a className="button large secondary " onClick={refreshDatabaseHandleClickButton}>
             Refresh Auctions

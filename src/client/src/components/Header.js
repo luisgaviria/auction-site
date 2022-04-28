@@ -27,7 +27,7 @@ const Header = (props) => {
             </p>
             <hr />
             <p className="mb-0">
-              Please <a href="/users/new">sign up</a> or <a href="/user-sessions/new">sign in</a> in
+              Please <a href="/register">sign up</a> or <a href="/login">sign in</a> in
               order to access all the available auctions.
             </p>
           </Alert>

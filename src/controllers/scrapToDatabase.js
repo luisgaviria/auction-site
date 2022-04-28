@@ -1,6 +1,6 @@
 import crawlClient from "../apiClient/crawlClient.js";
 import crawlCommonwealth from "../apiClient/Commonwealth.js";
-import crawlTowne from "../../src/apiClient/Towne.js";
+// import crawlTowne from "../../src/apiClient/Towne.js";
 import crawlApg from "../apiClient/crawlApg.js";
 import crawlDean from "../apiClient/crawlDean.js";
 import crawlTache from "../apiClient/crawlTache.js";
@@ -34,7 +34,7 @@ const scrapToDatabase = async (req, res) => {
       url: "http://www.commonwealthauction.com/auctions.asp?location=1",
     });
 
-    const data2 = await crawlTowne({ url: "https://www3.towneauction.com/Auctions_NoNav.aspx" });
+    // const data2 = await crawlTowne({ url: "https://www3.towneauction.com/Auctions_NoNav.aspx" });
     const data3 = await crawlDean({ url: "http://www.deanassociatesinc.com/auctions.htm" });
     const data4 = await crawlApg({ url: "https://apg-online.com/auction-schedule/" });
     const data5 = await crawlTache({
@@ -73,7 +73,7 @@ const scrapToDatabase = async (req, res) => {
 
     allAuctions = data1.concat(
       // data1,
-      data2,
+      // data2,
       data3,
       data4,
       data5,
@@ -149,6 +149,8 @@ const scrapToDatabase = async (req, res) => {
           new Date(auc.date).setHours(0, 0, 0, 0) !=
             new Date(databaseAuction.date).setHours(0, 0, 0, 0)
         ) {
+          console.log(auc.date);
+          console.log(new Date(auc.date));
           await databaseAuction.$query().patch({ date: new Date(auc.date) });
         }
 
