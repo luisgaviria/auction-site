@@ -1,6 +1,6 @@
 import crawlClient from "../apiClient/crawlClient.js";
 import crawlCommonwealth from "../apiClient/Commonwealth.js";
-// import crawlTowne from "../../src/apiClient/Towne.js";
+import crawlTowne from "../../src/apiClient/Towne.js";
 import crawlApg from "../apiClient/crawlApg.js";
 import crawlDean from "../apiClient/crawlDean.js";
 import crawlTache from "../apiClient/crawlTache.js";
@@ -34,16 +34,23 @@ const scrapToDatabase = async (req, res) => {
       url: "http://www.commonwealthauction.com/auctions.asp?location=1",
     });
 
-    // const data2 = await crawlTowne({ url: "https://www3.towneauction.com/Auctions_NoNav.aspx" });
-    const data3 = await crawlDean({ url: "http://www.deanassociatesinc.com/auctions.htm" });
-    const data4 = await crawlApg({ url: "https://apg-online.com/auction-schedule/" });
+    const data2 = await crawlTowne({
+      url: "https://www3.towneauction.com/Auctions_NoNav.aspx",
+    });
+    const data3 = await crawlDean({
+      url: "http://www.deanassociatesinc.com/auctions.htm",
+    });
+    const data4 = await crawlApg({
+      url: "https://apg-online.com/auction-schedule/",
+    });
     const data5 = await crawlTache({
       url:
         "https://docs.google.com/spreadsheets/u/1/d/14nrcaKBhCA61FcnBwU6EbiDbRQtOP-gQVxJVvxg5_o0/pubhtml/sheet?headers=false&gid=0",
     });
     const data6 = await crawlHarvard({ url: "http://harvardauctioneers.com/" });
     const data7 = await crawlDaniel({
-      url: "https://www.re-auctions.com/Auction-Schedule/PropertyAgentName/-1/sortBy/cf11",
+      url:
+        "https://www.re-auctions.com/Auction-Schedule/PropertyAgentName/-1/sortBy/cf11",
     });
     const data8 = await crawlRi({
       url: "http://www.auctionsri.com/scripts/auctions.asp?category=R",
@@ -73,7 +80,7 @@ const scrapToDatabase = async (req, res) => {
 
     allAuctions = data1.concat(
       // data1,
-      // data2,
+      data2,
       data3,
       data4,
       data5,
@@ -154,6 +161,25 @@ const scrapToDatabase = async (req, res) => {
           await databaseAuction.$query().patch({ date: new Date(auc.date) });
         }
 
+        auc.status = auc.status?.trim();
+        if (
+          auc.address == databaseAuction.address &&
+          auc.status != databaseAuction.status
+        ) {
+          // console.log(auc.status);
+          // console.log(databaseAuction.status);
+          await databaseAuction.$query().patch({ status: auc.status });
+        }
+        // if (
+        //   databaseAuction.link ==
+        //   "http://www.commonwealthauction.com/auctions.asp?location=1"
+        // ) {
+        //   if (auc.address == databaseAuction.address) {
+        //     console.log(auc);
+        //     console.log(databaseAuction);
+        //   }
+        // }
+
         if (
           (auc.status == "Cancelled" ||
             auc.status == "cancelled" ||
@@ -169,7 +195,9 @@ const scrapToDatabase = async (req, res) => {
     // console.log(sorted2.length);
 
     console.log("Finished Scraping the DB...");
-    return res.status(200).json({ message: "Succesfully updated database", allAuctions: sorted2 });
+    return res
+      .status(200)
+      .json({ message: "Succesfully updated database", allAuctions: sorted2 });
   } catch (error) {
     // console.log(error);
     return res.status(500).json({ errors: error });

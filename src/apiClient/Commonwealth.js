@@ -36,22 +36,17 @@ const crawl = async ({ url }) => {
   //   }); // check for postponed
 
   data.map((article) => {
+    console.log(article[0]);
     // console.log(article[0]);
-    if (
-      article[0] == "3rd Party Purchase" ||
-      article[0] == "Postponed" ||
-      article[0] == "Cancelled"
-    ) {
-    } else {
-      real_data.push({
-        status: article[0].length ? article[0] : "On Schedule",
-        logo: logo,
-        date: article[1].split(" ")[0],
-        link: url,
-        address: article[2],
-        deposit: article[4],
-      });
-    }
+
+    real_data.push({
+      status: article[0].length ? article[0] : "On Schedule",
+      logo: logo,
+      date: article[1].split(" ")[0],
+      link: url,
+      address: article[2],
+      deposit: article[4],
+    });
   });
 
   // console.log(real_data);
