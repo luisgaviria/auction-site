@@ -14,9 +14,9 @@ const SignIn = lazy(() => import("./components/authentication/SignIn.js"));
 const Favorites = lazy(() => import("./components/favorites/Favorites.js"));
 const Profile = lazy(() => import("./components/profile/Profile.js"));
 
-ReactGA.initialize("G-Y1T5Q3760Z");
 function App() {
   useEffect(() => {
+    ReactGA.initialize("G-T4NF3MR6N7");
     ReactGA.pageview(window.location.pathname + window.location.search);
     // getCurrentUser()
     //   .then((user) => {
