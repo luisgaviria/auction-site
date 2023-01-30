@@ -46,7 +46,7 @@ const SignInForm = () => {
 
         console.log(data);
         localStorage.setItem("token",data.token);
-        navigate("/");
+        window.location.href="/";
     }
   };
   const onInputChange = (event) => {

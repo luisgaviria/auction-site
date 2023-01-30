@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import Alert from "react-bootstrap/Alert";
 // import Spinner from "react-bootstrap/Spinner";
 
@@ -14,7 +14,7 @@ const Header = (props) => {
 
   return (
     <>
-      {localStorage.getItem('token') == null ? (
+      { localStorage.getItem('token') == null ? (
         <div className="message-container">
           <h1 className="heading-primary">Auction & Co.</h1>
           <br></br>

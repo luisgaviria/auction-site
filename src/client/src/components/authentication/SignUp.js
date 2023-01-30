@@ -63,7 +63,8 @@ const SignUp = () => {
 
           console.log(data);
           localStorage.setItem("token",data.token);
-          navigate("/");
+          window.location.href="/";
+          // navigate("/");
       }
       // event.preventDefault();
     // validateInput(userPayload);
