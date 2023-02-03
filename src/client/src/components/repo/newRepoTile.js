@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {url} from "../../url";
+import { Helmet } from "react-helmet";
 
 const NewRepoTile = (props) => {
   const [favorites, setFavorites] = useState(props.favorite);
@@ -61,6 +62,15 @@ const NewRepoTile = (props) => {
 
   return (
     <div className="card">
+      <Helmet>
+        <meta name={`logoTile${id}`} content={logo} />
+        <meta name={`addressTile${id}`} content={address ? address : "no address displayed"}/>
+        <meta name={`statusTile${id}`} content={status ? status : "On Schedule"}/>
+        <meta name={`dateTile${id}`} content={date ? date : "no date displayed"}/>
+        <meta name={`cityTile${id}`} content={city ? city : null}/>
+        <meta name={`stateTile${id}`} content={state ? state : null}/>
+        <meta name={`depositTile${id}`} content={deposit ? deposit : "not available"}/>
+      </Helmet>
       <a href={link} className="card-logo">
         <img rel="noopener" src={logo} className="thumb" alt="image of auctioneer website logo" />
         <div className="status">{status ? status : "On Schedule"}</div>
