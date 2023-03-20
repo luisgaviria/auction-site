@@ -71,7 +71,7 @@ const NewRepoTile = (props) => {
         <meta name={`stateTile${id}`} content={state ? state : null}/>
         <meta name={`depositTile${id}`} content={deposit ? deposit : "not available"}/>
       </Helmet>
-      <a href={link} className="card-logo">
+      <a href={link} target="blank" className="card-logo">
         <img rel="noopener" src={logo} className="thumb" alt="image of auctioneer website logo" />
         <div className="status">{status ? status : "On Schedule"}</div>
         <div className="date">Date: {date ? date : "no date displayed"}</div>
