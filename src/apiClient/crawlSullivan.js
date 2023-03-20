@@ -7,7 +7,7 @@ const crawl = async ({ url }) => {
   const $ = await cheerio.load(body);
   const data = [];
   const divs = $("#calendar > div > div.auction-list").toArray();
-  const logo = "https://i.postimg.cc/cJw0xJHX/imageedit-152-7011749727.png";
+  const logo = "https://auction-site-ma.herokuapp.com/auction_photos/sullivan.webp";
   try {
     for (const div of divs) {
       const address = $(div).find("h1").text().trim();

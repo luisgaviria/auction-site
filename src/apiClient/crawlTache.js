@@ -6,7 +6,7 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
-  const logo = "http://tacheauctionsandsales.com/images/ta.png?crc=3835416695";
+  const logo = "https://auction-site-ma.herokuapp.com/auction_photos/tache.webp";
 
   let data = [];
 

@@ -14,7 +14,7 @@ import { google_key } from "./google-key.js";
 import mapStyles from "./mapStyles.js";
 
 
-import auctionMarker from "./marker/auction.png";
+import auctionMarker from "./marker/marker.webp";
 import axios from "axios";
 import {url} from "../../url";
 
@@ -36,7 +36,7 @@ const MyMapComponent = compose(
     styles: mapStyles,
     zoomControl: true,
   };
-
+  
   const mapRef = React.useRef();
   // const onMapLoad = React.useCallback((map) => {
   //   mapRef.current = map;
@@ -112,6 +112,7 @@ const MyMapComponent = compose(
             <h4>{selected.address}</h4>
             <h4>{selected.status}</h4>
             <h4>{selected.deposit}</h4>
+            <a href={selected.link} target="blank"><span>Auction link!</span></a>
           </div>
         </InfoWindow>
       ) : null}
@@ -167,6 +168,7 @@ class MyFancyComponent extends React.PureComponent {
           address: auction.address,
           deposit: auction.deposit,
           status: auction.status,
+          link: auction.link
         });
       });
       // await navigator.geolocation.getCurrentPosition(async function (position) {
@@ -183,7 +185,8 @@ class MyFancyComponent extends React.PureComponent {
     }
   }
 
-  onClickEvent(location, myPosition) {}
+  onClickEvent(location, myPosition) {
+  }
   /*componentWillReceiveProps() {
     console.log(this.props.addresses);
     this.setState({

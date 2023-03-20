@@ -29,6 +29,7 @@ app.use((req, res, next) => {//cors policy
     'Access-Control-Allow-Methods',
     'OPTIONS, GET, POST, PUT, PATCH, DELETE'
   );
+  res.setHeader('Accept-Encoding','gzip, compress, br');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization, Accept');
   next();
 });

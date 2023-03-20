@@ -7,7 +7,7 @@ const crawl = async ({ url }) => {
   let $ = cheerio.load(body);
 
   const logo =
-    "https://www.re-auctions.com/Portals/0/logo-McLaughlinCo_bl.png?ver=IYkqo0rTp0H7fPaLF4szJQ%3d%3d";
+    "https://auction-site-ma.herokuapp.com/auction_photos/danielp.webp";
 
   const data = [];
 

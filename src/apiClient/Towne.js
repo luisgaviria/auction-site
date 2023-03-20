@@ -7,7 +7,7 @@ const crawl = async ({ url }) => {
   const body = await response.text();
   const $ = cheerio.load(body);
 
-  const logo = "https://www3.towneauction.com/images/header-logo.gif";
+  const logo = "https://auction-site-ma.herokuapp.com/auction_photos/towne.webp";
 
   let data = [];
   $("#GridView1 > tbody > tr")

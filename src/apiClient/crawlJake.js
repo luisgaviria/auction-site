@@ -5,7 +5,7 @@ const crawl = async ({ url }) => {
   const response = await fetch(url);
   const body = await response.text();
   const $ = await cheerio.load(body);
-  const logo = "https://www.jkauctioneers.com/images/jksm.gif";
+  const logo = "https://auction-site-ma.herokuapp.com/auction_photos/jake.webp";
   const data = [];
   const ps = $("body").find("font").find('p[align="left"]').toArray();
   for (const p of ps) {

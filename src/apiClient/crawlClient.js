@@ -20,7 +20,7 @@ const crawl = async ({ url }) => {
         const $2 = await cheerio.load(body_details_page);
         const details = $2("#page").find(".sqs-block-content");
         const time_start = await $2("#page").find("time.event-time-12hr-start").text();
-        const logo = "https://i.postimg.cc/d1P2Y51k/imageedit-153-8952288824.png";
+        const logo = "https://auction-site-ma.herokuapp.com/auction_photos/amg.webp";
         //console.log(time_start);
 
         await details
