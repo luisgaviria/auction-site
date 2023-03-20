@@ -84,8 +84,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl({
-  url: "https://www.amgauction.com/",
-});
+// crawl({
+//   url: "https://www.amgauction.com/",
+// });
 
 export default crawl;

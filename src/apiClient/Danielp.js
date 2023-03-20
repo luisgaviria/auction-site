@@ -102,8 +102,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl({
-  url: "https://www.re-auctions.com/Auction-Schedule/PropertyAgentName/-1/sortBy/cf11",
-});
+// crawl({
+  // url: "https://www.re-auctions.com/Auction-Schedule/PropertyAgentName/-1/sortBy/cf11",
+// });
 
 export default crawl;

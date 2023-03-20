@@ -51,8 +51,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl({
-  url: "http://harvardauctioneers.com/",
-});
+// crawl({
+//   url: "http://harvardauctioneers.com/",
+// });
 
 export default crawl;

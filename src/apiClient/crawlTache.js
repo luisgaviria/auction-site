@@ -52,9 +52,9 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl({
-  url:
-    "https://docs.google.com/spreadsheets/u/1/d/14nrcaKBhCA61FcnBwU6EbiDbRQtOP-gQVxJVvxg5_o0/pubhtml/sheet?headers=false&gid=0",
-});
+// crawl({
+//   url:
+//     "https://docs.google.com/spreadsheets/u/1/d/14nrcaKBhCA61FcnBwU6EbiDbRQtOP-gQVxJVvxg5_o0/pubhtml/sheet?headers=false&gid=0",
+// });
 
 export default crawl;

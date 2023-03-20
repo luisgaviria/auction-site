@@ -1,10 +1,8 @@
 import puppeteer from "puppeteer";
 
-const crawl = async ({ url }) => {
-  const logo =
-    "https://auction-site-ma.herokuapp.com/auction_photos/baystate.webp";
+const crawl = async ({url}) => {
+  const logo = "https://auction-site-ma.herokuapp.com/auction_photos/baystate.webp";
   const link = "https://www.baystateauction.com/auctions";
-
   const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] });
   const page = await browser.newPage();
   await page.goto(url);
@@ -45,6 +43,6 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl("https://www.baystateauction.com/auctions/state/ma");
+// crawl("https://www.baystateauction.com/auctions/state/ma");
 
 export default crawl;

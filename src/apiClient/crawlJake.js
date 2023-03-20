@@ -34,8 +34,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl({
-  url: "https://www.jkauctioneers.com/list1.htm",
-});
+// crawl({
+//   url: "https://www.jkauctioneers.com/list1.htm",
+// });
 
 export default crawl;

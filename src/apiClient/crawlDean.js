@@ -73,8 +73,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl({
-  url: "http://www.deanassociatesinc.com/auctions.htm",
-});
+// crawl({
+//   url: "http://www.deanassociatesinc.com/auctions.htm",
+// });
 
 export default crawl;

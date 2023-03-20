@@ -47,8 +47,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl({
-  url: "http://www.auctionsri.com/scripts/auctions.asp?category=R",
-});
+// crawl({
+//   url: "http://www.auctionsri.com/scripts/auctions.asp?category=R",
+// });
 
 export default crawl;

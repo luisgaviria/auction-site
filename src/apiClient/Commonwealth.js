@@ -54,8 +54,8 @@ const crawl = async ({ url }) => {
   return real_data;
 };
 
-crawl({
-  url: "http://www.commonwealthauction.com/auctions.asp?location=1",
-});
+// crawl({
+//   url: "http://www.commonwealthauction.com/auctions.asp?location=1",
+// });
 
 export default crawl;
