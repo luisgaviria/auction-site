@@ -2,8 +2,8 @@ import puppeteer from "puppeteer";
 
 const crawl = async ({ url }) => {
   const logo =
-    "";
-  const link = "https://auction-site-ma.herokuapp.com/auction_photos/baystate.webp";
+    "https://auction-site-ma.herokuapp.com/auction_photos/baystate.webp";
+  const link = "https://www.baystateauction.com/auctions";
 
   const browser = await puppeteer.launch({ args: ["--no-sandbox", "--disable-setuid-sandbox"] });
   const page = await browser.newPage();
