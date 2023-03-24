@@ -59,6 +59,7 @@ const SignInForm = () => {
   return (
     <div className="grid-container" onSubmit={onSubmit}>
       <h3>Sign In</h3>
+      <h3 style={{color: 'red'}}>All Users accounts have been deleted! You must sign up again!</h3>
       <form>
         <div>
           <label>
