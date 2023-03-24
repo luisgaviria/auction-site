@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 // import { withRouter } from "react-router-dom";
 import NewRepoTile from "./newRepoTile.js";
+import { memo } from 'react';
 
-const NewRepoList = (props) => {
+const NewRepoList = memo( (props) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const temp = [];
@@ -18,7 +19,8 @@ const NewRepoList = (props) => {
       temp.push({ ...repoItem, favorite: favoriteTemp });
     });
 
-    setItems(temp);
+    setItems(temp); 
+    return ()=>{};
   }, [props.favorites]);
 
   return (
@@ -65,6 +67,6 @@ const NewRepoList = (props) => {
       })}
     </>
   );
-};
+});
 
 export default NewRepoList;

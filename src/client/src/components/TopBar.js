@@ -53,16 +53,16 @@ const TopBar = ({ user }) => {
                 Home
               </Link>
             </Nav.Link>  */}
-          <Nav.Link href="/" key="1" className="navbar-brand-text">
+          <Nav.Link onClick={()=>onClickHandle("/")} key="1" className="navbar-brand-text">
             {/* <Link className="navbar-brand-text" to="/"> */}
             Home
           </Nav.Link>
 
-          <Nav.Link href="/favorites" key="2" className="navbar-brand-text" onClick={onClickHandle}>
+          <Nav.Link onClick={()=>onClickHandle("/favorites")}  key="2" className="navbar-brand-text">
             {/* <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}> */}
             Favorites
           </Nav.Link>
-          <Nav.Link href="/about" key="3" className="navbar-brand-text">
+          <Nav.Link onClick={()=>onClickHandle("/about")}  key="3" className="navbar-brand-text">
             {/* <Link className="navbar-brand-text" to="/about"> */}
             About Us
           </Nav.Link>

@@ -98,8 +98,9 @@ const NewRepo = (props) => {
     });
   };
 
-  useEffect(async () => {
-    await fetchData();
+  useEffect(() => {
+    fetchData();
+    return () => {};
   }, []);
 
 //   console.log("This is props:", props);
