@@ -34,9 +34,9 @@ const scrapToDatabase = async (req, res) => {
       url: "http://www.commonwealthauction.com/auctions.asp?location=1",
     });
 
-    const data2 = await crawlTowne({
-      url: "https://www3.towneauction.com/Auctions_NoNav.aspx",
-    });
+    // const data2 = await crawlTowne({
+    //   url: "https://www3.towneauction.com/Auctions_NoNav.aspx",
+    // });
     const data3 = await crawlDean({
       url: "http://www.deanassociatesinc.com/auctions.htm",
     });
@@ -80,7 +80,7 @@ const scrapToDatabase = async (req, res) => {
 
     allAuctions = data1.concat(
       // data1,
-      data2,
+      // data2,
       data3,
       data4,
       data5,
@@ -93,7 +93,7 @@ const scrapToDatabase = async (req, res) => {
       data12
     );
 
-    // console.log(allAuctions);
+    console.log(allAuctions);
 
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
