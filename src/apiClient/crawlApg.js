@@ -77,8 +77,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-crawl({
-  url: "https://apg-online.com/auction-schedule/",
-});
+// crawl({
+//   url: "https://apg-online.com/auction-schedule/",
+// });
 
 export default crawl;
