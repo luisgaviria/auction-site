@@ -13,7 +13,6 @@ const crawl = async ({ url }) => {
   $("#GridView1 > tbody > tr")
     .toArray()
     .map((tr) => {
-      // console.log($(tr).text());
       const tds = $(tr).find("td");
 
       const date = new Date($(tds[0]).text().trim("\n")).toLocaleDateString();
@@ -48,9 +47,5 @@ const crawl = async ({ url }) => {
 
   return data;
 };
-
-// crawl({
-//   url: "https://www3.towneauction.com/Auctions_NoNav.aspx",
-// });
 
 export default crawl;
