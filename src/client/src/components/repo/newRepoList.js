@@ -7,7 +7,6 @@ const NewRepoList = memo( (props) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const temp = [];
-    console.log(props.repo);
     props.repo.map((repoItem, i) => {
       let favoriteTemp = false;
       props.favorites.map((favorite) => {
@@ -21,7 +20,7 @@ const NewRepoList = memo( (props) => {
 
     setItems(temp); 
     return ()=>{};
-  }, [props.favorites]);
+  }, [props.favorites,props.repo]);
 
   return (
     <>

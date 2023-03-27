@@ -6,9 +6,9 @@ import ScrollToTop from "./ScrollToTop";
 import axios from "axios"; 
 import {url} from "../../url";
 import { MemoizedMap } from "../map/Map";
+import Pagination from "react-bootstrap/Pagination";
 
-
-import Spinner from "react-bootstrap/Spinner";
+// import Spinner from "react-bootstrap/Spinner";
 // import footage from "../layout/video/footage.mp4";
 
 const NewRepoTile = React.lazy(() => import("./newRepoTile.js"));
@@ -18,13 +18,47 @@ const NewRepo = (props) => {
     repo: [],
     addresses: [],
     favorites: [],
+    page: 1, 
+    limit: 10,
+    pages: 0,
+    loading: false
   });
 
+  const onClickPage = (page) => {
+    setState({
+      ...state,
+      // loading: true,
+      repo: [],
+      favorites: [],
+      page: page,
+    });
+  };
   
+  const ReturnPages = () => {
+    const array = [];
+    for (let i = 1; i <= state.pages; i++) {
+      if (i === state.page) {
+        array.push(
+          <Pagination.Item
+            style={{ listStyleType: "none" }}
+            onClick={() => onClickPage(i)}
+          >
+            {i}
+          </Pagination.Item>
+        );
+      } else {
+        array.push(
+          <Pagination.Item onClick={() => onClickPage(i)}>{i}</Pagination.Item>
+        );
+      }
+    }
+    return array;
+  };
+
  const fetchData = async()=>{
     try {
       const token = localStorage.getItem("token");
-        const response1 = await axios.get(url+"/api/v1/crawl",{
+        const response1 = await axios.get(url+`/api/v1/crawl?page=${state.page}&limit=${state.limit}`,{
           headers: {
             "Authorization": "Bearer "+token,
             "Content-Type": "application/json"
@@ -42,7 +76,7 @@ const NewRepo = (props) => {
           }
         });
         const body2 =  response2.data;
-        console.log(body2.favorites);
+        // console.log(body2.favorites);
         // console.log(body2);
         setState((prevState) => {
           return { ...prevState, 
@@ -58,29 +92,29 @@ const NewRepo = (props) => {
       }
  };
 
-  const getRepo = async () => {
-    try {
-      const response = await axios.get(url+"/api/v1/crawl",{
-          headers: {
-              "Content-Type": "application/json"
-          }
-      });
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`;
-        const error = new Error(errorMessage);
-        throw error;
-      }
+  // const getRepo = async () => {
+  //   try {
+  //     const response = await axios.get(url+"/api/v1/crawl",{
+  //         headers: {
+  //             "Content-Type": "application/json"
+  //         }
+  //     });
+  //     if (!response.ok) {
+  //       const errorMessage = `${response.status} (${response.statusText})`;
+  //       const error = new Error(errorMessage);
+  //       throw error;
+  //     }
 
-      // console.log(response.body);
-      const body = await response.json();
+  //     // console.log(response.body);
+  //     const body = await response.json();
 
-      setState((prevState) => {
-        return { ...prevState, repo: body.allAuctions };
-      });
-    } catch (err) {
-      console.error(`Error in fetch: ${err.message}`);
-    }
-  };
+  //     setState((prevState) => {
+  //       return { ...prevState, repo: body.allAuctions };
+  //     });
+  //   } catch (err) {
+  //     console.error(`Error in fetch: ${err.message}`);
+  //   }
+  // };
 
   const getFavorites = async () => {
     // const id = localStorage.getItem("userId");
@@ -102,6 +136,33 @@ const NewRepo = (props) => {
     fetchData();
     return () => {};
   }, []);
+
+  useEffect(()=>{
+
+    const getPagedData = async()=>{
+      const token = localStorage.getItem("token");
+      const {data} = await axios.get(url+`/api/v1/crawl?page=${state.page}&limit=${state.limit}`,{
+        headers: {
+          "Authorization": "Bearer "+token,
+          "Content-Type": "application/json"
+        }
+      });
+
+      console.log(data.allAuctions);
+      
+      if(data.allAuctions.length){
+        setState({...state,
+          repo: data.allAuctions,
+          page: data.page,
+          limit: data.limit,
+          pages: data.pages,
+          loading: false
+        })
+      }
+    };
+    getPagedData();
+
+  },[state.page]);
 
 //   console.log("This is props:", props);
 //   console.log("This is state:", state.repo);
@@ -143,9 +204,14 @@ const NewRepo = (props) => {
       ) : null}
 
         <>
-          <div className="map">
-            <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." />
-          </div>
+          {
+            state.loading ?  null :           <div className="map">
+ <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." page={state.page}/>
+</div>
+          }
+          <Pagination style={{ listStyle: "none" }}>
+          <ReturnPages />
+        </Pagination>
           <div className="list-item">
             <Helmet>
               <title>Auction & Co.</title>
