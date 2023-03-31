@@ -188,11 +188,12 @@ class MyFancyComponent extends React.PureComponent {
     // }
   // }
 
-  async componentDidUpdate(prevProps){
 
-    if(prevProps.page !== this.props.page){
+
+  async componentDidMount() { // interval to rerender object
+    
       try {
-        const response = await axios.get(url+`/api/v1/crawl?page=${this.props.page}&limit=${10}`,{
+        const response = await axios.get(url+`/api/v1/crawl?page=all&limit=all`,{
             headers: {
                 "Content-type": "application/json",
                 "Authorization": "Bearer "+localStorage.getItem("token")
@@ -216,23 +217,11 @@ class MyFancyComponent extends React.PureComponent {
             link: auction.link
           });
         });
-        // await navigator.geolocation.getCurrentPosition(async function (position) {
-        //   auctions.push({
-        //     location: {
-        //       lat: position.coords.latitude,
-        //       lng: position.coords.longitude,
-        //     },
-        //   });
-        // });
+
         this.setState({ ...this.state,auctions: auctions, directions: [] });
       } catch (err) {
         console.log(err);
       }
-    }
-  }
-
-  componentDidMount() { // interval to rerender object
-    // this.interval = setInterval(() => this.setState({  }), 1000);
   }
   componentWillUnmount() {
     clearInterval(this.interval);

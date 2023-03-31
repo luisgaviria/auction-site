@@ -23,6 +23,13 @@ const getData = async (req, res) => {
     });
   }
 
+  if(page == "all" && limit == "all"){
+    let auctions = await filter();
+    return res.status(200).json({
+      allAuctions: auctions
+    });
+  }
+
   const pages =  count_pages(auctions,limit);
 
   auctions = paginate(auctions,limit,page);

@@ -19,7 +19,7 @@ const NewRepo = (props) => {
     addresses: [],
     favorites: [],
     page: 1, 
-    limit: 10,
+    limit: 48,
     pages: 0,
     loading: false
   });
@@ -209,9 +209,9 @@ const NewRepo = (props) => {
  <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." page={state.page}/>
 </div>
           }
-          <Pagination style={{ listStyle: "none" }}>
-          <ReturnPages />
-        </Pagination>
+          <Pagination size="lg" style={{ listStyle: "none",justifyContent: 'center', display: 'flex' }}>
+            <ReturnPages />
+          </Pagination>
           <div className="list-item">
             <Helmet>
               <title>Auction & Co.</title>
