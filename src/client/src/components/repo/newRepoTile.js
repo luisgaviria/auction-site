@@ -82,7 +82,7 @@ const NewRepoTile = (props) => {
       </a>
 
       {localStorage.getItem("token") ? (
-        <button onClick={onClickHandle}>
+        <button onClick={onClickHandle} name="favourite" alt="favourite_button">
           <img
             className="favorite-button"
             src={
