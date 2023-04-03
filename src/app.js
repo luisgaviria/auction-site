@@ -24,11 +24,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(sslRedirect());
 
-app.use(cors())
+// app.use(cors()) to do to make it work for specific urls
 
 app.use((req, res, next) => {//cors policy
 
-  // res.setHeader('Access-Control-Allow-Origin', "https://www.auctionandcompany.com;");
+  res.setHeader('Access-Control-Allow-Origin', "*");
   res.setHeader(
     'Access-Control-Allow-Methods',
     'OPTIONS, GET, POST, PUT, PATCH, DELETE'
