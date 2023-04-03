@@ -24,13 +24,19 @@ const app = express();
 app.use(sslRedirect());
 
 app.use((req, res, next) => {//cors policy
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'null');
   res.setHeader(
     'Access-Control-Allow-Methods',
     'OPTIONS, GET, POST, PUT, PATCH, DELETE'
   );
   res.setHeader('Accept-Encoding','gzip, compress, br');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization, Accept');
+  res.setHeader('content-security-policy','report-uri/report-csp-violation');
+  res.setHeader('permissions-policy','interest-cohort=()');
+  res.setHeader('referrer-policy','no-referrer-when-downgrade');
+  res.setHeader('strict-transport-security','max-age=31622400; includeSubDomains; preload');
+  res.setHeader('x-content-type-options','nosniff');
+  res.setHeader('x-frame-options','sameorigin');
   next();
 });
 
