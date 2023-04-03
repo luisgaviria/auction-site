@@ -9,6 +9,7 @@ import addMiddlewares from "./middlewares/addMiddlewares.js";
 import rootRouter from "./routes/rootRouter.js";
 import cron from "node-cron";
 import herokuSSLRedirect from "heroku-ssl-redirect";
+import cors from 'cors';
 const sslRedirect = herokuSSLRedirect.default;
 
 import scrapToDatabase from "../src/controllers/scrapToDatabase.js";
@@ -23,9 +24,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(sslRedirect());
 
+app.use(cors())
+
 app.use((req, res, next) => {//cors policy
 
-  res.setHeader('Access-Control-Allow-Origin', "https://www.auctionandcompany.com;");
+  // res.setHeader('Access-Control-Allow-Origin', "https://www.auctionandcompany.com;");
   res.setHeader(
     'Access-Control-Allow-Methods',
     'OPTIONS, GET, POST, PUT, PATCH, DELETE'
