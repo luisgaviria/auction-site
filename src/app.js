@@ -25,7 +25,7 @@ app.use(sslRedirect());
 
 app.use((req, res, next) => {//cors policy
 
-  res.setHeader('Access-Control-Allow-Origin', "https://www.auctionandcompany.com/");
+  res.setHeader('Access-Control-Allow-Origin', "https://www.auctionandcompany.com;");
   res.setHeader(
     'Access-Control-Allow-Methods',
     'OPTIONS, GET, POST, PUT, PATCH, DELETE'
