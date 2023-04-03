@@ -27,7 +27,6 @@ const NewRepo = (props) => {
   const onClickPage = (page) => {
     setState({
       ...state,
-      // loading: true,
       repo: [],
       favorites: [],
       page: page,
@@ -36,22 +35,40 @@ const NewRepo = (props) => {
   
   const ReturnPages = () => {
     const array = [];
+    array.push(
+      <Pagination.Item onClick={()=>{
+        if(state.page <= state.pages && state.page != 1 ){
+          const page = state.page - 1;
+          onClickPage(page) 
+        }
+      }}>
+        {"<"}
+      </Pagination.Item>
+    )
     for (let i = 1; i <= state.pages; i++) {
       if (i === state.page) {
         array.push(
           <Pagination.Item
-            style={{ listStyleType: "none" }}
+            style={{ listStyleType: "none",display: "flex" }}
             onClick={() => onClickPage(i)}
+            active={i === state.page}
+            activeLabel=""
           >
             {i}
           </Pagination.Item>
         );
       } else {
         array.push(
-          <Pagination.Item onClick={() => onClickPage(i)}>{i}</Pagination.Item>
+          <Pagination.Item  active={i === state.page} onClick={() => onClickPage(i)}>{i}</Pagination.Item>
         );
       }
     }
+    array.push(<Pagination.Item onClick={()=>{
+      if(state.pages > state.page){
+        const page = state.page + 1
+        onClickPage(page)
+      }
+    }}>{">"}</Pagination.Item>);
     return array;
   };
 
@@ -153,7 +170,6 @@ const NewRepo = (props) => {
       if(data.allAuctions.length){
         setState({...state,
           repo: data.allAuctions,
-          page: data.page,
           limit: data.limit,
           pages: data.pages,
           loading: false
@@ -185,15 +201,7 @@ const NewRepo = (props) => {
         <meta name="description" content="Auction Website" />
         <title>Auction and Company</title>
       </Helmet>
-      {props.user == null ? (
-        <>
-          {/* <video src="./footage.mp4" autoPlay loop muted type={"video/mp4"}></video> */}
-          <br></br>
-          <div className="map">
-            {/* <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." /> */}
-          </div>
-        </>
-      ) : null}
+
 
       {localStorage.getItem('token') ? (
         <div className="button-container">
@@ -204,12 +212,10 @@ const NewRepo = (props) => {
       ) : null}
 
         <>
-          {
-            state.loading ?  null :           <div className="map">
- <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." page={state.page}/>
+         <div className="map">
+ <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location."/>
 </div>
-          }
-          <Pagination size="lg" style={{ listStyle: "none",justifyContent: 'center', display: 'flex' }}>
+          <Pagination between={4} size="lg" style={{ listStyle: "none",justifyContent: 'center', display: 'flex' }}>
             <ReturnPages />
           </Pagination>
           <div className="list-item">
