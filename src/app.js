@@ -35,7 +35,7 @@ app.use((req, res, next) => {//cors policy
   );
   res.setHeader('Accept-Encoding','gzip, compress, br');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization, Accept');
-  res.setHeader('content-security-policy','report-uri/report-csp-violation');
+  // res.setHeader('content-security-policy','report-uri/report-csp-violation');
   res.setHeader('permissions-policy','interest-cohort=()');
   res.setHeader('referrer-policy','no-referrer-when-downgrade');
   res.setHeader('strict-transport-security','max-age=31622400; includeSubDomains; preload');
