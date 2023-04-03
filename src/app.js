@@ -24,7 +24,14 @@ const app = express();
 app.use(sslRedirect());
 
 app.use((req, res, next) => {//cors policy
-  res.setHeader('Access-Control-Allow-Origin', 'null');
+  const corsWhitelist = [
+    "https://www.auctionandcompany.com/",
+    "https://auction-site-ma.herokuapp.com/", 
+    "http://localhost:3001/"
+  ]
+  if (corsWhitelist.indexOf(req.headers.origin) !== -1) {
+    res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  }
   res.setHeader(
     'Access-Control-Allow-Methods',
     'OPTIONS, GET, POST, PUT, PATCH, DELETE'
