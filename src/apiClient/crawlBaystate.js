@@ -22,16 +22,32 @@ const crawl = async ({url}) => {
   //console.log(value);
 
   let data = JSON.parse(value);
+  data = data.filter((record)=>{
+    if(record.date.search("Postponed") != -1  || record.date.search("IS CANCELLED") != -1){
+      record.status = record.date.split("'>")[1];
+      record.status = record.status.split("</")[0];
+    }
+    // if(record.address == "9 Joseph Street  MEDFORD, MA"){ 
+    //   console.log(record ) 
+    // }
+    // console.log(record);
+    // console.log(record);
+    return record;
+  });
+
+  // console.log(data);
+
   data = data.filter((record) => {
-    if (record.date.search("Postponed") == -1 && record.date.search("IS CANCELLED") == -1) {
+    // if (record.date.search("Postponed") == -1 && record.date.search("IS CANCELLED") == -1) {
+
       record.date = record.date.split(" <s")[0].replace("at", "@");
       const date = new Date(record.date).toLocaleDateString();
       record.date = date;
       record.link = link;
       record.logo = logo;
-
+      
       return record;
-    }
+    // }
   });
   data.map((record) => {
     record.address = record.address + " " + record.city + ", " + record.state;
@@ -39,10 +55,10 @@ const crawl = async ({url}) => {
     delete record.city;
   });
   browser.close();
-  // console.log(data);
+  console.log(data);
   return data;
 };
 
-// crawl("https://www.baystateauction.com/auctions/state/ma");
+// crawl({url: "https://www.baystateauction.com/auctions/state/ma"});
 
 export default crawl;

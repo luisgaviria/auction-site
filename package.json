@@ -17,6 +17,7 @@
     "sendMessage": "node src/utils/messageSend.js",
     "install_client": "cd src/client && npm install",
     "build_client": "cd src/client && npm run build",
+    "test_baystate": "node ./src/apiClient/crawlBaystate.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install_client && npm run build_client"
   },
   "license": "UNLICENSED",

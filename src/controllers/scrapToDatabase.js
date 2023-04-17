@@ -29,7 +29,7 @@ const scrapToDatabase = async (req, res) => {
 
     console.log("start");
 
-    // const data = await crawlClient({ url: "https://www.amgauction.com" });
+    const data = await crawlClient({ url: "https://www.amgauction.com" });
     const data1 = await crawlCommonwealth({
       url: "http://www.commonwealthauction.com/auctions.asp?location=1",
     });
@@ -79,8 +79,8 @@ const scrapToDatabase = async (req, res) => {
       return 0;
     };
 
-    allAuctions = data1.concat(
-      // data1,
+    allAuctions = data.concat(
+      data1,
       data2,
       data3,
       data4,
@@ -94,7 +94,7 @@ const scrapToDatabase = async (req, res) => {
       data12
     );
 
-    console.log(allAuctions);
+    // console.log(allAuctions);
 
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
@@ -157,12 +157,13 @@ const scrapToDatabase = async (req, res) => {
           new Date(auc.date).setHours(0, 0, 0, 0) !=
             new Date(databaseAuction.date).setHours(0, 0, 0, 0)
         ) {
-          console.log(auc.date);
-          console.log(new Date(auc.date));
+          // console.log(auc.date);
+          // console.log(new Date(auc.date));
           await databaseAuction.$query().patch({ date: new Date(auc.date) });
         }
 
         auc.status = auc.status?.trim();
+
         if (
           auc.address == databaseAuction.address &&
           auc.status != databaseAuction.status
