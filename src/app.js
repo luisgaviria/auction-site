@@ -76,9 +76,9 @@ app.use((error,req,res,next)=>{
   });
 });
 
-cron.schedule("0 0 */3 * * *", () => {
-  scrapToDatabase();
-});
+// cron.schedule("0 0 */3 * * *", () => {
+//   scrapToDatabase();
+// });
 
 
 // if (process.env.NODE_ENV === "production") {
