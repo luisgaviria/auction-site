@@ -12,12 +12,15 @@ const filter = async () => {
       await Auction.query().deleteById(auction.id);
     }
     if (
+      status?.search("Postponed") != -1 ||
       status == "Sold" ||
       status == "Cancelled" ||
       status == "CANCELLED" ||
       status == "Postponed" ||
       status == "Canceled" ||
-      status == "CANCELED"
+      status == "CANCELED" ||
+      status == "Bank Buy Back" ||
+      status == "3rd Party Sale"
     ) {
       await Auction.query().deleteById(auction.id);
     }

@@ -35,6 +35,7 @@ const crawl = async ({ url }) => {
         date: date,
         time: time,
         logo: logo,
+        link: url 
       });
     } else {
       const date = $(insideDivs[4]).find("b").text().split("-")[0].trim();
@@ -80,6 +81,7 @@ const crawl = async ({ url }) => {
           date: date,
           time: time,
           logo: logo,
+          link: url
         });
       } else {
         const date = $(insideDivs[4]).find("b").text().split("-")[0].trim();

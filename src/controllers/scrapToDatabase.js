@@ -34,9 +34,9 @@ const scrapToDatabase = async (req, res) => {
       url: "http://www.commonwealthauction.com/auctions.asp?location=1",
     });
 
-    const data2 = await crawlTowne({
-      url: "https://www3.towneauction.com/Auctions_NoNav.aspx",
-    });
+    // const data2 = await crawlTowne({
+    //   url: "https://www3.towneauction.com/Auctions_NoNav.aspx",
+    // });
 
     const data3 = await crawlDean({
       url: "http://www.deanassociatesinc.com/auctions.htm",
@@ -81,7 +81,7 @@ const scrapToDatabase = async (req, res) => {
 
     allAuctions = data.concat(
       data1,
-      data2,
+      // data2,
       data3,
       data4,
       data5,
@@ -197,12 +197,12 @@ const scrapToDatabase = async (req, res) => {
     // console.log(sorted2.length);
 
     console.log("Finished Scraping the DB...");
-    return res
-      .status(200)
-      .json({ message: "Succesfully updated database", allAuctions: sorted2 });
+    // return res
+    //   .status(200)
+    //   .json({ message: "Succesfully updated database", allAuctions: sorted2 });
   } catch (error) {
-    // console.log(error);
-    return res.status(500).json({ errors: error });
+    console.log(error);
+    // return res.status(500).json({ errors: error });
   }
 };
 

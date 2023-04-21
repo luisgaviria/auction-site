@@ -23,10 +23,13 @@ const crawl = async ({url}) => {
 
   let data = JSON.parse(value);
   data = data.filter((record)=>{
-    if(record.date.search("Postponed") != -1  || record.date.search("IS CANCELLED") != -1){
+    if(
+      // record.date.search("Postponed") == -1  || 
+    record.date.search("IS CANCELLED") == -1){
       record.status = record.date.split("'>")[1];
-      record.status = record.status.split("</")[0];
+      record.status = record.status?.split("</")[0];
     }
+
     // if(record.address == "9 Joseph Street  MEDFORD, MA"){ 
     //   console.log(record ) 
     // }
@@ -55,7 +58,7 @@ const crawl = async ({url}) => {
     delete record.city;
   });
   browser.close();
-  console.log(data);
+  // console.log(data);
   return data;
 };
 

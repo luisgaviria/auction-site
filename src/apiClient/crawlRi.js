@@ -37,9 +37,10 @@ const crawl = async ({ url }) => {
     });
   data = data.filter((record) => {
     if (
-      record.date != "Date" &&
-      record.status.search("Postponed") == -1 &&
-      record.address.search("FEATURED") == -1
+      record.date != "Date" 
+      // &&
+      // record.status.search("Postponed") == -1
+      // record.address.search("FEATURED") == -1
     ) {
       return record;
     }
