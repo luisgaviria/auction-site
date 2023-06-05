@@ -49,12 +49,13 @@ const SignUp = () => {
     }
 
     setErrors(newErrors);
+    return newErrors;
   };
 
   const onSubmit = async (event) => {
       event.preventDefault();
-      validateInput(userPayload);
-      if(Object.keys(errors).length ===0){
+      const temp =validateInput(userPayload);
+      if(Object.keys(temp).length ===0){
           const {data} = await axios.post(url+"/api/v1/auth/register",{
             ...userPayload
           },{headers: {

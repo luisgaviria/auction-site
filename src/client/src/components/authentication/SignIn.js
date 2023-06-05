@@ -36,17 +36,25 @@ const SignInForm = () => {
     event.preventDefault();
     validateInput(userPayload);
     if (Object.keys(errors).length === 0) {
+      try {
         const {data} = await axios.post(url+"/api/v1/auth/login",{
-            ...userPayload
-        },{
-            headers: {
-                "Content-Type": "application/json",
-            }
-        });
+          ...userPayload
+      },{
+          headers: {
+              "Content-Type": "application/json",
+          }
+      });
 
-        console.log(data);
-        localStorage.setItem("token",data.token);
-        window.location.href="/";
+      console.log(data);
+      localStorage.setItem("token",data.token);
+      window.location.href="/";
+      }
+      catch(err){
+        let newErrors = {
+          password: 'Email or Password wrong!'
+        }
+        setErrors(newErrors)
+      }
     }
   };
   const onInputChange = (event) => {
@@ -59,7 +67,6 @@ const SignInForm = () => {
   return (
     <div className="grid-container" onSubmit={onSubmit}>
       <h3>Sign In</h3>
-      <h3 style={{color: 'red'}}>All Users accounts have been deleted! You must sign up again!</h3>
       <form>
         <div>
           <label>
