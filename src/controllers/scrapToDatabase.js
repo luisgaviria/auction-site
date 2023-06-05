@@ -146,12 +146,12 @@ const scrapToDatabase = async (req, res) => {
     });
 
     const databaseAuctions = await Auction.query();
-    sorted2.map(async (auc) => {
+    for(let auc of sorted2){
       // console.log(auc.address);
       // if(auc.address.search('Natick')!=-1){
       //   console.log(auc);
       // }
-      databaseAuctions.map(async (databaseAuction) => {
+      for(let databaseAuction of databaseAuctions){
         if (
           auc.address == databaseAuction.address &&
           new Date(auc.date).setHours(0, 0, 0, 0) !=
@@ -172,31 +172,22 @@ const scrapToDatabase = async (req, res) => {
           // console.log(databaseAuction.status);
           await databaseAuction.$query().patch({ status: auc.status });
         }
-        // if (
-        //   databaseAuction.link ==
-        //   "http://www.commonwealthauction.com/auctions.asp?location=1"
-        // ) {
-        //   if (auc.address == databaseAuction.address) {
-        //     console.log(auc);
-        //     console.log(databaseAuction);
-        //   }
-        // }
-
+        console.log(auc.status);
         if (
           (auc.status == "Cancelled" ||
             auc.status == "cancelled" ||
             auc.status == "CANCELLED" ||
-            auc.status == "Canceled") &&
-          auc.address == databaseAuction.address
+            auc.status == "Canceled"
+            ) && auc.address == databaseAuction.address
         ) {
           await databaseAuction.$query().delete();
         }
-      });
-    });
-    //console.log(data11, data10);
-    // console.log(sorted2.length);
+
+      }
+    }
 
     console.log("Finished Scraping the DB...");
+    return 0
     // return res
     //   .status(200)
     //   .json({ message: "Succesfully updated database", allAuctions: sorted2 });

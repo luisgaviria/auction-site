@@ -205,7 +205,7 @@ const NewRepo = (props) => {
 
       {localStorage.getItem('token') ? (
         <div className="button-container">
-          <a className="button large secondary " onClick={refreshDatabaseHandleClickButton} href="">
+          <a className="button large secondary " onClick={refreshDatabaseHandleClickButton}>
             Refresh Auctions
           </a>
         </div>
