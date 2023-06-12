@@ -28,6 +28,11 @@ const crawl = async ({url}) => {
       record.status = record.status?.split("</")[0];
       return record;
     }
+    else if(record.date.search("IS CANCELLED") != -1) {
+      record.status = record.date.split("'>")[1];
+      record.status = record.status?.split("</")[0];
+      return record;
+    }
     // if(record.address == "9 Joseph Street  MEDFORD, MA"){ 
     //   console.log(record ) 
     // }
