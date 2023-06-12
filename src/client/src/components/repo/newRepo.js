@@ -150,7 +150,7 @@ const NewRepo = (props) => {
   };
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
     return () => {};
   }, []);
 
