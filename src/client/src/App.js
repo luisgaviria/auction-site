@@ -39,6 +39,7 @@ function App() {
           <Route exact path='/login' element={<SignIn />} />
           <Route exact path='/favorites' element={<Favorites />} />
           <Route exact path='/profile' element={<Profile />} />
+          {/* <Route exact path="/details" element={} /> */}
         </Routes>
       </BrowserRouter>
     </Suspense>

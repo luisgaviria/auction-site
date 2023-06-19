@@ -24,7 +24,7 @@ const NewRepoList = memo( (props) => {
 
   return (
     <>
-      {items.map((item) => {
+      {items.map(item => {
         if (item.date) {
           if (item.status) {
             if (
