@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Auction & Company",
+  "name": "Auction & Company",
+  "description": "Massachusetts Real Estate Auctions Made Simple. Join Auction & Company to Stay Ahead of Auction Dates and Boost Your Real Estate Investments.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +9,35 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
+      "src": "logo512.jpeg",
+      "type": "image/jpeg",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "logo512.jpeg",
+      "type": "image/jpeg",
       "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["Real Estate", "Auctions"],
+  "orientation": "any",
+  "display_mode": "standalone",
+  "shortcuts": [
+    {
+      "name": "Search Real Estate Auctions",
+      "short_name": "Search",
+      "url": "/",
+      "description": "Quickly find real estate auctions in Massachusetts."
+    }
+  ],
+  "splash_screen": {
+    "image_640x1136": "logo512.jpeg"
+  },
+  "permissions": ["geolocation", "camera", "microphone"]
 }
