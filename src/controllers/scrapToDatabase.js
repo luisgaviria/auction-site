@@ -95,6 +95,11 @@ const scrapToDatabase = async (req, res) => {
     );
 
     // console.log(allAuctions);
+      allAuctions.map(auction=>{
+        if(auction.status == "On Time"){
+          console.log(auction);
+        }
+      });
 
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
@@ -117,9 +122,9 @@ const scrapToDatabase = async (req, res) => {
 
         if (!auctionTemp) {
           // console.log(auctionTemp);
-          const geostuff = await geocoder.geocode(sorted2[i].address);
-          const lat = geostuff[0].latitude.toString();
-          const lng = geostuff[0].longitude.toString();
+          // const geostuff = await geocoder.geocode(sorted2[i].address);
+          // const lat = geostuff[0].latitude.toString();
+          // const lng = geostuff[0].longitude.toString();
           // console.log(lat, lng);
           // console.log(sorted2[i].status);
           await Auction.query().insert({
@@ -132,8 +137,8 @@ const scrapToDatabase = async (req, res) => {
             address: sorted2[i].address,
             time: sorted2[i].time,
             status: sorted2[i].status,
-            lat: lat,
-            lng: lng,
+            // lat: lat,
+            // lng: lng,
           });
         }
       } catch (error) {
@@ -172,7 +177,6 @@ const scrapToDatabase = async (req, res) => {
           // console.log(databaseAuction.status);
           await databaseAuction.$query().patch({ status: auc.status });
         }
-        console.log(auc.status);
         if (
           (auc.status == "Cancelled" ||
             auc.status == "cancelled" ||

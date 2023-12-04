@@ -81,11 +81,16 @@ const crawl = async ({ url }) => {
     }
   }
 
+  for(let i=0; i<data.length; i++){
+    data[i].date = data[i]["Auction Date"];
+    data[i].status = "On Time";  // if auctions have no status that means that they are active
+  }
+  console.log(data);
   return data;
 };
 
-// crawl({
-//   url: "https://www.amgauction.com/",
-// });
+crawl({
+  url: "https://www.amgauction.com/",
+});
 
 export default crawl;

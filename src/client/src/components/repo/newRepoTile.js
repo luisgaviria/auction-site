@@ -23,7 +23,7 @@ const NewRepoTile = (props) => {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         }
-      })
+      );
 
       await props.reloadFavorites();
     } else {

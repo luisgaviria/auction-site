@@ -1,3 +1,4 @@
+// WORKING
 import * as cheerio from "cheerio";
 import fetch from "node-fetch";
 
@@ -41,6 +42,7 @@ const crawl = async ({ url }) => {
           deposit = $(dd[i]).text();
         }
       }
+
       data.push({
         logo: logo,
         status: auction_status,
@@ -73,7 +75,7 @@ const crawl = async ({ url }) => {
     record.date = convertStringDateToDate(record.date);
     record.status = "On Schedule";
   });
-
+   
   return data;
 };
 
