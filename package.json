@@ -74,6 +74,7 @@
     "puppeteer": "^8.0.0",
     "react-helmet": "^6.1.0",
     "regenerator-runtime": "^0.13.7",
+    "selenium-webdriver": "^4.16.0",
     "string-similarity": "^4.0.4",
     "twilio": "^3.75.0"
   }

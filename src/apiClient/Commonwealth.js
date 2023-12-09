@@ -1,61 +1,124 @@
-import fetch from "node-fetch";
-import * as cheerio from "cheerio";
+import {By,Builder,Browser, Condition, until} from "selenium-webdriver";
+import assert from "assert";
 
-const crawl = async ({ url }) => {
-  const response = await fetch(url);
-  const body = await response.text();
-  const $ = cheerio.load(body);
+const logo = "https://auction-site-ma.herokuapp.com/auction_photos/commonwealth.webp";
 
-  const logo = "https://auction-site-ma.herokuapp.com/auction_photos/commonwealth.webp";
+const crawl = async({url}) =>{
+  const auctions = [];
 
-  const real_data = [];
-  let data = [];
-  let temp_data = [];
-  $(
-    "body > table.menu > tbody > tr:nth-child(2) > td.pagebody > table > tbody > tr > td:nth-child(2) > div"
-  )
-    .toArray()
-    .map((element) => {
-      temp_data.push($(element).text());
-      if ($(element).find("img").attr("src") == "images/mapquest.gif") {
-        data.push(temp_data);
-        temp_data = [];
+  let driver = await new Builder().forBrowser(Browser.FIREFOX).build();
+  try {
+    await driver.get(url);
+    let elements = [await driver.findElements(By.className('odd')),await driver.findElements(By.className('even'))];
+
+      for(const tr of elements[0]){
+        const tds = await tr.findElements(By.xpath("./child::*"));
+        const a = await tds[5].findElement(By.xpath("./child::*"));
+        auctions.push({
+          status: await tds[3].getText(),
+          logo: logo,
+          date: await tds[0].getText(),
+          link: await a.getAttribute("href"),
+          address: await tds[1].getText() + ", " +await tds[2].getText(),
+          deposit: await tds[4].getText()
+        });         
+      } 
+
+      for(const tr of elements[1]){
+        const tds = await tr.findElements(By.xpath("./child::*"));
+         
+        const a = await tds[5].findElement(By.xpath("./child::*"));
+        auctions.push({
+          status: await tds[3].getText(),
+          logo: logo,
+          date: await tds[0].getText(),
+          link: await a.getAttribute("href"),
+          address: await tds[1].getText() + ", " +await tds[2].getText(),
+          deposit: await tds[4].getText()
+        });         
+      } 
+
+      let nextButton = await driver.findElement(By.xpath('/html/body/main/div/div[3]/div/div/div/div/div[2]/a[2]'));
+
+      await nextButton.click();
+      
+
+      let page2 = await driver.findElement(By.xpath("/html/body/main/div/div[3]/div/div/div/div/div[2]/span/a[2]"));
+
+      await driver.wait(until.elementIsVisible(page2),5000);
+      
+      elements = [await driver.findElements(By.className('odd')),await driver.findElements(By.className('even'))];
+
+      for(const tr of elements[0]){
+        const tds = await tr.findElements(By.xpath("./child::*"));
+        const a = await tds[5].findElement(By.xpath("./child::*"));
+        auctions.push({
+          status: await tds[3].getText(),
+          logo: logo,
+          date: await tds[0].getText(),
+          link: await a.getAttribute("href"),
+          address: await tds[1].getText() + ", " +await tds[2].getText(),
+          deposit: await tds[4].getText()
+        });         
+      } 
+
+      for(const tr of elements[1]){
+        const tds = await tr.findElements(By.xpath("./child::*"));
+        const a = await tds[5].findElement(By.xpath("./child::*"));
+        auctions.push({
+          status: await tds[3].getText(),
+          logo: logo,
+          date: await tds[0].getText(),
+          link: await a.getAttribute("href"),
+          address: await tds[1].getText() + ", " +await tds[2].getText(),
+          deposit: await tds[4].getText()
+        });         
+      } 
+      nextButton = await driver.findElement(By.xpath('/html/body/main/div/div[3]/div/div/div/div/div[2]/a[2]'));
+      
+      await nextButton.click();
+
+      // let page3 = await driver.findElement(By.xpath("/html/body/main/div/div[3]/div/div/div/div/div[2]/span/a[2]"));
+     
+      // await driver.wait(until.elementIsVisible(page3),5000);
+
+      elements = [await driver.findElements(By.className('odd')),await driver.findElements(By.className('even'))];
+
+      for(const tr of elements[0]){
+        const tds = await tr.findElements(By.xpath("./child::*"));
+        const a = await tds[5].findElement(By.xpath("./child::*"));
+        auctions.push({
+          status: await tds[3].getText(),
+          logo: logo,
+          date: await tds[0].getText(),
+          link: await a.getAttribute("href"),
+          address: await tds[1].getText() + ", " +await tds[2].getText(),
+          deposit: await tds[4].getText()
+        });         
+      } 
+
+      for(const tr of elements[1]){
+        const tds = await tr.findElements(By.xpath("./child::*"));
+        const a = await tds[5].findElement(By.xpath("./child::*"));
+        auctions.push({
+          status: await tds[3].getText(),
+          logo: logo,
+          date: await tds[0].getText(),
+          link: await a.getAttribute("href"),
+          address: await tds[1].getText() + ", " +await tds[2].getText(),
+          deposit: await tds[4].getText()
+        });         
       }
-    });
-
-  for (let i = 0; i < data.length; i++) {
-    for (let j = 0; j < data[i].length; j++) {
-      data[i][j] = data[i][j].trim();
+      console.log(auctions); 
     }
+  finally {
+    await driver.quit();
+    console.log(auctions.length);
+    return auctions;
+    
   }
-
-  //   data = data.filter((article) => {
-  //     if (!article[6].length) {
-  //       return article;
-  //     }
-  //   }); // check for postponed
-
-  data.map((article) => {
-    console.log(article[0]);
-    // console.log(article[0]);
-
-    real_data.push({
-      status: article[0].length ? article[0] : "On Schedule",
-      logo: logo,
-      date: article[1].split(" ")[0],
-      link: url,
-      address: article[2],
-      deposit: article[4],
-    });
-  });
-
-  // console.log(real_data);
-
-  return real_data;
 };
 
-// crawl({
-//   url: "http://www.commonwealthauction.com/auctions.asp?location=1",
-// });
+crawl({url: "https://www.commonwealthauctions.com/ma-auctions"});
 
-export default crawl;
+export default crawl
