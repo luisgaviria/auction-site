@@ -1,10 +1,25 @@
 import {By,Builder,Browser, Condition, until} from "selenium-webdriver";
-import assert from "assert";
 
 const logo = "https://auction-site-ma.herokuapp.com/auction_photos/commonwealth.webp";
 
+const formatDates = (auctions)=>{
+  let dates = [];
+  let tempAuctions = auctions;
+  for(let i=0; i<auctions.length; i++){
+    dates.push(tempAuctions[i].date);
+  }  
+
+  for(let i=0; i<auctions.length; i++){
+    // console.log(dates[i
+    const goodFormatDate = dates[i].split(", ")[1] + ", "+ (dates[i].split(", ")[2]).replace("at","");
+    tempAuctions[i].date = goodFormatDate;
+  }
+  
+  return tempAuctions;
+};  
+
 const crawl = async({url}) =>{
-  const auctions = [];
+  let auctions = [];
 
   let driver = await new Builder().forBrowser(Browser.FIREFOX).build();
   try {
@@ -109,16 +124,20 @@ const crawl = async({url}) =>{
           deposit: await tds[4].getText()
         });         
       }
-      console.log(auctions); 
+       
+      
+      // console.log(auctions); 
     }
   finally {
     await driver.quit();
-    console.log(auctions.length);
+    auctions = formatDates(auctions);
+    // console.log(auctions);
+    // console.log(auctions.length);
     return auctions;
     
   }
 };
 
-crawl({url: "https://www.commonwealthauctions.com/ma-auctions"});
+// crawl({url: "https://www.commonwealthauctions.com/ma-auctions"});
 
 export default crawl

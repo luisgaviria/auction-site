@@ -22,25 +22,31 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-app.use(sslRedirect());
+// app.use(sslRedirect());
 
 // app.use(cors()) to do to make it work for specific urls
 
 app.use((req, res, next) => {//cors policy
 
-  res.setHeader('Access-Control-Allow-Origin', "*");
+  // res.setHeader('Access-Control-Allow-Origin', "*");
+  // res.setHeader(
+  //   'Access-Control-Allow-Methods',
+  //   'OPTIONS, GET, POST, PUT, PATCH, DELETE'
+  // );
+  // res.setHeader('Accept-Encoding','gzip, compress, br');
+  // res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization, Accept');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(
     'Access-Control-Allow-Methods',
     'OPTIONS, GET, POST, PUT, PATCH, DELETE'
   );
-  res.setHeader('Accept-Encoding','gzip, compress, br');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization, Accept');
-  // res.setHeader('content-security-policy','report-uri/report-csp-violation');
-  res.setHeader('permissions-policy','interest-cohort=()');
-  res.setHeader('referrer-policy','no-referrer-when-downgrade');
-  res.setHeader('strict-transport-security','max-age=31622400; includeSubDomains; preload');
-  res.setHeader('x-content-type-options','nosniff');
-  res.setHeader('x-frame-options','sameorigin');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, person2, input, X-Requested-With, Origin, Accept');
+  // // res.setHeader('content-security-policy','report-uri/report-csp-violation');
+  // res.setHeader('permissions-policy','interest-cohort=()');
+  // res.setHeader('referrer-policy','no-referrer-when-downgrade');
+  // res.setHeader('strict-transport-security','max-age=31622400; includeSubDomains; preload');
+  // res.setHeader('x-content-type-options','nosniff');
+  // res.setHeader('x-frame-options','sameorigin');
   next();
 });
 
