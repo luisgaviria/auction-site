@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
-// import dotenv from 'dotenv';
-// dotenv.config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 export const isAuth = (req, res, next) => {
   const authtoken = req.get("Authorization");
@@ -25,5 +25,6 @@ export const isAuth = (req, res, next) => {
     throw error;
   }
   req.userId = decodeToken.id;
+  // next();
   next();
 };

@@ -31,7 +31,7 @@ const scrapToDatabase = async (req, res) => {
 
     const data = await crawlClient({ url: "https://www.amgauction.com" });
     const data1 = await crawlCommonwealth({
-      url: "http://www.commonwealthauction.com/auctions.asp?location=1",
+      url: "http://www.commonwealthauction.com/ma-auctions",
     });
 
     // const data2 = await crawlTowne({

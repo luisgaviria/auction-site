@@ -21,7 +21,6 @@ const crawl = async ({ url }) => {
         const details = $2("#page").find(".sqs-block-content");
         const time_start = await $2("#page").find("time.event-time-12hr-start").text();
         const logo = "https://auction-site-ma.herokuapp.com/auction_photos/amg.webp";
-        //console.log(time_start);
 
         await details
           .find("p")

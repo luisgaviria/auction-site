@@ -143,10 +143,10 @@ const NewRepo = (props) => {
     });
   };
 
-  useEffect(() => {
-    // fetchData();
-    return () => {};
-  }, []);
+  // useEffect(() => {
+  //   // fetchData();
+  //   return () => {};
+  // }, []);
 
   useEffect(() => {
     const getPagedData = async () => {
