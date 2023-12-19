@@ -131,13 +131,13 @@ const crawl = async({url}) =>{
   finally {
     await driver.quit();
     auctions = formatDates(auctions);
-    // console.log(auctions);
+    console.log(auctions);
     // console.log(auctions.length);
     return auctions;
     
   }
 };
 
-// crawl({url: "https://www.commonwealthauctions.com/ma-auctions"});
+crawl({url: "https://www.commonwealthauctions.com/ma-auctions"});
 
 export default crawl

@@ -17,7 +17,7 @@ const crawl = async ({ url }) => {
       const dt = $(item).find("dt");
       const dd = $(item).find("dd");
       let auction_status = null;
-      let property_status = null;
+      // let property_status = null;
       let auction_date = null;
       let address = null;
       let description = null;
@@ -25,9 +25,6 @@ const crawl = async ({ url }) => {
       for (let i = 0; i < dt.length; i++) {
         if ($(dt[i]).text() == "Auction Status:") {
           auction_status = $(dd[i]).text();
-        }
-        if ($(dt[i]).text() == "Property Status:") {
-          property_status = $(dd[i]).text();
         }
         if ($(dt[i]).text() == "Auction Date:") {
           auction_date = $(dd[i]).text();
@@ -46,7 +43,7 @@ const crawl = async ({ url }) => {
       data.push({
         logo: logo,
         status: auction_status,
-        property_status: property_status,
+        // property_status: property_status,
         date: auction_date,
         address: address,
         deposit: deposit,

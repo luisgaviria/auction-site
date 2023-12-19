@@ -32,7 +32,8 @@ const scrapToDatabase = async (req, res) => {
     const data = await crawlClient({ url: "https://www.amgauction.com" });
     const data1 = await crawlCommonwealth({
       url: "http://www.commonwealthauction.com/ma-auctions",
-    });
+    }); // this one works with selenium if selenium works on server it will work but it depends...
+
 
     // const data2 = await crawlTowne({
     //   url: "https://www3.towneauction.com/Auctions_NoNav.aspx",
@@ -80,7 +81,7 @@ const scrapToDatabase = async (req, res) => {
     };
 
     allAuctions = data.concat(
-      data1,
+      // data1,
       // data2,
       data3,
       data4,
@@ -93,13 +94,6 @@ const scrapToDatabase = async (req, res) => {
       data11,
       data12
     );
-
-    // console.log(allAuctions);
-      allAuctions.map(auction=>{
-        if(auction.status == "On Time"){
-          console.log(auction);
-        }
-      });
 
     let sorted = allAuctions.sort(date_sort_asc).reverse();
 
@@ -142,7 +136,8 @@ const scrapToDatabase = async (req, res) => {
           });
         }
       } catch (error) {
-        console.log(error);
+        console.log("error inserting auction to database");
+        // console.log(error);
       }
     }
 

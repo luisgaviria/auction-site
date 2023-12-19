@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import fetch from "node-fetch";
-
+// here also selenium they changed layout of site
 const crawl = async ({ url }) => {
   const response = await fetch(url);
   const body = await response.text();
@@ -73,8 +73,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-// crawl({
-//   url: "http://www.deanassociatesinc.com/auctions.htm",
-// });
+crawl({
+  url: "http://www.deanassociatesinc.com/auctions",
+});
 
 export default crawl;
