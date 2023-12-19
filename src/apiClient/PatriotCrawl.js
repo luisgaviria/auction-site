@@ -47,8 +47,8 @@ const crawl = async ({ url }) => {
   return data;
 };
 
-// crawl({
-//   url: "https://patriotauctioneers.com/auctions-in-massachusetts/",
-// });
+crawl({
+  url: "https://patriotauctioneers.com/auctions-in-massachusetts/",
+});
 
 export default crawl;

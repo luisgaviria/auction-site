@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 // import { withRouter } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 import NewRepoTile from "./newRepoTile.js";
 import { memo } from 'react';
 
 const NewRepoList = memo( (props) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]); 
   useEffect(() => {
     const temp = [];
     props.repo.map((repoItem, i) => {
@@ -47,11 +48,11 @@ const NewRepoList = memo( (props) => {
             return (
               <React.Suspense
                 key={item.id}
-                // fallback={
-                //   <Spinner animation="border" role="status">
-                //     <span className="visually-hidden"></span>
-                //   </Spinner>
-                // }
+                fallback={
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden"></span>
+                  </Spinner>
+                }
               >
                 <NewRepoTile
                   favorite={item.favorite}

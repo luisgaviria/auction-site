@@ -7,6 +7,7 @@ import axios from "axios";
 import { url } from "../../url";
 import { MemoizedMap } from "../map/Map";
 import Pagination from "react-bootstrap/Pagination";
+import { Spinner } from "react-bootstrap";
 
 // import Spinner from "react-bootstrap/Spinner";
 // import footage from "../layout/video/footage.mp4";
@@ -21,7 +22,7 @@ const NewRepo = (props) => {
     page: 1,
     limit: 48,
     pages: 0,
-    loading: false,
+    loading: true,
   });
 
   const onClickPage = (page) => {
@@ -30,6 +31,7 @@ const NewRepo = (props) => {
       repo: [],
       favorites: [],
       page: page,
+      loading: true
     });
   };
 
@@ -125,30 +127,6 @@ const NewRepo = (props) => {
     }
   };
 
-  // const getRepo = async () => {
-  //   try {
-  //     const response = await axios.get(url+"/api/v1/crawl",{
-  //         headers: {
-  //             "Content-Type": "application/json"
-  //         }
-  //     });
-  //     if (!response.ok) {
-  //       const errorMessage = `${response.status} (${response.statusText})`;
-  //       const error = new Error(errorMessage);
-  //       throw error;
-  //     }
-
-  //     // console.log(response.body);
-  //     const body = await response.json();
-
-  //     setState((prevState) => {
-  //       return { ...prevState, repo: body.allAuctions };
-  //     });
-  //   } catch (err) {
-  //     console.error(`Error in fetch: ${err.message}`);
-  //   }
-  // };
-
   const getFavorites = async () => {
     // const id = localStorage.getItem("userId");
     // console.log(id);
@@ -240,7 +218,11 @@ const NewRepo = (props) => {
         <div className="map">
           <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." />
         </div>
-        <Pagination
+
+          {
+            state.loading ? <div style={{textAlign: 'center'}}><Spinner animation="border" role="status"/></div> :           
+       <>
+               <Pagination
           between={4}
           size="lg"
           style={{
@@ -251,17 +233,20 @@ const NewRepo = (props) => {
         >
           <ReturnPages />
         </Pagination>
-        <div className="list-item">
-          <>
+       <div className="list-item">
+            
             <ScrollToTop />
-          </>
-          <NewRepoList
-            getFavorites={getFavorites}
-            repo={state.repo}
-            favorites={state.favorites}
-            user={localStorage.getItem("userId")}
-          />
+            <NewRepoList
+              getFavorites={getFavorites}
+              repo={state.repo}
+              favorites={state.favorites}
+              user={localStorage.getItem("userId")}
+            />
         </div>
+        </>   
+      
+          }
+
       </>
     </div>
   );
