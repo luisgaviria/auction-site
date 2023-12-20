@@ -29,6 +29,7 @@ const crawl = async ({ url }) => {
     });
   }
   data.shift();
+  // console.log(data);
   return data;
 };
 

@@ -27,7 +27,7 @@ const scrapToDatabase = async (req, res) => {
   try {
     let allAuctions = [];
 
-    console.log("start");
+    // console.log("start");
 
     const data = await crawlClient({ url: "https://www.amgauction.com" });
     const data1 = await crawlCommonwealth({
@@ -40,7 +40,7 @@ const scrapToDatabase = async (req, res) => {
     // });
 
     const data3 = await crawlDean({
-      url: "http://www.deanassociatesinc.com/auctions.htm",
+      url: "http://www.deanassociatesinc.com/auctions",
     });
     const data4 = await crawlApg({
       url: "https://apg-online.com/auction-schedule/",

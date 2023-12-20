@@ -1,80 +1,37 @@
-import * as cheerio from "cheerio";
-import fetch from "node-fetch";
+// import * as cheerio from "cheerio";
+// import fetch from "node-fetch";
+
+import { Browser,Builder, By,until } from "selenium-webdriver";
+const logo = "https://auction-site-ma.herokuapp.com/auction_photos/dean.webp";
+
 // here also selenium they changed layout of site
 const crawl = async ({ url }) => {
-  const response = await fetch(url);
-  const body = await response.text();
-  const $ = cheerio.load(body);
-
-  const logo = "https://auction-site-ma.herokuapp.com/auction_photos/dean.webp";
-
-  let data = [];
-
-  let links = $("body > center:nth-child(2) > table > tbody > tr")
-    .toArray()
-    .map((item) => {
-      const tds = $(item).find("td");
-      let date = new Date(
-        $(tds[0]).text().trim().replace(/\n/g, "").replace(/\t/g, "").replace(/  +/g, " ").trim()
-      ).toLocaleDateString();
-
-      // let date = new Date($(tds[0]).text().trim("\n")).toLocaleDateString();
-      const hour = $(tds[1])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-      const address = $(tds[2])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-      const deposit = $(tds[3])
-        .text()
-        .trim()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-      const balance_due = $(tds[4])
-        .text()
-        .replace(/\n/g, "")
-        .replace(/\t/g, "")
-        .replace(/  +/g, " ")
-        .trim();
-
-      data.push({
-        logo: logo,
-        date: date,
-        hour: hour,
+  const driver = await new Builder().forBrowser(Browser.FIREFOX).build();
+  const auctions = [];   
+  try{ 
+    await driver.get(url);
+    await driver.sleep(8000);
+    let trs = await driver.findElements(By.xpath("/html/body/div/div[1]/main/section/div[1]/div/table/tbody/child::*"));
+    for(const tr of trs){
+      const tds = await tr.findElements(By.xpath("./child::*")); 
+      const date = await tds[0].getText(); 
+      const address = await tds[2].getText();
+      const deposit = await tds[3].getText();
+      auctions.push({
+        date: new Date(date).toISOString(),
         address: address,
         deposit: deposit,
-        balance_due: balance_due,
-        link: url,
-      });
-    });
+        logo: logo,
+        link: "https://deanassociatesinc.com/auctions/",
+        status: "Active"
+      }); 
 
-  data.pop();
-  data.shift();
-  data.shift();
-
-  data = data.filter((article) => {
-    if (article.address.search("CANCELLED") < 0) {
-      return article;
     }
-    // console.log(article.address.search("CANCELLED"));
-  });
-
-  // console.log(data);
-  return data;
-};
-
-crawl({
-  url: "http://www.deanassociatesinc.com/auctions",
-});
-
+    await driver.close(); 
+    return auctions;
+  }
+  catch(err){ 
+    console.log(err);
+  }
+}
 export default crawl;

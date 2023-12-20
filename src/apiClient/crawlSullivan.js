@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import * as cheerio from "cheerio";
-
+ // sullivan change layout
 const crawl = async ({ url }) => {
   const response = await fetch(url);
   const body = await response.text();
@@ -45,7 +45,7 @@ const crawl = async ({ url }) => {
         logo: logo,
       });
     }
-    // console.log(data);
+    console.log(data);
     return data;
   } catch (err) {
     console.log(err);

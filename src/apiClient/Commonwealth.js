@@ -138,6 +138,6 @@ const crawl = async({url}) =>{
   }
 };
 
-crawl({url: "https://www.commonwealthauctions.com/ma-auctions"});
+// crawl({url: "https://www.commonwealthauctions.com/ma-auctions"});
 
 export default crawl
