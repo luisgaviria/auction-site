@@ -8,7 +8,7 @@ const NewRepoTile = (props) => {
   let { status, date, address, city, state, link, deposit, logo, id } =
     props.repoData;
   date = new Date(date).toDateString();
-  if (deposit.length > 48) {
+  if (deposit?.length > 48) {
     deposit = `${deposit.substring(0, 48)}...`;
   }
 

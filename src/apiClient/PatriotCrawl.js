@@ -44,11 +44,12 @@ const crawl = async ({ url }) => {
     });
   }
 
+  // console.log(data);
   return data;
 };
 
-crawl({
-  url: "https://patriotauctioneers.com/auctions-in-massachusetts/",
-});
+// crawl({
+//   url: "https://patriotauctioneers.com/auctions-in-massachusetts/",
+// });
 
 export default crawl;

@@ -107,7 +107,7 @@ const crawl = async ({ url }) => {
 };
 
 // crawl({
-  // url: "https://www.re-auctions.com/Auction-Schedule/PropertyAgentName/-1/sortBy/cf11",
+//   url: "https://www.re-auctions.com/Auction-Schedule/PropertyAgentName/-1/sortBy/cf11",
 // });
 
 export default crawl;
