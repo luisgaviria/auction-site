@@ -45,10 +45,10 @@ const scrapToDatabase = async (req, res) => {
     const data4 = await crawlApg({
       url: "https://apg-online.com/auction-schedule/",
     });
-    const data5 = await crawlTache({
-      url:
-        "https://docs.google.com/spreadsheets/u/1/d/14nrcaKBhCA61FcnBwU6EbiDbRQtOP-gQVxJVvxg5_o0/pubhtml/sheet?headers=false&gid=0",
-    });
+    // const data5 = await crawlTache({
+    //   url:
+    //     "https://docs.google.com/spreadsheets/u/1/d/14nrcaKBhCA61FcnBwU6EbiDbRQtOP-gQVxJVvxg5_o0/pubhtml/sheet?headers=false&gid=0",
+    // });
     const data6 = await crawlHarvard({ url: "http://harvardauctioneers.com/" });
     const data7 = await crawlDaniel({
       url:
@@ -85,7 +85,7 @@ const scrapToDatabase = async (req, res) => {
       // data2,
       data3,
       data4,
-      data5,
+      // data5,
       data6,
       data7,
       data8,
@@ -176,7 +176,8 @@ const scrapToDatabase = async (req, res) => {
           (auc.status == "Cancelled" ||
             auc.status == "cancelled" ||
             auc.status == "CANCELLED" ||
-            auc.status == "Canceled"
+            auc.status == "Canceled" ||
+            auc.status == "postponed"
             ) && auc.address == databaseAuction.address
         ) {
           await databaseAuction.$query().delete();

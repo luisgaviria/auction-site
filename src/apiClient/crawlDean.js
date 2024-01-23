@@ -17,14 +17,21 @@ const crawl = async ({ url }) => {
       const date = await tds[0].getText(); 
       const address = await tds[2].getText();
       const deposit = await tds[3].getText();
-      auctions.push({
-        date: new Date(date).toISOString(),
-        address: address,
-        deposit: deposit,
-        logo: logo,
-        link: "https://deanassociatesinc.com/auctions/",
-        status: "Active"
-      }); 
+      try {
+        console.log(date);
+        auctions.push({
+          date: new Date(date).toISOString(),
+          address: address,
+          deposit: deposit,
+          logo: logo,
+          link: "https://deanassociatesinc.com/auctions/",
+          status: "Active"
+        }); 
+      }
+      catch(err) { 
+        console.log(err);
+      }
+
 
     }
     await driver.close(); 
