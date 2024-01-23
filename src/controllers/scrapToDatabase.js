@@ -23,7 +23,8 @@ const options = {
 
 const geocoder = NodeGeocoder(options);
 
-const scrapToDatabase = async (req, res) => {
+const scrapToDatabase = async (req, res) => { 
+  console.log("Started scraping to database")
   try {
     let allAuctions = [];
 
@@ -116,9 +117,9 @@ const scrapToDatabase = async (req, res) => {
 
         if (!auctionTemp) {
           // console.log(auctionTemp);
-          // const geostuff = await geocoder.geocode(sorted2[i].address);
-          // const lat = geostuff[0].latitude.toString();
-          // const lng = geostuff[0].longitude.toString();
+          const geostuff = await geocoder.geocode(sorted2[i].address);
+          const lat = geostuff[0].latitude.toString();
+          const lng = geostuff[0].longitude.toString();
           // console.log(lat, lng);
           // console.log(sorted2[i].status);
           await Auction.query().insert({
@@ -131,11 +132,12 @@ const scrapToDatabase = async (req, res) => {
             address: sorted2[i].address,
             time: sorted2[i].time,
             status: sorted2[i].status,
-            // lat: lat,
-            // lng: lng,
+            lat: lat,
+            lng: lng,
           });
         }
       } catch (error) {
+        console.log(error);
         console.log("error inserting auction to database");
         // console.log(error);
       }

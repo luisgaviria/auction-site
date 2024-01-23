@@ -79,7 +79,8 @@ const MyMapComponent = compose(
       onIdle={() => forceUpdate()}
       options={options}
     >
-      {props.auctions.map((auction, index) => {
+      {props.auctions.map((auction, index) => { 
+        console.log(props.auctions);
         return (
         // return props.isMarkerShown ? (
           <Marker
