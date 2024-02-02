@@ -18,7 +18,7 @@ import Auction from "../models/Auction.js";
 
 const options = {
   provider: "google",
-  apiKey: "AIzaSyBIa95EK04YAEKm3rg3QN0nbxmRpTRIwk4",
+  apiKey: "AIzaSyDpH2-Av-Vx28bMqZaTA0VTTy7j1ffRvR0",
 };
 
 const geocoder = NodeGeocoder(options);
@@ -120,7 +120,7 @@ const scrapToDatabase = async (req, res) => {
           const geostuff = await geocoder.geocode(sorted2[i].address);
           const lat = geostuff[0].latitude.toString();
           const lng = geostuff[0].longitude.toString();
-          // console.log(lat, lng);
+          console.log(lat, lng);
           // console.log(sorted2[i].status);
           await Auction.query().insert({
             deposit: sorted2[i].deposit,
