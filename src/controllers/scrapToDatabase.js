@@ -188,7 +188,7 @@ const scrapToDatabase = async (req, res) => {
       }
     }
 
-    console.log("Finished Scraping the DB...");
+    console.log("Finished Scraping to the DB...");
     return res
       .status(200)
       .json({ message: "Succesfully updated database", allAuctions: sorted2 });
