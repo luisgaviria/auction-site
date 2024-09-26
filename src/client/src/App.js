@@ -7,6 +7,7 @@ import ReactGA from "react-ga";
 
 const TopBar = lazy(() => import("./components/TopBar.js"));
 const Header = lazy(() => import("./components/Header.js"));
+const Footer = lazy(() => import("./components/Footer.js"));
 const NewRepo = lazy(() => import("./components/repo/newRepo"));
 const AboutUs = lazy(() => import("./components/aboutUs/AboutUs.js"));
 const SignUp = lazy(() => import("./components/authentication/SignUp.js"));
@@ -28,19 +29,20 @@ function App() {
     //   });
   }, []);
   return (
-    <Suspense fallback={<div className='loader'>Loading...</div>}>
+    <Suspense fallback={<div className="loader">Loading...</div>}>
       <BrowserRouter>
         <TopBar />
         <Header />
         <Routes>
-          <Route exact path='/' element={<NewRepo />} />
-          <Route exact path='/about' element={<AboutUs />} />
-          <Route exact path='/register' element={<SignUp />} />
-          <Route exact path='/login' element={<SignIn />} />
-          <Route exact path='/favorites' element={<Favorites />} />
-          <Route exact path='/profile' element={<Profile />} />
+          <Route exact path="/" element={<NewRepo />} />
+          <Route exact path="/about" element={<AboutUs />} />
+          <Route exact path="/register" element={<SignUp />} />
+          <Route exact path="/login" element={<SignIn />} />
+          <Route exact path="/favorites" element={<Favorites />} />
+          <Route exact path="/profile" element={<Profile />} />
           {/* <Route exact path="/details" element={} /> */}
         </Routes>
+        <Footer />
       </BrowserRouter>
     </Suspense>
     // <div className="App">

@@ -203,7 +203,7 @@ const NewRepo = (props) => {
         />
       </Helmet>
 
-      {localStorage.getItem("token") ? (
+      {/* {localStorage.getItem("token") ? (
         <div className="button-container">
           <a
             className="button large secondary "
@@ -212,7 +212,7 @@ const NewRepo = (props) => {
             Refresh Auctions
           </a>
         </div>
-      ) : null}
+      ) : null} */}
 
       <>
         <div className="map">
@@ -252,6 +252,18 @@ const NewRepo = (props) => {
                 user={localStorage.getItem("userId")}
               />
             </div>
+            <Pagination
+              between={4}
+              size="lg"
+              style={{
+                listStyle: "none",
+                justifyContent: "center",
+                display: "flex",
+                marginTop: "2rem",
+              }}
+            >
+              <ReturnPages />
+            </Pagination>
           </>
         )}
       </>
