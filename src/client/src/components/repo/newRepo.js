@@ -31,7 +31,7 @@ const NewRepo = (props) => {
       repo: [],
       favorites: [],
       page: page,
-      loading: true
+      loading: true,
     });
   };
 
@@ -219,34 +219,41 @@ const NewRepo = (props) => {
           <MemoizedMap alt="map, centered in the Mass area, markers displayed on each auction location." />
         </div>
 
-          {
-            state.loading ? <div style={{textAlign: 'center'}}><Spinner animation="border" role="status"/></div> :           
-       <>
-               <Pagination
-          between={4}
-          size="lg"
-          style={{
-            listStyle: "none",
-            justifyContent: "center",
-            display: "flex",
-          }}
-        >
-          <ReturnPages />
-        </Pagination>
-       <div className="list-item">
-            
-            <ScrollToTop />
-            <NewRepoList
-              getFavorites={getFavorites}
-              repo={state.repo}
-              favorites={state.favorites}
-              user={localStorage.getItem("userId")}
-            />
-        </div>
-        </>   
-      
-          }
-
+        {state.loading ? (
+          <div
+            style={{
+              display: "grid",
+              placeItems: "center",
+              height: "50vh",
+              width: "100vw",
+            }}
+          >
+            <Spinner animation="border" role="status" />
+          </div>
+        ) : (
+          <>
+            <Pagination
+              between={4}
+              size="lg"
+              style={{
+                listStyle: "none",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <ReturnPages />
+            </Pagination>
+            <div className="list-item">
+              <ScrollToTop />
+              <NewRepoList
+                getFavorites={getFavorites}
+                repo={state.repo}
+                favorites={state.favorites}
+                user={localStorage.getItem("userId")}
+              />
+            </div>
+          </>
+        )}
       </>
     </div>
   );

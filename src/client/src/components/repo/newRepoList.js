@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 // import { withRouter } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import NewRepoTile from "./newRepoTile.js";
-import { memo } from 'react';
+import { memo } from "react";
 
-const NewRepoList = memo( (props) => {
-  const [items, setItems] = useState([]); 
+const NewRepoList = memo((props) => {
+  const [items, setItems] = useState([]);
   useEffect(() => {
     const temp = [];
     props.repo.map((repoItem, i) => {
@@ -19,13 +19,13 @@ const NewRepoList = memo( (props) => {
       temp.push({ ...repoItem, favorite: favoriteTemp });
     });
 
-    setItems(temp); 
-    return ()=>{};
-  }, [props.favorites,props.repo]);
+    setItems(temp);
+    return () => {};
+  }, [props.favorites, props.repo]);
 
   return (
     <>
-      {items.map(item => {
+      {items.map((item) => {
         if (item.date) {
           if (item.status) {
             if (
