@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="left text-footer-links">
           <div className="footer-menu widget_block">
             <div className="footer-menu-title">Social</div>
-            <ul>
+            <div>
               {/* <li className="li-footer">
                 <a href="#" target="_blank" rel="noreferrer noopener">
                   Instagram
@@ -31,34 +31,42 @@ const Footer = () => {
                   Twitter
                 </a>
               </li> */}
-              <li className="li-footer">
-                <a href="#" target="_blank" rel="noreferrer noopener">
+              <div className="li-footer">
+                <a
+                  className="tel"
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   LinkedIn
                 </a>
-              </li>
-              <li className="li-footer">
+              </div>
+              <div className="li-footer">
                 <a
+                  className="tel"
                   href="https://www.facebook.com/profile.php?id=100094138875070"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
                   Facebook
                 </a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
           <div className="footer-menu widget_block">
             <div className="footer-menu-title">Info</div>
-            <ul>
-              <li className="li-footer">
-                <a href="/about/">About</a>
-              </li>
-              <li className="li-footer">
-                <a href="https://www.bostonharmonyhomes.com">
-                  Properties on the Market
+            <div>
+              <div className="li-footer">
+                <a className="tel" href="/about/">
+                  About
                 </a>
-              </li>
-            </ul>
+              </div>
+              {/* <div className="li-footer"> */}
+              <a className="tel" href="https://www.bostonharmonyhomes.com">
+                Properties on the Market
+              </a>
+              {/* </div> */}
+            </div>
           </div>
         </div>
         <div className="right text-footer-links">

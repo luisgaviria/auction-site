@@ -345,8 +345,8 @@ h1 {
   bottom: 2rem;
   display: grid;
   place-items: center;
-
-  width: 80%;
+  left: 50%; /* Move it to the middle */
+  transform: translateX(-50%); /* Center it horizontally */
   color: #fff;
   z-index: 1;
   cursor: pointer;
@@ -898,7 +898,7 @@ button:focus {
 
 @media only screen and (max-width: 480px) {
   .left {
-    gap: 0;
+    gap: 2rem;
   }
 }
 
@@ -913,12 +913,13 @@ button:focus {
   font-family: "Questrial", sans-serif;
   color: #151515;
   text-align: left;
-  margin-left: 10px;
+  // margin-left: 10px;
 }
 
 @media only screen and (max-width: 480px) {
   .footer-menu-title {
     font-size: 20px;
+    margin-left: 0px;
   }
 }
 
