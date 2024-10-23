@@ -19,6 +19,7 @@
     "build_client": "cd src/client && npm run build",
     "test_baystate": "node ./src/apiClient/crawlBaystate.js",
     "update_auctions": "node ./src/apiClient/scrap.js",
+    "postinstall": "npm install --force",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install_client && npm run build_client"
   },
   "license": "UNLICENSED",
