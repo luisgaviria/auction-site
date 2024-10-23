@@ -11,4 +11,4 @@ objection.Model.knex(knexConnection);
 // const knex = Knex(knexConfig);
 // Model.knex(knex);
 
-scrapToDatabase();
+// scrapToDatabase();
