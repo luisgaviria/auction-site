@@ -150,29 +150,35 @@ const NewRepo = (props) => {
 
   useEffect(() => {
     const getPagedData = async () => {
-      const token = localStorage.getItem("token");
-      const { data } = await axios.get(
-        url + `/api/v1/crawl?page=${state.page}&limit=${state.limit}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
-          },
+      try {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get(
+          url + `/api/v1/crawl?page=${state.page}&limit=${state.limit}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+  
+        console.log(data.allAuctions);
+  
+        if (data.allAuctions.length) {
+          setState({
+            ...state,
+            repo: data.allAuctions,
+            limit: data.limit,
+            pages: data.pages,
+            loading: false,
+          });
         }
-      );
-
-      console.log(data.allAuctions);
-
-      if (data.allAuctions.length) {
-        setState({
-          ...state,
-          repo: data.allAuctions,
-          limit: data.limit,
-          pages: data.pages,
-          loading: false,
-        });
       }
-    };
+      catch(err){
+        console.log(err);
+      }
+      };
+
     getPagedData();
   }, [state.page]);
 

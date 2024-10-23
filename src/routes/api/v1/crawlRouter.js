@@ -13,7 +13,7 @@ import {isAuth} from "../../../middlewares/isAuth.js";
 
 const crawlRouter = new express.Router();
 
-crawlRouter.get("/", isAuth, getData);
+crawlRouter.get("/", getData);
 
 crawlRouter.get("/scrap", scrapToDatabase);
 
