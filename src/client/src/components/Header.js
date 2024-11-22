@@ -27,21 +27,6 @@ const Header = (props) => {
           <h1 className="heading-primary">Auction & Co.</h1>
           <br></br>
           <br></br>
-          <Alert variant="success" className="Signup-alert">
-            <Alert.Heading className="heading-signup">
-              Welcome to Auction & Company!
-            </Alert.Heading>
-            <p>
-              This site brings you all of the Massachusetts Real Estate auctions
-              in one place so you can focus on buying.
-            </p>
-            <hr />
-            <p className="mb-0">
-              Please <a href="/register">sign up</a> or{" "}
-              <a href="/login">sign in</a> in order to access all the available
-              auctions.
-            </p>
-          </Alert>
           <br></br>
         </div>
       ) : (

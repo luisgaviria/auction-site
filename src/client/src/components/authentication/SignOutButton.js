@@ -3,10 +3,10 @@ import React from "react";
 // import {use} from "react-router-dom";
 
 const SignOutButton = () => {
-//   const [shouldRedirect, setShouldRedirect] = useState(false);
+  //   const [shouldRedirect, setShouldRedirect] = useState(false);
   const signOut = (event) => {
-      localStorage.removeItem("token");
-      window.location.reload(false);
+    localStorage.removeItem("token");
+    window.location.reload(false);
     // event.preventDefault();
     // fetch("/api/v1/user-sessions", {
     //   method: "delete",
@@ -28,12 +28,16 @@ const SignOutButton = () => {
     // });
   };
 
-//   if (shouldRedirect) {
-//     location.href = "/";
-//   }
+  //   if (shouldRedirect) {
+  //     location.href = "/";
+  //   }
 
   return (
-    <button type="button" className="sign-in btn btn-outline-secondary" onClick={signOut}>
+    <button
+      type="button"
+      className="sign-in btn btn-outline-secondary"
+      onClick={signOut}
+    >
       Sign Out
     </button>
   );

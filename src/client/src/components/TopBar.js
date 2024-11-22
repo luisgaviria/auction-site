@@ -1,6 +1,13 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-import { Navbar, Nav, Form, FormControl, NavDropdown, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Form,
+  FormControl,
+  NavDropdown,
+  Button,
+} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import SignOutButton from "./authentication/SignOutButton.js";
 
@@ -17,14 +24,14 @@ const TopBar = ({ user }) => {
   };
   const unauthenticatedListItems = [
     <Button key="5" variant="outline-secondary" className="sign-in">
-      <Link key="6" to="/login" onClick={refreshPage} >
+      {/* <Link key="6" to="/login" onClick={refreshPage}>
         Sign In
-      </Link>
+      </Link> */}
     </Button>,
     <Button key="sign-up" className="sign-up" variant="outline-secondary">
-      <Link to="/register" onClick={refreshPage}>
+      {/* <Link to="/register" onClick={refreshPage}>
         Sign Up
-      </Link>
+      </Link> */}
     </Button>,
   ];
 
@@ -35,7 +42,13 @@ const TopBar = ({ user }) => {
   ];
 
   return (
-    <Navbar className="navbar" collapseOnSelect expand="md" bg="light" variant="light">
+    <Navbar
+      className="navbar"
+      collapseOnSelect
+      expand="md"
+      bg="light"
+      variant="light"
+    >
       <Navbar.Brand className="logo-nav-bar">
         <a href="/">
           <img
@@ -53,34 +66,46 @@ const TopBar = ({ user }) => {
                 Home
               </Link>
             </Nav.Link>  */}
-          <Nav.Link onClick={()=>onClickHandle("/")} key="1" className="navbar-brand-text">
+          <Nav.Link
+            onClick={() => onClickHandle("/")}
+            key="1"
+            className="navbar-brand-text"
+          >
             {/* <Link className="navbar-brand-text" to="/"> */}
             Home
           </Nav.Link>
 
-          <Nav.Link onClick={()=>onClickHandle("/favorites")}  key="2" className="navbar-brand-text">
+          <Nav.Link
+            onClick={() => onClickHandle("/favorites")}
+            key="2"
+            className="navbar-brand-text"
+          >
             {/* <Link className="navbar-brand-text" to="/favorites" onClick={onClickHandle}> */}
             Favorites
           </Nav.Link>
-          <Nav.Link onClick={()=>onClickHandle("/about")}  key="3" className="navbar-brand-text">
+          <Nav.Link
+            onClick={() => onClickHandle("/about")}
+            key="3"
+            className="navbar-brand-text"
+          >
             {/* <Link className="navbar-brand-text" to="/about"> */}
             About Us
           </Nav.Link>
           {
-          //   localStorage.getItem("token") ?           <Nav.Link href="/profile" key="4" className="navbar-brand-text">
-          //   {/* <Link className="navbar-brand-text" to="/about"> */}
-          //   Profile
-          // </Nav.Link> : null
+            //   localStorage.getItem("token") ?           <Nav.Link href="/profile" key="4" className="navbar-brand-text">
+            //   {/* <Link className="navbar-brand-text" to="/about"> */}
+            //   Profile
+            // </Nav.Link> : null
           }
-
         </Nav>
 
         <Nav.Link key="4" className="">
-          {localStorage.getItem("token") ? authenticatedListItems : unauthenticatedListItems}
+          {localStorage.getItem("token")
+            ? authenticatedListItems
+            : unauthenticatedListItems}
         </Nav.Link>
       </Navbar.Collapse>
     </Navbar>
-
   );
 };
 
