@@ -23,16 +23,17 @@ const TopBar = ({ user }) => {
     navigate(route);
   };
   const unauthenticatedListItems = [
-    <Button key="5" variant="outline-secondary" className="sign-in">
-      {/* <Link key="6" to="/login" onClick={refreshPage}>
-        Sign In
-      </Link> */}
-    </Button>,
-    <Button key="sign-up" className="sign-up" variant="outline-secondary">
-      {/* <Link to="/register" onClick={refreshPage}>
-        Sign Up
-      </Link> */}
-    </Button>,
+    // <Button key="5" variant="outline-secondary" className="sign-in">
+    //   <Link key="6" to="/login" onClick={refreshPage} >
+    //     Sign In
+    //   </Link>
+    // </Button>,
+    // <Button key="sign-up" className="sign-up" variant="outline-secondary">
+    //   <Link to="/register" onClick={refreshPage}>
+    //     Sign Up
+    //   </Link>
+    // </Button>,
+    <></>,
   ];
 
   const authenticatedListItems = [

@@ -33,13 +33,14 @@ const SignOutButton = () => {
   //   }
 
   return (
-    <button
-      type="button"
-      className="sign-in btn btn-outline-secondary"
-      onClick={signOut}
-    >
-      Sign Out
-    </button>
+    <></>
+    // <button
+    //   type="button"
+    //   className="sign-in btn btn-outline-secondary"
+    //   onClick={signOut}
+    // >
+    //   Sign Out
+    // </button>
   );
 };
 
