@@ -4,7 +4,6 @@ const AboutUs = () => {
   return (
     <div>
       <br />
-      <h2 className="about-us-header">About Auction & Company</h2>
       <p className="about-us-text">
         Auction & Company started as my personal project to simplify the often
         frustrating process of searching for real estate auctions. Navigating
