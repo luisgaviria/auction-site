@@ -22,34 +22,23 @@ const Header = (props) => {
 
   return (
     <>
-      {localStorage.getItem("token") == null ? (
-        <div className="message-container">
-          <h1 className="heading-primary">Auction & Co.</h1>
-          <br></br>
-          <br></br>
-          <br></br>
-        </div>
-      ) : (
-        <>
-          <h1 className="heading-primary">Auction & Co.</h1>
-          <div
-            className="not-container"
-            alt="logo, drawing of people attending auction"
-          >
-            <img
-              alt="logo-of-site"
-              className="not-container2"
-              src="https://i.postimg.cc/wTjbqjsv/20945153-Convert-Image.jpg"
-              style={{ aspectRatio: "1/1" }}
-            />
-          </div>
-          <h2></h2>
-          <h3 className="heading-primary-main">
-            Bringing you all of the Massachusetts Real Estate auctions in one
-            place so you can focus on buying.
-          </h3>
-        </>
-      )}
+      <h1 className="heading-primary">Auction & Co.</h1>
+      <div
+        className="not-container"
+        alt="logo, drawing of people attending auction"
+      >
+        <img
+          alt="logo-of-site"
+          className="not-container2"
+          src="https://i.postimg.cc/wTjbqjsv/20945153-Convert-Image.jpg"
+          style={{ aspectRatio: "1/1" }}
+        />
+      </div>
+      <h2></h2>
+      <h3 className="heading-primary-main">
+        Bringing you all of the Massachusetts Real Estate auctions in one place
+        so you can focus on buying.
+      </h3>
     </>
   );
 };
