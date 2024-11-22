@@ -4,38 +4,36 @@ const AboutUs = () => {
   return (
     <div>
       <br />
+      <h2 className="about-us-header">About Auction & Company</h2>
       <p className="about-us-text">
-        This website was originally created as a personal project to save time
-        on real estate auction purchases.
+        Auction & Company started as my personal project to simplify the often
+        frustrating process of searching for real estate auctions. Navigating
+        multiple auctioneer websites daily can be time-consuming, especially
+        when many of them are outdated, difficult to use, or hard to find.
       </p>
       <p className="about-us-text">
-        Let’s face it. Currently, it's very time-consuming to search for real
-        estate auctions on multiple websites every day.
+        As a real estate agent with over 20 years of experience and knowledge in
+        software development, I created Auction & Company to provide a free
+        platform that consolidates auction information from over 10 auctioneer
+        websites across Massachusetts into one easy-to-use site, conveniently
+        sorted by the soonest dates.
       </p>
       <p className="about-us-text">
-        Most auctioneer websites in the Massachusetts area are slow, dated, not
-        easy to use, and hard to find. This makes the process very inefficient.
-        Countless hours are wasted searching for auctions that often get
-        canceled or postponed, making it even more difficult for real estate
-        investors to keep up.
+        It’s important to note that Auction & Company is not an auctioneer, and
+        while I strive to keep the platform accurate and up-to-date, this is a
+        personal project. As a free service, it is not maintained to the highest
+        professional standards. I recommend that all users conduct their own due
+        diligence and confirm auction details independently to ensure accuracy.
       </p>
       <p className="about-us-text">
-        At Auction & Company, we believe your time deserves better. That’s why
-        we created this website to save you countless hours and make the buying
-        process more efficient and enjoyable.
+        In addition to maintaining Auction & Company, I am available to assist
+        with the buying and selling process or to build websites tailored to
+        your real estate needs. My goal is to save you time, make the auction
+        process more accessible, and leverage my expertise to help you succeed.
       </p>
       <p className="about-us-text">
-        Please note, Auction & Company is not an auctioneer. While we strive to
-        provide accurate and up-to-date information, this is a personal project
-        offered as a free service. As such, it is not maintained to the highest
-        professional standards. Users are responsible for conducting their own
-        due diligence and confirming that auctions are taking place as
-        scheduled.
-      </p>
-      <p className="about-us-text">
-        Today, Auction & Company gathers data from over 10 auctioneer websites
-        in Massachusetts and displays it in one place, conveniently sorted by
-        the soonest auction dates.
+        Thank you for using Auction & Company. I hope it helps you find your
+        next great investment opportunity.
       </p>
     </div>
   );
